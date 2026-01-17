@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/logo.png">
-      <meta name="generator" content="zensical-0.0.8">
+      <meta name="generator" content="zensical-0.0.16">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.2644c6b7.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.dfcb43b2.min.css">
       
         
           
@@ -42,35 +42,6 @@
         <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
-  
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
-  
-  <style>:root{}</style>
-
 
 
     
@@ -224,7 +195,7 @@
       <a href="../.." class="md-tabs__link">
         
   
-  Compute Central
+  Home
 
       </a>
     </li>
@@ -433,7 +404,7 @@
   <span class="md-ellipsis">
     
   
-    Compute Central
+    Home
   
 
     
@@ -1554,7 +1525,7 @@
       <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
-    Compute Central
+    Home
   </span>
 
       </a>
@@ -1591,19 +1562,19 @@
 
   <h1>Overview</h1>
 
+<h2 id="why-terraform">Why Terraform</h2>
 <p>Terraform is an Infrastructure as Code (IaC) tool by HashiCorp that allows you to define, provision, and manage infrastructure across cloud providers using declarative configuration files.</p>
-<h2 id="why-terraform">Why Terraform<a class="headerlink" href="#why-terraform" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Ideal for creating and managing infrastructure.</li>
 <li>Uses <strong>HCL (HashiCorp Configuration Language)</strong> — a human-readable, declarative language.</li>
 </ul>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="language-hcl highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_instance&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">ami</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ami-0abcd1234&quot;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;t2.micro&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="how-terraform-communicates-with-cloud-providers">How Terraform Communicates with Cloud Providers<a class="headerlink" href="#how-terraform-communicates-with-cloud-providers" title="Permanent link">&para;</a></h2>
+<h2 id="example">Example</h2>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_instance&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">ami</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ami-0abcd1234&quot;</span>
+<span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;t2.micro&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="how-terraform-communicates-with-cloud-providers">How Terraform Communicates with Cloud Providers</h2>
 <ol>
 <li>
 <p><strong>Providers (Plugins)</strong>
@@ -1625,12 +1596,12 @@
    Terraform needs credentials to access APIs:</p>
 </li>
 </ol>
-<div class="language-hcl highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">access_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_ACCESS_KEY&quot;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="na">secret_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="na">region</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">access_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_ACCESS_KEY&quot;</span>
+<span class="w">  </span><span class="na">secret_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_SECRET_KEY&quot;</span>
+<span class="w">  </span><span class="na">region</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <ol>
 <li>
 <p><strong>Terraform Workflow</strong></p>
@@ -1642,60 +1613,60 @@
 <li><code>apply</code> → Create or modify resources</li>
 <li><code>state</code> → Save results locally or remotely</li>
 </ol>
-<h2 id="example-flow">Example Flow<a class="headerlink" href="#example-flow" title="Permanent link">&para;</a></h2>
-<div class="language-hcl highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;demo&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-demo-bucket&quot;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
-</span></code></pre></div>
+<h2 id="example-flow">Example Flow</h2>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;demo&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-demo-bucket&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Terraform uses the AWS provider to authenticate, send an API call, and record the result in <code>terraform.tfstate</code>.</p>
 <p><strong>Summary:</strong>
 Terraform communicates through provider plugins that use official cloud APIs to create and manage resources.</p>
 <hr />
-<h2 id="aws-cli-installation-configuration">AWS CLI Installation &amp; Configuration<a class="headerlink" href="#aws-cli-installation-configuration" title="Permanent link">&para;</a></h2>
-<h2 id="1-install-aws-cli">1. Install AWS CLI<a class="headerlink" href="#1-install-aws-cli" title="Permanent link">&para;</a></h2>
+<h2 id="aws-cli-installation-configuration">AWS CLI Installation &amp; Configuration</h2>
+<h2 id="1-install-aws-cli">1. Install AWS CLI</h2>
 <p><strong>macOS</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>brew<span class="w"> </span>install<span class="w"> </span>awscli
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>aws<span class="w"> </span>--version
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>awscli
+aws<span class="w"> </span>--version
+</code></pre></div>
 <p><strong>Windows</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>choco<span class="w"> </span>install<span class="w"> </span>awscli
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>aws<span class="w"> </span>--version
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>choco<span class="w"> </span>install<span class="w"> </span>awscli
+aws<span class="w"> </span>--version
+</code></pre></div>
 <p>Manual installers are available at:
 <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html</a></p>
 <hr />
-<h2 id="2-configure-aws-cli">2. Configure AWS CLI<a class="headerlink" href="#2-configure-aws-cli" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>aws<span class="w"> </span>configure
-</span></code></pre></div>
+<h2 id="2-configure-aws-cli">2. Configure AWS CLI</h2>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure
+</code></pre></div>
 <p>Enter:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>AWS Access Key ID [None]: test
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>AWS Secret Access Key [None]: test
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Default region name [None]: us-east-1
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Default output format [None]: json
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>AWS Access Key ID [None]: test
+AWS Secret Access Key [None]: test
+Default region name [None]: us-east-1
+Default output format [None]: json
+</code></pre></div>
 <p>Configuration files:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>~/.aws/credentials
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>~/.aws/config
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>~/.aws/credentials
+~/.aws/config
+</code></pre></div>
 <p><strong>Windows path:</strong></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>C:\Users\&lt;username&gt;\.aws\
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\&lt;username&gt;\.aws\
+</code></pre></div>
 <hr />
-<h2 id="3-test-configuration">3. Test Configuration<a class="headerlink" href="#3-test-configuration" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>aws<span class="w"> </span>s3<span class="w"> </span>ls
-</span></code></pre></div>
+<h2 id="3-test-configuration">3. Test Configuration</h2>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div>
 <p><strong>With LocalStack:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>aws<span class="w"> </span>--endpoint-url<span class="o">=</span>http://localhost:4566<span class="w"> </span>s3<span class="w"> </span>ls
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>--endpoint-url<span class="o">=</span>http://localhost:4566<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div>
 <hr />
-<h2 id="4-optional-custom-profiles">4. Optional: Custom Profiles<a class="headerlink" href="#4-optional-custom-profiles" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>aws<span class="w"> </span>configure<span class="w"> </span>--profile<span class="w"> </span>localstack
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>aws<span class="w"> </span>--profile<span class="w"> </span>localstack<span class="w"> </span>--endpoint-url<span class="o">=</span>http://localhost:4566<span class="w"> </span>s3<span class="w"> </span>ls
-</span></code></pre></div>
+<h2 id="4-optional-custom-profiles">4. Optional: Custom Profiles</h2>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure<span class="w"> </span>--profile<span class="w"> </span>localstack
+aws<span class="w"> </span>--profile<span class="w"> </span>localstack<span class="w"> </span>--endpoint-url<span class="o">=</span>http://localhost:4566<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div>
 <hr />
-<h2 id="localstack-setup">LocalStack Setup<a class="headerlink" href="#localstack-setup" title="Permanent link">&para;</a></h2>
+<h2 id="localstack-setup">LocalStack Setup</h2>
 <p>LocalStack emulates AWS services locally using Docker — perfect for testing Terraform and AWS CLI without real AWS credentials.</p>
-<h2 id="why-use-localstack">Why Use LocalStack<a class="headerlink" href="#why-use-localstack" title="Permanent link">&para;</a></h2>
+<h2 id="why-use-localstack">Why Use LocalStack</h2>
 <ul>
 <li>Avoid AWS costs</li>
 <li>Work offline</li>
@@ -1703,7 +1674,7 @@ Terraform communicates through provider plugins that use official cloud APIs to 
 <li>Supports S3, EC2, Lambda, DynamoDB, and more</li>
 </ul>
 <hr />
-<h2 id="1-prerequisites">1. Prerequisites<a class="headerlink" href="#1-prerequisites" title="Permanent link">&para;</a></h2>
+<h2 id="1-prerequisites">1. Prerequisites</h2>
 <table>
 <thead>
 <tr>
@@ -1731,131 +1702,131 @@ Terraform communicates through provider plugins that use official cloud APIs to 
 </tbody>
 </table>
 <hr />
-<h2 id="2-install-localstack">2. Install LocalStack<a class="headerlink" href="#2-install-localstack" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pip<span class="w"> </span>install<span class="w"> </span>localstack<span class="w"> </span>awscli-local
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>localstack<span class="w"> </span>--version
-</span></code></pre></div>
+<h2 id="2-install-localstack">2. Install LocalStack</h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>localstack<span class="w"> </span>awscli-local
+localstack<span class="w"> </span>--version
+</code></pre></div>
 <hr />
-<h2 id="3-start-localstack">3. Start LocalStack<a class="headerlink" href="#3-start-localstack" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>localstack<span class="w"> </span>start
-</span></code></pre></div>
+<h2 id="3-start-localstack">3. Start LocalStack</h2>
+<div class="highlight"><pre><span></span><code>localstack<span class="w"> </span>start
+</code></pre></div>
 <p>Runs on <code>http://localhost:4566</code>.</p>
 <hr />
-<h2 id="4-web-dashboard">4. Web Dashboard<a class="headerlink" href="#4-web-dashboard" title="Permanent link">&para;</a></h2>
+<h2 id="4-web-dashboard">4. Web Dashboard</h2>
 <p>Terminal
 <img alt="alt text" src="../Screenshot 2025-10-05 at 8.22.20 PM.png" />
 <img alt="alt text" src="../Screenshot 2025-10-05 at 8.23.33 PM.png" /></p>
 <hr />
-<h2 id="5-test">5. Test<a class="headerlink" href="#5-test" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>awslocal<span class="w"> </span>s3<span class="w"> </span>ls
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>awslocal<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://demo-bucket
-</span></code></pre></div>
+<h2 id="5-test">5. Test</h2>
+<div class="highlight"><pre><span></span><code>awslocal<span class="w"> </span>s3<span class="w"> </span>ls
+awslocal<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://demo-bucket
+</code></pre></div>
 <hr />
-<h2 id="6-docker-compose-example">6. Docker Compose Example<a class="headerlink" href="#6-docker-compose-example" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">services</span><span class="p">:</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nt">localstack</span><span class="p">:</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localstack/localstack</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;4566:4566&quot;</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SERVICES=s3,ec2,lambda</span>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEBUG=1</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./localstack:/var/lib/localstack&quot;</span>
-</span></code></pre></div>
+<h2 id="6-docker-compose-example">6. Docker Compose Example</h2>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">localstack</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localstack/localstack</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;4566:4566&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SERVICES=s3,ec2,lambda</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEBUG=1</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./localstack:/var/lib/localstack&quot;</span>
+</code></pre></div>
 <p>Run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker-compose<span class="w"> </span>up
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up
+</code></pre></div>
 <hr />
-<h2 id="terraform-localstack-integration">Terraform + LocalStack Integration<a class="headerlink" href="#terraform-localstack-integration" title="Permanent link">&para;</a></h2>
-<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>terraform-localstack-demo/
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>├── main.tf
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>├── provider.tf
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>├── outputs.tf
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>└── hello.txt
-</span></code></pre></div>
-<h2 id="step-1-create-a-test-file">Step 1: Create a Test File<a class="headerlink" href="#step-1-create-a-test-file" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello from Terraform + LocalStack!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>hello.txt
-</span></code></pre></div>
+<h2 id="terraform-localstack-integration">Terraform + LocalStack Integration</h2>
+<h2 id="project-structure">Project Structure</h2>
+<div class="highlight"><pre><span></span><code>terraform-localstack-demo/
+├── main.tf
+├── provider.tf
+├── outputs.tf
+└── hello.txt
+</code></pre></div>
+<h2 id="step-1-create-a-test-file">Step 1: Create a Test File</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello from Terraform + LocalStack!&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>hello.txt
+</code></pre></div>
 <hr />
-<h2 id="step-2-providertf">Step 2: provider.tf<a class="headerlink" href="#step-2-providertf" title="Permanent link">&para;</a></h2>
-<div class="language-hcl highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hashicorp/aws&quot;</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 5.0&quot;</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="na">required_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;= 1.5.0&quot;</span>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="p">}</span>
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">  </span><span class="na">region</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">  </span><span class="na">access_key</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">  </span><span class="na">secret_key</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">  </span><span class="na">s3_force_path_style</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">  </span><span class="na">skip_credentials_validation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">  </span><span class="na">skip_metadata_api_check</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">  </span><span class="na">skip_requesting_account_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">  </span><span class="nb">endpoints</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">    </span><span class="na">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://localhost:4566&quot;</span>
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="p">}</span>
-</span></code></pre></div>
+<h2 id="step-2-providertf">Step 2: provider.tf</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hashicorp/aws&quot;</span>
+<span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 5.0&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="na">required_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;= 1.5.0&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">region</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
+<span class="w">  </span><span class="na">access_key</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
+<span class="w">  </span><span class="na">secret_key</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test&quot;</span>
+<span class="w">  </span><span class="na">s3_force_path_style</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">skip_credentials_validation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">skip_metadata_api_check</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="na">skip_requesting_account_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="w">  </span><span class="nb">endpoints</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://localhost:4566&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
-<h2 id="step-3-maintf">Step 3: main.tf<a class="headerlink" href="#step-3-maintf" title="Permanent link">&para;</a></h2>
-<div class="language-hcl highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;demo&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;terraform-localstack-demo&quot;</span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">}</span>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_object&quot;</span><span class="w"> </span><span class="nv">&quot;file_upload&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.demo.id</span>
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="na">key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello.txt&quot;</span>
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello.txt&quot;</span>
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span><span class="na">etag</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nf">filemd5</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">)</span>
-</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="p">}</span>
-</span></code></pre></div>
+<h2 id="step-3-maintf">Step 3: main.tf</h2>
+<div class="highlight"><pre><span></span><code><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;demo&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;terraform-localstack-demo&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_object&quot;</span><span class="w"> </span><span class="nv">&quot;file_upload&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.demo.id</span>
+<span class="w">  </span><span class="na">key</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello.txt&quot;</span>
+<span class="w">  </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello.txt&quot;</span>
+<span class="w">  </span><span class="na">etag</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nf">filemd5</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
-<h2 id="step-4-outputstf">Step 4: outputs.tf<a class="headerlink" href="#step-4-outputstf" title="Permanent link">&para;</a></h2>
-<div class="language-hcl highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.demo.bucket</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">}</span>
-</span></code></pre></div>
+<h2 id="step-4-outputstf">Step 4: outputs.tf</h2>
+<div class="highlight"><pre><span></span><code><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.demo.bucket</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
-<h2 id="step-5-deploy">Step 5: Deploy<a class="headerlink" href="#step-5-deploy" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>terraform<span class="w"> </span>init
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>terraform<span class="w"> </span>plan
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>terraform<span class="w"> </span>apply<span class="w"> </span>-auto-approve
-</span></code></pre></div>
+<h2 id="step-5-deploy">Step 5: Deploy</h2>
+<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>init
+terraform<span class="w"> </span>plan
+terraform<span class="w"> </span>apply<span class="w"> </span>-auto-approve
+</code></pre></div>
 <p>Verify:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>awslocal<span class="w"> </span>s3<span class="w"> </span>ls
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>awslocal<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://terraform-localstack-demo/
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>awslocal<span class="w"> </span>s3<span class="w"> </span>ls
+awslocal<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://terraform-localstack-demo/
+</code></pre></div>
 <hr />
-<h2 id="cleanup-and-destroy">Cleanup and Destroy<a class="headerlink" href="#cleanup-and-destroy" title="Permanent link">&para;</a></h2>
-<h2 id="destroy-resources">Destroy Resources<a class="headerlink" href="#destroy-resources" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>terraform<span class="w"> </span>destroy<span class="w"> </span>-auto-approve
-</span></code></pre></div>
+<h2 id="cleanup-and-destroy">Cleanup and Destroy</h2>
+<h2 id="destroy-resources">Destroy Resources</h2>
+<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>destroy<span class="w"> </span>-auto-approve
+</code></pre></div>
 <p>Output:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Destroy complete! Resources: 2 destroyed.
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code>Destroy complete! Resources: 2 destroyed.
+</code></pre></div>
 <hr />
-<h2 id="optional-preview-destroy">Optional: Preview Destroy<a class="headerlink" href="#optional-preview-destroy" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>terraform<span class="w"> </span>plan<span class="w"> </span>-destroy
-</span></code></pre></div>
+<h2 id="optional-preview-destroy">Optional: Preview Destroy</h2>
+<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>plan<span class="w"> </span>-destroy
+</code></pre></div>
 <hr />
-<h2 id="verify-deletion">Verify Deletion<a class="headerlink" href="#verify-deletion" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>awslocal<span class="w"> </span>s3<span class="w"> </span>ls
-</span></code></pre></div>
+<h2 id="verify-deletion">Verify Deletion</h2>
+<div class="highlight"><pre><span></span><code>awslocal<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div>
 <hr />
-<h2 id="reset-localstack-optional">Reset LocalStack (Optional)<a class="headerlink" href="#reset-localstack-optional" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>localstack<span class="w"> </span>stop
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>localstack
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>docker<span class="w"> </span>volume<span class="w"> </span>prune<span class="w"> </span>-f
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>localstack<span class="w"> </span>start
-</span></code></pre></div>
+<h2 id="reset-localstack-optional">Reset LocalStack (Optional)</h2>
+<div class="highlight"><pre><span></span><code>localstack<span class="w"> </span>stop
+docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>localstack
+docker<span class="w"> </span>volume<span class="w"> </span>prune<span class="w"> </span>-f
+localstack<span class="w"> </span>start
+</code></pre></div>
 
 
 
@@ -1919,7 +1890,7 @@ Terraform communicates through provider plugins that use official cloud APIs to 
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy;2016 - 2025 Sameer Alam
+      Copyright © 2016–2025 Sameer Alam
 
     </div>
   
@@ -1945,10 +1916,10 @@ Terraform communicates through provider plugins that use official cloud APIs to 
       
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.tabs","navigation.top","navigation.tracking","search.highlight","toc.integrate"],"search":"../../assets/javascripts/workers/search.5e1f2129.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.tabs","navigation.top","navigation.tracking","search.highlight","toc.integrate"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.21aa498e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8ffeb9c9.min.js"></script>
       
     
   </body>

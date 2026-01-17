@@ -1,19 +1,50 @@
-# [Compute Central]()
+# Home
 
-Welcome to **Compute Central** – your resource for everything **DevOps** and **Site Reliability Engineering (SRE)**. Whether you are experienced or just starting, this site will help you explore tools, practical tips, and connect with a professional community.
+**Compute Central** is a practical knowledge hub focused on **DevOps**, **Cloud Engineering**, and **Site Reliability Engineering (SRE)**.
 
-!!! tip "Practical advice to help you deliver and manage code effectively."
+This site documents **real-world infrastructure work**—not theory. You will find hands-on guides, automation patterns, architectural decisions, and operational lessons drawn from building and running systems in production.
 
-!!! info "Discover the latest tools and approaches to keep your systems reliable and secure."
+Whether you are **starting your DevOps journey** or **operating at scale**, the goal is simple:
 
-!!! note "Step-by-step guides for setup, deployment, and system improvement."
+> **Make infrastructure reliable, automated, observable, and secure.**
 
-I am **Sameer Alam**, a DevOps engineer and SRE practitioner. My focus is simplifying complex systems and ensuring reliability. Over the years, I have gained insights into what makes systems operate efficiently.
+---
 
-**See my projects:**  
-[GitHub](https://github.com/sameeralam3127){:target="\_blank"}<br>
-[Blog](https://www.computecentral.in/){:target="\_blank"}<br>
-Explore my earlier blog posts from 2016, when I first began documenting my learning.
-For questions or ideas, feel free to reach out.
+!!! tip
+**Hands-on, production-oriented content** — scripts, pipelines, architectures, and troubleshooting workflows you can apply immediately.
 
-**– Sameer Alam**
+!!! info
+Coverage across **Linux, Cloud (AWS/GCP/Azure), Containers, Kubernetes, CI/CD, Monitoring, and Security**.
+
+!!! note
+Clear, step-by-step guides designed for **learning by doing**, not copy-paste without understanding.
+
+---
+
+About Me
+
+I’m **Sameer Alam**, a **DevOps Engineer and SRE practitioner** with a strong focus on building and operating **reliable, scalable systems**.
+
+My work centers on:
+
+- Designing resilient infrastructure
+- Automating deployments and operations
+- Improving performance, observability, and security
+- Reducing operational complexity through clear architecture
+
+I’ve been documenting my learning and experiments since **2016**.
+Compute Central is where those experiences are organized into **clear, reusable, and practical knowledge**.
+
+---
+
+Projects & Open Source
+
+- **GitHub:** [https://github.com/sameeralam3127](https://github.com/sameeralam3127)
+  Infrastructure code, automation experiments, and learning projects.
+
+More repositories and case studies are referenced throughout the site where relevant.
+
+---
+
+> **“Automation is not just a skill — it’s a mindset.”**
+> — _Sameer Alam_

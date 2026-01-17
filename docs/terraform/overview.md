@@ -1,6 +1,6 @@
-Terraform is an Infrastructure as Code (IaC) tool by HashiCorp that allows you to define, provision, and manage infrastructure across cloud providers using declarative configuration files.
-
 ## Why Terraform
+
+Terraform is an Infrastructure as Code (IaC) tool by HashiCorp that allows you to define, provision, and manage infrastructure across cloud providers using declarative configuration files.
 
 - Ideal for creating and managing infrastructure.
 - Uses **HCL (HashiCorp Configuration Language)** — a human-readable, declarative language.
