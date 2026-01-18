@@ -7,6 +7,30 @@
         <loc>https://computecentral.in/ansible/ansible/</loc>
       </url>
       <url>
+        <loc>https://computecentral.in/ansible/basics/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/ansible/configuration/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/ansible/facts-verbosity/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/ansible/installation/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/ansible/inventory/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/ansible/playbooks/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/ansible/roles/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/ansible/variables/</loc>
+      </url>
+      <url>
         <loc>https://computecentral.in/docker/docker/</loc>
       </url>
       <url>
