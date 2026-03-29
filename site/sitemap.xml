@@ -55,7 +55,19 @@
         <loc>https://computecentral.in/shell-scripts/scripts/</loc>
       </url>
       <url>
-        <loc>https://computecentral.in/sonarqube/sonarqube/</loc>
+        <loc>https://computecentral.in/sonarqube/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/sonarqube/configuration/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/sonarqube/installation/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/sonarqube/jenkins-integration/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/sonarqube/pipeline-example/</loc>
       </url>
       <url>
         <loc>https://computecentral.in/terraform/overview/</loc>

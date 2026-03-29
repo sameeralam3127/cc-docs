@@ -12,13 +12,13 @@
         <meta name="author" content="Sameer Alam">
       
       
-        <link rel="canonical" href="https://computecentral.in/ansible/inventory/">
+        <link rel="canonical" href="https://computecentral.in/sonarqube/jenkins-integration/">
       
       
         <link rel="prev" href="../installation/">
       
       
-        <link rel="next" href="../playbooks/">
+        <link rel="next" href="../pipeline-example/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Working with Inventory - Compute Central</title>
+        <title>SonarQube Integration with Jenkins - Compute Central</title>
       
     
     
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#working-with-inventory" class="md-skip">
+        <a href="#sonarqube-integration-with-jenkins" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Working with Inventory
+              SonarQube Integration with Jenkins
             
           </span>
         </div>
@@ -227,13 +227,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../ansible/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../ansible/ansible/" class="md-tabs__link">
           
   
   Ansible
@@ -343,11 +341,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../sonarqube/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   Sonarqube
@@ -580,10 +580,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -609,20 +607,17 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -640,7 +635,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -658,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ansible/" class="md-nav__link">
+      <a href="../../ansible/ansible/" class="md-nav__link">
         
   
   
@@ -688,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../basics/" class="md-nav__link">
+      <a href="../../ansible/basics/" class="md-nav__link">
         
   
   
@@ -718,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../ansible/configuration/" class="md-nav__link">
         
   
   
@@ -748,7 +743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../facts-verbosity/" class="md-nav__link">
+      <a href="../../ansible/facts-verbosity/" class="md-nav__link">
         
   
   
@@ -778,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../ansible/installation/" class="md-nav__link">
         
   
   
@@ -805,13 +800,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ansible/inventory/" class="md-nav__link">
         
   
   
@@ -829,7 +821,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -842,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../playbooks/" class="md-nav__link">
+      <a href="../../ansible/playbooks/" class="md-nav__link">
         
   
   
@@ -872,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../roles/" class="md-nav__link">
+      <a href="../../ansible/roles/" class="md-nav__link">
         
   
   
@@ -902,7 +893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../variables/" class="md-nav__link">
+      <a href="../../ansible/variables/" class="md-nav__link">
         
   
   
@@ -1381,6 +1372,8 @@
       
   
   
+    
+  
   
   
     
@@ -1402,18 +1395,21 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../sonarqube/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1433,13 +1429,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1459,7 +1455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sonarqube/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
@@ -1489,7 +1485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sonarqube/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -1516,10 +1512,13 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../sonarqube/jenkins-integration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1537,6 +1536,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1549,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sonarqube/pipeline-example/" class="md-nav__link">
+      <a href="../pipeline-example/" class="md-nav__link">
         
   
   
@@ -1711,10 +1711,10 @@
     
     
       <li class="md-path__item">
-        <a href="../ansible/" class="md-path__link">
+        <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Ansible
+    Sonarqube
   </span>
 
         </a>
@@ -1731,22 +1731,27 @@
                 
                   
 
-<h1 id="working-with-inventory">Working with Inventory</h1>
-<h1 id="static-inventory-example">Static Inventory Example</h1>
-<div class="highlight"><pre><span></span><code><span class="k">[webservers]</span>
-<span class="na">192.168.1.10</span>
-<span class="na">192.168.1.11</span>
-
-<span class="k">[databases]</span>
-<span class="na">db1.example.com</span>
-</code></pre></div>
-<h1 id="list-hosts">List Hosts</h1>
-<div class="highlight"><pre><span></span><code>ansible<span class="w"> </span>all<span class="w"> </span>--list-hosts
-</code></pre></div>
-<h1 id="python-interpreter-override">Python Interpreter Override</h1>
-<div class="highlight"><pre><span></span><code><span class="k">[webservers]</span>
-<span class="na">192.168.1.10 ansible_python_interpreter</span><span class="o">=</span><span class="s">/usr/bin/python3</span>
-</code></pre></div>
+<h1 id="sonarqube-integration-with-jenkins">SonarQube Integration with Jenkins</h1>
+<hr />
+<h2 id="step-1-install-sonarqube-scanner-plugin">Step 1: Install SonarQube Scanner Plugin</h2>
+<ol>
+<li>Go to Jenkins → <strong>Manage Jenkins</strong> → <strong>Manage Plugins</strong></li>
+<li>Search for <strong>"SonarQube Scanner"</strong> in the Available tab</li>
+<li>Install and restart Jenkins</li>
+</ol>
+<hr />
+<h2 id="step-2-configure-sonarqube-server-in-jenkins">Step 2: Configure SonarQube Server in Jenkins</h2>
+<ol>
+<li><strong>Manage Jenkins</strong> → <strong>Configure System</strong></li>
+<li>Scroll to <strong>SonarQube servers</strong> section</li>
+<li>Click <strong>Add SonarQube</strong></li>
+<li><strong>Name</strong>: <code>SonarQube</code></li>
+<li><strong>Server URL</strong>: <code>http://your-sonarqube-server:9000</code></li>
+<li><strong>Server Authentication Token</strong>: (Generate from SonarQube → My Account → Security)</li>
+</ol>
+<hr />
+<p><strong>Next</strong>: <a href=".././pipeline-example/">Pipeline Example →</a></p>
+<p><strong>Official Jenkins Integration</strong>: <a href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/ci-integration/jenkins-integration/">SonarQube Jenkins Docs</a></p>
 
 
   <nav class="md-tags" >
@@ -1755,7 +1760,14 @@
       
       
       
-        <span class="md-tag">Inventory</span>
+        <span class="md-tag">Jenkins</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Integration</span>
       
     
   </nav>
@@ -1800,7 +1812,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installing Ansible">
+          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SonarQube Installation on Ubuntu">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -1810,20 +1822,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Installing Ansible
+                SonarQube Installation on Ubuntu
               </div>
             </div>
           </a>
         
         
           
-          <a href="../playbooks/" class="md-footer__link md-footer__link--next" aria-label="Next: Writing Your First Playbook">
+          <a href="../pipeline-example/" class="md-footer__link md-footer__link--next" aria-label="Next: Jenkins Pipeline with SonarQube Analysis">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Writing Your First Playbook
+                Jenkins Pipeline with SonarQube Analysis
               </div>
             </div>
             <div class="md-footer__button md-icon">
