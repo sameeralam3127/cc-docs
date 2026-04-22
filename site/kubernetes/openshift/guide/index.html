@@ -2568,14 +2568,235 @@
                   
 
 <h1 id="red-hat-openshift-platform-guide">Red Hat OpenShift Platform Guide</h1>
-<h2 id="1-openshift-vs-kubernetes-key-differences">1. OpenShift vs Kubernetes - Key Differences</h2>
+<p>OpenShift is Red Hat's enterprise Kubernetes platform for building, running, and operating containerized applications across local, datacenter, and cloud environments.</p>
+<p>This guide now covers not just platform concepts, but also how to choose an installation model, what prerequisites matter, where virtualization fits, and how to approach setup safely.</p>
+<h2 id="1-installation-types">1. Installation Types</h2>
+<p>OpenShift can be installed in several ways depending on your goal, budget, and environment maturity.</p>
+<h3 id="openshift-local-crc">OpenShift Local (CRC)</h3>
+<p>OpenShift Local, previously known as CodeReady Containers or <code>crc</code>, is the best option for:</p>
+<ul>
+<li>Local learning</li>
+<li>Feature exploration</li>
+<li>Basic operator testing</li>
+<li>Developer-focused labs on a single machine</li>
+</ul>
+<p>It is not designed for production workloads.</p>
+<h3 id="installer-provisioned-infrastructure-ipi">Installer-Provisioned Infrastructure (IPI)</h3>
+<p>With IPI, the installer creates and configures much of the required infrastructure for you.</p>
+<p>This is usually the best option when:</p>
+<ul>
+<li>You are starting fresh on a supported cloud</li>
+<li>You want faster time to a working cluster</li>
+<li>You prefer more automation during installation</li>
+</ul>
+<h3 id="user-provisioned-infrastructure-upi">User-Provisioned Infrastructure (UPI)</h3>
+<p>With UPI, you prepare the infrastructure yourself and then install OpenShift on top of it.</p>
+<p>This is useful when:</p>
+<ul>
+<li>You need tighter network or security control</li>
+<li>Your organization has custom infrastructure standards</li>
+<li>You are installing on-premises or in more complex enterprise environments</li>
+</ul>
+<h3 id="assisted-installer">Assisted Installer</h3>
+<p>The Assisted Installer is a guided installation workflow that helps with host discovery, readiness checks, and deployment.</p>
+<p>It is useful when:</p>
+<ul>
+<li>You want more guidance than raw UPI</li>
+<li>You are setting up bare metal or custom environments</li>
+<li>You want validation before the cluster is deployed</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Official installation methods</p>
+</div>
+<p>Red Hat documents installer-provisioned, user-provisioned, and Assisted Installer approaches for OpenShift Container Platform. For OpenShift Virtualization specifically, Red Hat notes that installation method and cluster topology can affect features such as snapshots and live migration.</p>
+<hr />
+<h2 id="2-requirements-and-planning">2. Requirements and Planning</h2>
+<p>Before installing OpenShift, decide what kind of environment you are building:</p>
+<ul>
+<li>Local single-node lab</li>
+<li>Shared development cluster</li>
+<li>Production platform on cloud</li>
+<li>On-premises or edge deployment</li>
+</ul>
+<h3 id="minimum-planning-areas">Minimum Planning Areas</h3>
+<p>No matter which installation type you choose, plan for:</p>
+<ul>
+<li>CPU, memory, and storage capacity</li>
+<li>DNS and naming</li>
+<li>Load balancing</li>
+<li>Network ranges and routing</li>
+<li>Pull secret access</li>
+<li>Cluster admin access</li>
+<li>Persistent storage strategy</li>
+<li>Backup and disaster recovery expectations</li>
+</ul>
+<h3 id="why-requirements-matter">Why Requirements Matter</h3>
+<p>OpenShift is more opinionated and more operationally complete than a minimal Kubernetes lab. That means under-sizing the environment usually leads to slow installs, unstable operators, and misleading test results.</p>
+<hr />
+<h2 id="3-benefits-of-virtualization-in-the-openshift-ecosystem">3. Benefits of Virtualization in the OpenShift Ecosystem</h2>
+<p>OpenShift is primarily a container platform, but virtualization becomes important in a few practical cases:</p>
+<ul>
+<li>Running legacy virtual machine workloads alongside containers</li>
+<li>Gradually modernizing older applications instead of rewriting everything at once</li>
+<li>Giving platform teams one operational surface for containers and VMs</li>
+<li>Supporting mixed workload migration strategies</li>
+</ul>
+<h3 id="openshift-virtualization">OpenShift Virtualization</h3>
+<p>OpenShift Virtualization extends OpenShift so virtual machines can run on the same platform as containerized workloads.</p>
+<p>Benefits include:</p>
+<ul>
+<li>Unified operations for VMs and containers</li>
+<li>Shared networking and storage patterns</li>
+<li>Operator-driven lifecycle management</li>
+<li>Easier migration from traditional virtualization estates</li>
+</ul>
+<h3 id="important-considerations">Important Considerations</h3>
+<p>Based on Red Hat's OpenShift Virtualization documentation, these points matter:</p>
+<ul>
+<li>Installation method and topology can affect features such as snapshots and live migration</li>
+<li>Restricted or disconnected environments need additional operator and catalog preparation</li>
+<li>Platform networking and storage decisions directly affect VM usability</li>
+</ul>
+<hr />
+<h2 id="4-virtualization-basics-for-openshift-local-and-labs">4. Virtualization Basics for OpenShift Local and Labs</h2>
+<p>For local lab environments, virtualization support on your workstation matters a lot.</p>
+<h3 id="why-virtualization-matters">Why Virtualization Matters</h3>
+<p>OpenShift Local runs as a local virtualized cluster, so the host machine must support and allow hardware virtualization.</p>
+<p>Typical requirements include:</p>
+<ul>
+<li>Virtualization enabled in BIOS or UEFI</li>
+<li>A supported hypervisor stack for your operating system</li>
+<li>Enough free CPU and RAM for the cluster to stay healthy</li>
+</ul>
+<h3 id="common-host-considerations">Common Host Considerations</h3>
+<ul>
+<li>On macOS, local OpenShift setups usually depend on a supported virtualization framework or hypervisor workflow</li>
+<li>On Windows, WSL or Hyper-V related configuration can affect local cluster setup</li>
+<li>On Linux, KVM support is commonly important for local virtualization-based workflows</li>
+</ul>
+<p>If virtualization is disabled or unsupported, local cluster installation usually fails early or performs poorly.</p>
+<hr />
+<h2 id="5-openshift-local-crc-setup">5. OpenShift Local (CRC) Setup</h2>
+<p>OpenShift Local is the fastest route for learning OpenShift on a single machine.</p>
+<h3 id="when-to-use-it">When to Use It</h3>
+<p>Use OpenShift Local when you want:</p>
+<ul>
+<li>A personal OpenShift lab</li>
+<li>CLI and console practice</li>
+<li>Route, project, SCC, and operator exploration</li>
+<li>A safe place to test manifests and workflows</li>
+</ul>
+<h3 id="high-level-setup-flow">High-Level Setup Flow</h3>
+<ol>
+<li>Download and install OpenShift Local.</li>
+<li>Download the pull secret from Red Hat.</li>
+<li>Ensure virtualization is enabled on the host.</li>
+<li>Run the setup command.</li>
+<li>Start the cluster.</li>
+<li>Log in with <code>oc</code> and open the web console.</li>
+</ol>
+<h3 id="example-workflow">Example Workflow</h3>
+<div class="highlight"><pre><span></span><code>crc<span class="w"> </span>setup
+crc<span class="w"> </span>start
+crc<span class="w"> </span>status
+crc<span class="w"> </span>console
+oc<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>kubeadmin<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>https://api.crc.testing:6443
+</code></pre></div>
+<h3 id="what-to-validate-after-setup">What to Validate After Setup</h3>
+<ul>
+<li><code>crc status</code> reports the cluster as running</li>
+<li><code>oc whoami</code> succeeds</li>
+<li><code>oc get nodes</code> returns the node</li>
+<li>The web console loads</li>
+<li>Core operators settle into healthy states</li>
+</ul>
+<h3 id="best-use-cases">Best Use Cases</h3>
+<ul>
+<li>Learning core OpenShift concepts</li>
+<li>Testing <code>oc</code> commands</li>
+<li>Practicing routes, projects, builds, and operators</li>
+<li>Small-scale demos</li>
+</ul>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li>Not for production</li>
+<li>Single-machine resource limits apply</li>
+<li>Not a substitute for multi-node architecture testing</li>
+</ul>
+<hr />
+<h2 id="6-cloud-platform-focus">6. Cloud Platform Focus</h2>
+<p>For teams moving beyond local labs, cloud platforms are usually the most practical place to install and operate OpenShift.</p>
+<h3 id="why-cloud-is-often-easier">Why Cloud Is Often Easier</h3>
+<ul>
+<li>Faster infrastructure provisioning</li>
+<li>Managed load balancers and networking integrations</li>
+<li>Easier scaling</li>
+<li>Better fit for IPI workflows</li>
+<li>Faster recovery and repeatable automation</li>
+</ul>
+<h3 id="common-cloud-directions">Common Cloud Directions</h3>
+<p>Platform teams often focus on:</p>
+<ul>
+<li>AWS for mature ecosystem support and strong OpenShift adoption</li>
+<li>Azure for Microsoft-centric enterprise environments</li>
+<li>Google Cloud for teams already invested in GCP</li>
+</ul>
+<h3 id="what-to-focus-on-during-cloud-setup">What to Focus On During Cloud Setup</h3>
+<ul>
+<li>VPC or virtual network design</li>
+<li>DNS delegation</li>
+<li>Ingress and API endpoint exposure</li>
+<li>Identity and access model</li>
+<li>Machine sizing</li>
+<li>Storage classes</li>
+<li>Internet-connected versus disconnected installation design</li>
+</ul>
+<h3 id="cloud-best-practice">Cloud Best Practice</h3>
+<p>For first-time teams, start with a supported and well-documented installer path on a cloud platform before attempting a more customized on-premises rollout.</p>
+<hr />
+<h2 id="7-practical-installation-and-setup-best-practices">7. Practical Installation and Setup Best Practices</h2>
+<p>These practices make OpenShift installation smoother and safer:</p>
+<ul>
+<li>Start with the installation model that matches your goal, not the most advanced one</li>
+<li>Use OpenShift Local for learning and IPI on a supported cloud for early team environments</li>
+<li>Validate DNS, time sync, routing, and load balancer behavior before blaming the installer</li>
+<li>Keep cluster sizing realistic; underpowered clusters create misleading failures</li>
+<li>Version-control install configs and post-install changes</li>
+<li>Separate lab guidance from production guidance clearly</li>
+<li>Plan storage and ingress early, because many platform features depend on them</li>
+<li>Use operators carefully and understand what each one adds to cluster overhead</li>
+<li>Document cluster access, credentials handling, and recovery steps from day one</li>
+</ul>
+<h3 id="for-openshift-virtualization">For OpenShift Virtualization</h3>
+<p>If your goal includes VMs on OpenShift:</p>
+<ul>
+<li>Verify storage class behavior early</li>
+<li>Plan networking with virtualization use cases in mind</li>
+<li>Review Red Hat guidance for snapshots, live migration, and disconnected environments</li>
+<li>Treat virtualization as a platform capability with extra operational requirements, not just another operator checkbox</li>
+</ul>
+<hr />
+<h2 id="8-recommended-learning-path">8. Recommended Learning Path</h2>
+<p>If you are new to OpenShift, this sequence works well:</p>
+<ol>
+<li>Start with OpenShift Local.</li>
+<li>Learn projects, routes, SCCs, image streams, and the <code>oc</code> CLI.</li>
+<li>Practice app deployment and basic troubleshooting.</li>
+<li>Move to a cloud-based installer path.</li>
+<li>Add operators, monitoring, logging, and policy controls.</li>
+<li>Explore OpenShift Virtualization only after the cluster fundamentals are stable.</li>
+</ol>
+<hr />
+<h2 id="9-openshift-vs-kubernetes-key-differences">9. OpenShift vs Kubernetes - Key Differences</h2>
 <h3 id="what-is-openshift">What is OpenShift?</h3>
-<p>OpenShift is Red Hat's enterprise Kubernetes platform that adds:
-- Integrated developer and operational tools
-- Enhanced security features
-- Built-in CI/CD capabilities
-- Enterprise support and lifecycle management
-- Opinionated best practices</p>
+<p>OpenShift is Red Hat's enterprise Kubernetes platform that adds:</p>
+<ul>
+<li>Integrated developer and operational tools</li>
+<li>Enhanced security features</li>
+<li>Built-in CI/CD capabilities</li>
+<li>Enterprise support and lifecycle management</li>
+<li>Opinionated best practices</li>
+</ul>
 <h3 id="architecture-comparison">Architecture Comparison</h3>
 <div class="highlight"><pre><span></span><code>Kubernetes                    OpenShift
 ├── API Server               ├── API Server (extended)
@@ -2588,7 +2809,7 @@
                              └── OAuth Server
 </code></pre></div>
 <hr />
-<h2 id="2-openshift-specific-components">2. OpenShift-Specific Components</h2>
+<h2 id="10-openshift-specific-components">10. OpenShift-Specific Components</h2>
 <h3 id="openshift-api-server">OpenShift API Server</h3>
 <ul>
 <li>Extends Kubernetes API</li>
@@ -2615,7 +2836,7 @@
 <li>Load balancing</li>
 </ul>
 <hr />
-<h2 id="3-openshift-specific-resources">3. OpenShift-Specific Resources</h2>
+<h2 id="11-openshift-specific-resources">11. OpenShift-Specific Resources</h2>
 <h3 id="projects-vs-namespaces">Projects (vs Namespaces)</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Create project</span>
 oc<span class="w"> </span>new-project<span class="w"> </span>myapp-dev<span class="w"> </span>--display-name<span class="o">=</span><span class="s2">&quot;My App Development&quot;</span>
@@ -2629,11 +2850,13 @@ oc<span class="w"> </span>projects
 <span class="c1"># Get current project</span>
 oc<span class="w"> </span>project
 </code></pre></div>
-<p><strong>Projects = Namespaces + Additional Features:</strong>
-- Default network policies
-- Default resource quotas
-- Project-level RBAC
-- Annotations for display names and descriptions</p>
+<p><strong>Projects = Namespaces + Additional Features:</strong></p>
+<ul>
+<li>Default network policies</li>
+<li>Default resource quotas</li>
+<li>Project-level RBAC</li>
+<li>Annotations for display names and descriptions</li>
+</ul>
 <h3 id="routes-vs-ingress">Routes (vs Ingress)</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">route.openshift.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Route</span>
@@ -2653,10 +2876,12 @@ oc<span class="w"> </span>project
 <span class="w">    </span><span class="nt">insecureEdgeTerminationPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Redirect</span>
 <span class="w">  </span><span class="nt">wildcardPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
 </code></pre></div>
-<p><strong>Route Types:</strong>
-- <strong>Edge</strong>: TLS termination at router
-- <strong>Passthrough</strong>: TLS termination at pod
-- <strong>Re-encrypt</strong>: TLS termination at router, re-encrypted to pod</p>
+<p><strong>Route Types:</strong></p>
+<ul>
+<li><strong>Edge</strong>: TLS termination at router</li>
+<li><strong>Passthrough</strong>: TLS termination at pod</li>
+<li><strong>Re-encrypt</strong>: TLS termination at router, re-encrypted to pod</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># Create route</span>
 oc<span class="w"> </span>expose<span class="w"> </span>service<span class="w"> </span>myapp-service
 
@@ -2701,17 +2926,19 @@ oc<span class="w"> </span>get<span class="w"> </span>routes
 <span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImageStreamTag</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:latest</span>
 <span class="w">  </span><span class="nt">triggers</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigChange</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImageChange</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub</span>
-<span class="w">    </span><span class="nt">github</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github-webhook-secret</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigChange</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImageChange</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub</span>
+<span class="w">      </span><span class="nt">github</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github-webhook-secret</span>
 </code></pre></div>
-<p><strong>Build Strategies:</strong>
-1. <strong>Source (S2I)</strong>: Source code → Container image
-2. <strong>Docker</strong>: Dockerfile-based builds
-3. <strong>Custom</strong>: Custom builder image
-4. <strong>Pipeline</strong>: Jenkins/Tekton pipelines</p>
+<p><strong>Build Strategies:</strong></p>
+<ol>
+<li><strong>Source (S2I)</strong>: Source code → Container image</li>
+<li><strong>Docker</strong>: Dockerfile-based builds</li>
+<li><strong>Custom</strong>: Custom builder image</li>
+<li><strong>Pipeline</strong>: Jenkins/Tekton pipelines</li>
+</ol>
 <div class="highlight"><pre><span></span><code><span class="c1"># Start build</span>
 oc<span class="w"> </span>start-build<span class="w"> </span>myapp-build
 
@@ -2739,31 +2966,33 @@ oc<span class="w"> </span>cancel-build<span class="w"> </span>myapp-build-1
 <span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
 <span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
-<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:latest</span>
-<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+<span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:latest</span>
+<span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 <span class="w">  </span><span class="nt">triggers</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigChange</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImageChange</span>
-<span class="w">    </span><span class="nt">imageChangeParams</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">automatic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">      </span><span class="nt">containerNames</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
-<span class="w">      </span><span class="nt">from</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImageStreamTag</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:latest</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigChange</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImageChange</span>
+<span class="w">      </span><span class="nt">imageChangeParams</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">automatic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">containerNames</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+<span class="w">        </span><span class="nt">from</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImageStreamTag</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:latest</span>
 </code></pre></div>
 <p><strong>Note</strong>: OpenShift 4.x recommends using standard Kubernetes Deployments over DeploymentConfigs.</p>
 <hr />
-<h2 id="4-security-context-constraints-sccs">4. Security Context Constraints (SCCs)</h2>
+<h2 id="12-security-context-constraints-sccs">12. Security Context Constraints (SCCs)</h2>
 <h3 id="what-are-sccs">What are SCCs?</h3>
-<p>OpenShift's security mechanism that controls:
-- User/group IDs containers can run as
-- Capabilities containers can use
-- Volume types that can be mounted
-- Host network/ports access
-- SELinux context</p>
+<p>OpenShift's security mechanism that controls:</p>
+<ul>
+<li>User/group IDs containers can run as</li>
+<li>Capabilities containers can use</li>
+<li>Volume types that can be mounted</li>
+<li>Host network/ports access</li>
+<li>SELinux context</li>
+</ul>
 <h3 id="default-sccs">Default SCCs</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># List SCCs</span>
 oc<span class="w"> </span>get<span class="w"> </span>scc
@@ -2787,19 +3016,19 @@ oc<span class="w"> </span>get<span class="w"> </span>scc
 <span class="nt">allowHostPorts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="nt">allowPrivilegedContainer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="nt">allowedCapabilities</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NET_BIND_SERVICE</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NET_BIND_SERVICE</span>
 <span class="nt">defaultAddCapabilities</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 <span class="nt">fsGroup</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MustRunAs</span>
 <span class="w">  </span><span class="nt">ranges</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65535</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">      </span><span class="nt">max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65535</span>
 <span class="nt">readOnlyRootFilesystem</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="nt">requiredDropCapabilities</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KILL</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MKNOD</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SETUID</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SETGID</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KILL</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MKNOD</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SETUID</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SETGID</span>
 <span class="nt">runAsUser</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MustRunAsRange</span>
 <span class="w">  </span><span class="nt">uidRangeMin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -2809,12 +3038,12 @@ oc<span class="w"> </span>get<span class="w"> </span>scc
 <span class="nt">supplementalGroups</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RunAsAny</span>
 <span class="nt">volumes</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">configMap</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">downwardAPI</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">emptyDir</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">persistentVolumeClaim</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projected</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">configMap</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">downwardAPI</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">emptyDir</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">persistentVolumeClaim</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">projected</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret</span>
 </code></pre></div>
 <h3 id="granting-scc-to-service-account">Granting SCC to Service Account</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Add SCC to service account</span>
@@ -2827,7 +3056,7 @@ oc<span class="w"> </span>adm<span class="w"> </span>policy<span class="w"> </sp
 oc<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>scc
 </code></pre></div>
 <hr />
-<h2 id="5-openshift-cli-oc-commands">5. OpenShift CLI (oc) Commands</h2>
+<h2 id="13-openshift-cli-oc-commands">13. OpenShift CLI (oc) Commands</h2>
 <h3 id="basic-commands">Basic Commands</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Login</span>
 oc<span class="w"> </span>login<span class="w"> </span>https://api.cluster.example.com:6443<span class="w"> </span>--token<span class="o">=</span>&lt;token&gt;
@@ -2940,7 +3169,7 @@ oc<span class="w"> </span>adm<span class="w"> </span>prune<span class="w"> </spa
 oc<span class="w"> </span>adm<span class="w"> </span>prune<span class="w"> </span>deployments<span class="w"> </span>--confirm
 </code></pre></div>
 <hr />
-<h2 id="6-openshift-operators">6. OpenShift Operators</h2>
+<h2 id="14-openshift-operators">14. OpenShift Operators</h2>
 <h3 id="what-are-operators">What are Operators?</h3>
 <ul>
 <li>Kubernetes-native applications</li>
@@ -2980,7 +3209,7 @@ oc<span class="w"> </span>get<span class="w"> </span>installplan<span class="w">
 <li><strong>Pipelines Operator</strong>: Tekton</li>
 </ul>
 <hr />
-<h2 id="7-openshift-monitoring-and-logging">7. OpenShift Monitoring and Logging</h2>
+<h2 id="15-openshift-monitoring-and-logging">15. OpenShift Monitoring and Logging</h2>
 <h3 id="built-in-monitoring-stack">Built-in Monitoring Stack</h3>
 <ul>
 <li>Prometheus for metrics</li>
@@ -3066,10 +3295,10 @@ oc<span class="w"> </span>get<span class="w"> </span>network.config.openshift.io
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 <span class="w">  </span><span class="nt">policyTypes</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span>
 <span class="w">  </span><span class="nt">ingress</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">from</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">podSelector</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">from</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">podSelector</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </code></pre></div>
 <h3 id="egress-ip">Egress IP</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
@@ -3077,7 +3306,7 @@ oc<span class="w"> </span>get<span class="w"> </span>network.config.openshift.io
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp-dev</span>
 <span class="nt">egressIPs</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.100</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.100</span>
 </code></pre></div>
 <hr />
 <h2 id="9-openshift-templates">9. OpenShift Templates</h2>
@@ -3090,54 +3319,54 @@ oc<span class="w"> </span>get<span class="w"> </span>network.config.openshift.io
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">Application</span><span class="nv"> </span><span class="s">Template&quot;</span>
 <span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nodejs,mongodb&quot;</span>
 <span class="nt">objects</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
-<span class="w">  </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
-<span class="w">  </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-<span class="w">    </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<span class="w">  </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
-<span class="w">  </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{REPLICAS}}</span>
-<span class="w">    </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">      </span><span class="nt">selector</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
-<span class="w">    </span><span class="nt">template</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{REPLICAS}}</span>
+<span class="w">      </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
-<span class="w">      </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
-<span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IMAGE}:${IMAGE_TAG}</span>
-<span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
-<span class="w">          </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DATABASE_URL}</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
+<span class="w">        </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${APP_NAME}</span>
+<span class="w">              </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IMAGE}:${IMAGE_TAG}</span>
+<span class="w">              </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">              </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL</span>
+<span class="w">                  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DATABASE_URL}</span>
 <span class="nt">parameters</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APP_NAME</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application name</span>
-<span class="w">  </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IMAGE</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container image</span>
-<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodejs</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IMAGE_TAG</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Image tag</span>
-<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;16&quot;</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REPLICAS</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of replicas</span>
-<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Database connection string</span>
-<span class="w">  </span><span class="nt">generate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expression</span>
-<span class="w">  </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mongodb://[a-z0-9]{8}:[a-z0-9]{8}@mongodb:27017/mydb&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APP_NAME</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application name</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IMAGE</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container image</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodejs</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IMAGE_TAG</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Image tag</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;16&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REPLICAS</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of replicas</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Database connection string</span>
+<span class="w">    </span><span class="nt">generate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expression</span>
+<span class="w">    </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mongodb://[a-z0-9]{8}:[a-z0-9]{8}@mongodb:27017/mydb&quot;</span>
 </code></pre></div>
 <h3 id="using-templates">Using Templates</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Process template</span>
@@ -3152,73 +3381,91 @@ oc<span class="w"> </span>new-app<span class="w"> </span>--template<span class="
 <hr />
 <h2 id="10-interview-preparation-openshift-specific">10. Interview Preparation - OpenShift Specific</h2>
 <h3 id="key-talking-points">Key Talking Points</h3>
-<p><strong>1. Why OpenShift over vanilla Kubernetes?</strong>
-- Enterprise support and SLA
-- Integrated CI/CD (Builds, Pipelines)
-- Enhanced security (SCCs, built-in RBAC)
-- Developer-friendly (oc CLI, web console)
-- Operator ecosystem
-- Simplified upgrades and lifecycle management</p>
-<p><strong>2. Security Advantages</strong>
-- Security Context Constraints (more granular than PSPs)
-- Integrated OAuth and RBAC
-- Image scanning and signing
-- Network policies by default
-- SELinux integration</p>
-<p><strong>3. Developer Experience</strong>
-- Source-to-Image (S2I) builds
-- Built-in image registry
-- Developer catalog
-- Topology view in web console
-- Integrated monitoring and logging</p>
-<p><strong>4. Operations Benefits</strong>
-- Operator Lifecycle Manager
-- Automated updates
-- Built-in monitoring stack
-- Cluster autoscaling
-- Machine management</p>
+<p><strong>1. Why OpenShift over vanilla Kubernetes?</strong></p>
+<ul>
+<li>Enterprise support and SLA</li>
+<li>Integrated CI/CD (Builds, Pipelines)</li>
+<li>Enhanced security (SCCs, built-in RBAC)</li>
+<li>Developer-friendly (oc CLI, web console)</li>
+<li>Operator ecosystem</li>
+<li>Simplified upgrades and lifecycle management</li>
+</ul>
+<p><strong>2. Security Advantages</strong></p>
+<ul>
+<li>Security Context Constraints (more granular than PSPs)</li>
+<li>Integrated OAuth and RBAC</li>
+<li>Image scanning and signing</li>
+<li>Network policies by default</li>
+<li>SELinux integration</li>
+</ul>
+<p><strong>3. Developer Experience</strong></p>
+<ul>
+<li>Source-to-Image (S2I) builds</li>
+<li>Built-in image registry</li>
+<li>Developer catalog</li>
+<li>Topology view in web console</li>
+<li>Integrated monitoring and logging</li>
+</ul>
+<p><strong>4. Operations Benefits</strong></p>
+<ul>
+<li>Operator Lifecycle Manager</li>
+<li>Automated updates</li>
+<li>Built-in monitoring stack</li>
+<li>Cluster autoscaling</li>
+<li>Machine management</li>
+</ul>
 <h3 id="common-interview-questions">Common Interview Questions</h3>
 <p><strong>Q: Explain the difference between Routes and Ingress.</strong>
-A: Routes are OpenShift's native ingress mechanism, predating Kubernetes Ingress. They offer:
-- Simpler configuration
-- Built-in HAProxy router
-- Better integration with OpenShift features
-- Support for edge, passthrough, and re-encrypt TLS
-OpenShift 4.x supports both Routes and standard Ingress resources.</p>
+A: Routes are OpenShift's native ingress mechanism, predating Kubernetes Ingress. They offer:</p>
+<ul>
+<li>Simpler configuration</li>
+<li>Built-in HAProxy router</li>
+<li>Better integration with OpenShift features</li>
+<li>Support for edge, passthrough, and re-encrypt TLS
+  OpenShift 4.x supports both Routes and standard Ingress resources.</li>
+</ul>
 <p><strong>Q: What are Security Context Constraints?</strong>
-A: SCCs control what pods can do and access. They define:
-- User/group IDs
-- Capabilities
-- Volume types
-- Host access
-- SELinux context
-More fine-grained than Kubernetes Pod Security Policies.</p>
+A: SCCs control what pods can do and access. They define:</p>
+<ul>
+<li>User/group IDs</li>
+<li>Capabilities</li>
+<li>Volume types</li>
+<li>Host access</li>
+<li>SELinux context
+  More fine-grained than Kubernetes Pod Security Policies.</li>
+</ul>
 <p><strong>Q: How do you troubleshoot a failing build?</strong>
-A:
-1. Check build logs: <code>oc logs -f bc/myapp</code>
-2. Verify source repository access
-3. Check builder image availability
-4. Review build strategy configuration
-5. Check resource quotas and limits
-6. Verify network connectivity for pulling dependencies
-7. Check for webhook configuration issues</p>
+A:</p>
+<ol>
+<li>Check build logs: <code>oc logs -f bc/myapp</code></li>
+<li>Verify source repository access</li>
+<li>Check builder image availability</li>
+<li>Review build strategy configuration</li>
+<li>Check resource quotas and limits</li>
+<li>Verify network connectivity for pulling dependencies</li>
+<li>Check for webhook configuration issues</li>
+</ol>
 <p><strong>Q: Explain ImageStreams and their benefits.</strong>
-A: ImageStreams are:
-- Abstraction over container images
-- Track image changes and tags
-- Trigger automatic deployments on updates
-- Enable image rollback
-- Provide image metadata and history
-- Support image mirroring and caching</p>
+A: ImageStreams are:</p>
+<ul>
+<li>Abstraction over container images</li>
+<li>Track image changes and tags</li>
+<li>Trigger automatic deployments on updates</li>
+<li>Enable image rollback</li>
+<li>Provide image metadata and history</li>
+<li>Support image mirroring and caching</li>
+</ul>
 <p><strong>Q: How do you perform zero-downtime deployments in OpenShift?</strong>
-A:
-1. Use rolling deployment strategy
-2. Configure readiness probes
-3. Set appropriate maxSurge and maxUnavailable
-4. Use pre/post lifecycle hooks if needed
-5. Implement health checks
-6. Consider blue-green or canary deployments
-7. Use Routes for traffic splitting</p>
+A:</p>
+<ol>
+<li>Use rolling deployment strategy</li>
+<li>Configure readiness probes</li>
+<li>Set appropriate maxSurge and maxUnavailable</li>
+<li>Use pre/post lifecycle hooks if needed</li>
+<li>Implement health checks</li>
+<li>Consider blue-green or canary deployments</li>
+<li>Use Routes for traffic splitting</li>
+</ol>
 <h3 id="hands-on-scenarios-to-practice">Hands-on Scenarios to Practice</h3>
 <ol>
 <li><strong>Deploy a multi-tier application</strong></li>
@@ -3302,12 +3549,12 @@ oc<span class="w"> </span>extract<span class="w">                 </span><span c
 oc<span class="w"> </span><span class="nb">set</span><span class="w">                     </span><span class="c1"># Set resource properties</span>
 </code></pre></div>
 <h3 id="useful-aliases">Useful Aliases</h3>
-<p>```bash
-alias ocl='oc logs -f'
-alias ocd='oc describe'
-alias ocg='oc get'
-alias oce='oc edit'
-alias ocp='oc project'</p>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">ocl</span><span class="o">=</span><span class="s1">&#39;oc logs -f&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ocd</span><span class="o">=</span><span class="s1">&#39;oc describe&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ocg</span><span class="o">=</span><span class="s1">&#39;oc get&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">oce</span><span class="o">=</span><span class="s1">&#39;oc edit&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">ocp</span><span class="o">=</span><span class="s1">&#39;oc project&#39;</span>
+</code></pre></div>
 
 
 
