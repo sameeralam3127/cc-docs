@@ -12,36 +12,36 @@
         <meta name="author" content="Sameer Alam">
       
       
-        <link rel="canonical" href="https://computecentral.in/monitoring-tools/log/">
+        <link rel="canonical" href="https://computecentral.in/monitoring-tools/">
       
       
-        <link rel="prev" href="../../kubernetes/reference/quick-reference/">
+        <link rel="prev" href="../kubernetes/reference/quick-reference/">
       
       
-        <link rel="next" href="../../shell-scripts/scripts/">
+        <link rel="next" href="./alertmanager/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/logo.png">
+      <link rel="icon" href="../assets/logo.png">
       <meta name="generator" content="zensical-0.0.30">
     
     
       
-        <title>Step 1: Install and Run Containers - Compute Central</title>
+        <title>Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters - Compute Central</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.3b031116.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.3b031116.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -60,9 +60,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-are-prometheus-grafana-and-node-exporter" class="md-skip">
+        <a href="#monitoring-stack-with-prometheus-grafana-alertmanager-loki-and-exporters" class="md-skip">
           Skip to content
         </a>
       
@@ -101,9 +101,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Compute Central" class="md-header__button md-logo" aria-label="Compute Central" data-md-component="logo">
+    <a href="./.." title="Compute Central" class="md-header__button md-logo" aria-label="Compute Central" data-md-component="logo">
       
-  <img src="../../assets/logo.png" alt="Compute Central">
+  <img src="../assets/logo.png" alt="Compute Central">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Step 1: Install and Run Containers
+              Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters
             
           </span>
         </div>
@@ -194,7 +194,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="./.." class="md-tabs__link">
         
   
   Home
@@ -212,7 +212,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../AI%20Guide/" class="md-tabs__link">
+        <a href="../AI%20Guide/" class="md-tabs__link">
           
   
   AI Guide
@@ -231,7 +231,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../ansible/ansible/" class="md-tabs__link">
+        <a href="../ansible/ansible/" class="md-tabs__link">
           
   
   Ansible
@@ -250,7 +250,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../docker/docker/" class="md-tabs__link">
+        <a href="../docker/docker/" class="md-tabs__link">
           
   
   Docker
@@ -269,7 +269,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../jenkins/jenkins/" class="md-tabs__link">
+        <a href="../jenkins/jenkins/" class="md-tabs__link">
           
   
   Jenkins
@@ -288,7 +288,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../kubernetes/" class="md-tabs__link">
+        <a href="../kubernetes/" class="md-tabs__link">
           
   
   Kubernetes
@@ -328,7 +328,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../shell-scripts/scripts/" class="md-tabs__link">
+        <a href="../shell-scripts/scripts/" class="md-tabs__link">
           
   
   Shell scripts
@@ -347,7 +347,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../sonarqube/" class="md-tabs__link">
+        <a href="../sonarqube/" class="md-tabs__link">
           
   
   Sonarqube
@@ -366,7 +366,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../terraform/overview/" class="md-tabs__link">
+        <a href="../terraform/overview/" class="md-tabs__link">
           
   
   Terraform
@@ -401,9 +401,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Compute Central" class="md-nav__button md-logo" aria-label="Compute Central" data-md-component="logo">
+    <a href="./.." title="Compute Central" class="md-nav__button md-logo" aria-label="Compute Central" data-md-component="logo">
       
-  <img src="../../assets/logo.png" alt="Compute Central">
+  <img src="../assets/logo.png" alt="Compute Central">
 
     </a>
     Compute Central
@@ -418,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="./.." class="md-nav__link">
         
   
   
@@ -470,7 +470,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../AI%20Guide/" class="md-nav__link ">
+            <a href="../AI%20Guide/" class="md-nav__link ">
               
   
   
@@ -516,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../AI%20Guide/ai-agents/" class="md-nav__link">
+      <a href="../AI%20Guide/ai-agents/" class="md-nav__link">
         
   
   
@@ -546,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../AI%20Guide/ai-evaluation/" class="md-nav__link">
+      <a href="../AI%20Guide/ai-evaluation/" class="md-nav__link">
         
   
   
@@ -653,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/ansible/" class="md-nav__link">
+      <a href="../ansible/ansible/" class="md-nav__link">
         
   
   
@@ -683,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/basics/" class="md-nav__link">
+      <a href="../ansible/basics/" class="md-nav__link">
         
   
   
@@ -713,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/configuration/" class="md-nav__link">
+      <a href="../ansible/configuration/" class="md-nav__link">
         
   
   
@@ -743,7 +743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/facts-verbosity/" class="md-nav__link">
+      <a href="../ansible/facts-verbosity/" class="md-nav__link">
         
   
   
@@ -773,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/installation/" class="md-nav__link">
+      <a href="../ansible/installation/" class="md-nav__link">
         
   
   
@@ -803,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/inventory/" class="md-nav__link">
+      <a href="../ansible/inventory/" class="md-nav__link">
         
   
   
@@ -833,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/playbooks/" class="md-nav__link">
+      <a href="../ansible/playbooks/" class="md-nav__link">
         
   
   
@@ -863,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/roles/" class="md-nav__link">
+      <a href="../ansible/roles/" class="md-nav__link">
         
   
   
@@ -893,7 +893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ansible/variables/" class="md-nav__link">
+      <a href="../ansible/variables/" class="md-nav__link">
         
   
   
@@ -984,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/docker/" class="md-nav__link">
+      <a href="../docker/docker/" class="md-nav__link">
         
   
   
@@ -1073,7 +1073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../jenkins/jenkins/" class="md-nav__link">
+      <a href="../jenkins/jenkins/" class="md-nav__link">
         
   
   
@@ -1141,7 +1141,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../kubernetes/" class="md-nav__link ">
+            <a href="../kubernetes/" class="md-nav__link ">
               
   
   
@@ -1185,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/fundamentals/" class="md-nav__link">
+      <a href="../kubernetes/fundamentals/" class="md-nav__link">
         
   
   
@@ -1267,7 +1267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/interview/questions/" class="md-nav__link">
+      <a href="../kubernetes/interview/questions/" class="md-nav__link">
         
   
   
@@ -1363,7 +1363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/labs/docker-lab/" class="md-nav__link">
+      <a href="../kubernetes/labs/docker-lab/" class="md-nav__link">
         
   
   
@@ -1391,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/labs/hands-on-scenarios/" class="md-nav__link">
+      <a href="../kubernetes/labs/hands-on-scenarios/" class="md-nav__link">
         
   
   
@@ -1419,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/labs/minikube-lab/" class="md-nav__link">
+      <a href="../kubernetes/labs/minikube-lab/" class="md-nav__link">
         
   
   
@@ -1447,7 +1447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/labs/podman-lab/" class="md-nav__link">
+      <a href="../kubernetes/labs/podman-lab/" class="md-nav__link">
         
   
   
@@ -1537,7 +1537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/openshift/guide/" class="md-nav__link">
+      <a href="../kubernetes/openshift/guide/" class="md-nav__link">
         
   
   
@@ -1631,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/operations/cicd-pipelines/" class="md-nav__link">
+      <a href="../kubernetes/operations/cicd-pipelines/" class="md-nav__link">
         
   
   
@@ -1659,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/operations/scripting-automation/" class="md-nav__link">
+      <a href="../kubernetes/operations/scripting-automation/" class="md-nav__link">
         
   
   
@@ -1687,7 +1687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/operations/troubleshooting/" class="md-nav__link">
+      <a href="../kubernetes/operations/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1777,7 +1777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/reference/quick-reference/" class="md-nav__link">
+      <a href="../kubernetes/reference/quick-reference/" class="md-nav__link">
         
   
   
@@ -1825,6 +1825,22 @@
     
       
         
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
     
     
@@ -1843,8 +1859,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="././" class="md-nav__link md-nav__link--active">
+              
   
   
   <span class="md-ellipsis">
@@ -1858,8 +1875,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
@@ -1873,23 +1896,22 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="./alertmanager/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Step 1: Install and Run Containers
+    Alertmanager Routing Examples
   
 
     
@@ -1898,7 +1920,174 @@
   
 
       </a>
-      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./blackbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blackbox Exporter Synthetic Monitoring Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafana Dashboard Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loki and Promtail Logging Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Configuration Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Common Docker Compose Monitoring Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1972,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../shell-scripts/scripts/" class="md-nav__link">
+      <a href="../shell-scripts/scripts/" class="md-nav__link">
         
   
   
@@ -2036,7 +2225,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../sonarqube/" class="md-nav__link ">
+            <a href="../sonarqube/" class="md-nav__link ">
               
   
   
@@ -2082,7 +2271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sonarqube/configuration/" class="md-nav__link">
+      <a href="../sonarqube/configuration/" class="md-nav__link">
         
   
   
@@ -2112,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sonarqube/installation/" class="md-nav__link">
+      <a href="../sonarqube/installation/" class="md-nav__link">
         
   
   
@@ -2142,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sonarqube/jenkins-integration/" class="md-nav__link">
+      <a href="../sonarqube/jenkins-integration/" class="md-nav__link">
         
   
   
@@ -2172,7 +2361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sonarqube/pipeline-example/" class="md-nav__link">
+      <a href="../sonarqube/pipeline-example/" class="md-nav__link">
         
   
   
@@ -2263,7 +2452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../terraform/overview/" class="md-nav__link">
+      <a href="../terraform/overview/" class="md-nav__link">
         
   
   
@@ -2316,7 +2505,7 @@
   
   
     <li class="md-path__item">
-      <a href="../.." class="md-path__link">
+      <a href="./.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -2354,137 +2543,222 @@
                 
                   
 
-<p><strong>Monitoring is a crucial part of DevOps</strong>, helping teams detect issues before they become critical. In this guide, we will install <strong>Prometheus, Grafana, and Node Exporter</strong> using <strong>Podman</strong>, an alternative to Docker. By the end, you'll have a fully functional monitoring stack with visual dashboards to analyze system metrics.</p>
-<hr />
-<h2 id="what-are-prometheus-grafana-and-node-exporter"><strong>What Are Prometheus, Grafana, and Node Exporter?</strong></h2>
-<h2 id="1-prometheus-the-time-series-database"><strong>1. Prometheus: The Time-Series Database</strong></h2>
-<p>Prometheus is an open-source monitoring system that collects and stores metrics as <strong>time-series data</strong>. It is widely used in DevOps due to its powerful querying language (<strong>PromQL</strong>) and easy integration with multiple exporters.</p>
-<p>📌 <strong>Key Features:</strong></p>
+<h1 id="monitoring-stack-with-prometheus-grafana-alertmanager-loki-and-exporters">Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters</h1>
+<p>This page documents the monitoring stack from the GitHub repository <a href="https://github.com/sameeralam3127/Monitoring">sameeralam3127/Monitoring</a>.</p>
+<p>The repository is a Docker-based observability lab that combines metrics, logs, alerting, and synthetic health checks in one stack. It is a much better foundation than the older single-host Podman walkthrough because it reflects a fuller real-world monitoring setup.</p>
+<div class="admonition info">
+<p class="admonition-title">What this stack includes</p>
 <ul>
-<li>Time-series data storage</li>
-<li>Pull-based metric collection</li>
-<li>Alerting and rule-based evaluations</li>
+<li>Prometheus for metrics scraping and alert evaluation</li>
+<li>Grafana for dashboards and visualization</li>
+<li>Alertmanager for routing alerts</li>
+<li>Node Exporter across multiple Linux containers for host-style metrics</li>
+<li>cAdvisor for container metrics</li>
+<li>Blackbox Exporter for HTTP probing</li>
+<li>Loki for log storage</li>
+<li>Promtail for log collection</li>
 </ul>
-<h2 id="2-node-exporter-the-system-metrics-collector"><strong>2. Node Exporter: The System Metrics Collector</strong></h2>
-<p>Node Exporter is a lightweight agent that runs on a machine to collect system metrics such as CPU usage, memory utilization, disk I/O, and network statistics.</p>
-<p>📌 <strong>Common Metrics Collected:</strong></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Repository</p>
+<p>Source: <a href="https://github.com/sameeralam3127/Monitoring">https://github.com/sameeralam3127/Monitoring</a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Lab vs production</p>
+<p>This repository is excellent for learning and demos. For production, you would usually add stronger secret handling, persistent storage design, authentication hardening, backup strategy, and external notification integrations.</p>
+</div>
+<h2 id="monitoring-section-map">Monitoring Section Map</h2>
 <ul>
-<li><strong>CPU Load:</strong> <code>node_cpu_seconds_total</code></li>
-<li><strong>Memory Usage:</strong> <code>node_memory_MemAvailable_bytes</code></li>
-<li><strong>Disk Space:</strong> <code>node_filesystem_avail_bytes</code></li>
-<li><strong>Network Traffic:</strong> <code>node_network_receive_bytes_total</code></li>
-</ul>
-<h2 id="3-grafana-the-visualization-tool"><strong>3. Grafana: The Visualization Tool</strong></h2>
-<p>Grafana is an open-source tool that helps visualize and analyze time-series data. It allows you to create dashboards with real-time graphs, alerts, and reports.</p>
-<p>📌 <strong>Why Use Grafana?</strong></p>
-<ul>
-<li>Connects to multiple data sources (Prometheus, MySQL, AWS CloudWatch, etc.)</li>
-<li>Beautiful and interactive dashboards</li>
-<li>Custom alerts and notifications</li>
-</ul>
-<hr />
-<h1 id="step-1-install-and-run-containers"><strong>Step 1: Install and Run Containers</strong></h1>
-<p>We will use <strong>Podman</strong>, a rootless container runtime similar to Docker, to set up our monitoring stack.</p>
-<h2 id="11-pull-and-run-a-centos-container"><strong>1.1 Pull and Run a CentOS Container</strong></h2>
-<p>We'll start by running a CentOS container where we will install Node Exporter.</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>run<span class="w"> </span>-dit<span class="w"> </span>--name<span class="w"> </span>centos_container<span class="w"> </span>-p<span class="w"> </span><span class="m">9100</span>:9100<span class="w"> </span>centos:latest
-</code></pre></div>
-<p>Verify that the container is running:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
-</code></pre></div>
-<h2 id="12-run-prometheus"><strong>1.2 Run Prometheus</strong></h2>
-<p>Now, let's run Prometheus, which will scrape metrics from Node Exporter.</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>prometheus<span class="w"> </span>-p<span class="w"> </span><span class="m">9090</span>:9090<span class="w"> </span>quay.io/prometheus/prometheus
-</code></pre></div>
-<p>Check if Prometheus is running properly:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>logs<span class="w"> </span>prometheus
-</code></pre></div>
-<p>You can now access Prometheus at:<br />
-👉 <strong>http://localhost:9090/query</strong></p>
-<p>To enter the Prometheus container:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>prometheus<span class="w"> </span>/bin/sh
-</code></pre></div>
-<hr />
-<h1 id="step-2-install-and-run-node-exporter"><strong>Step 2: Install and Run Node Exporter</strong></h1>
-<p>Log into the CentOS container:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>centos_container<span class="w"> </span>/bin/bash
-</code></pre></div>
-<p>Download and extract Node Exporter:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.linux-386.tar.gz
-tar<span class="w"> </span>-xvf<span class="w"> </span>node_exporter-1.9.0.linux-386.tar.gz
-<span class="nb">cd</span><span class="w"> </span>node_exporter-1.9.0.linux-386
-./node_exporter
-</code></pre></div>
-<p>Now, you can check the collected metrics at:<br />
-👉 <strong>http://localhost:9100/metrics</strong></p>
-<hr />
-<h1 id="step-3-configure-prometheus-to-scrape-node-exporter-metrics"><strong>Step 3: Configure Prometheus to Scrape Node Exporter Metrics</strong></h1>
-<p>Modify the <strong>Prometheus configuration file</strong> (<code>prometheus.yml</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc/prometheus
-vim<span class="w"> </span>prometheus.yml
-</code></pre></div>
-<p>Add the following configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span><span class="w"> </span><span class="c1"># Collect metrics every 15 seconds</span>
-
-<span class="nt">scrape_configs</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;prometheus&quot;</span>
-<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;localhost:9090&quot;</span><span class="p p-Indicator">]</span>
-
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;centos_node_exporter&quot;</span>
-<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;localhost:9100&quot;</span><span class="p p-Indicator">]</span>
-</code></pre></div>
-<p>Restart Prometheus:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>restart<span class="w"> </span>prometheus
-</code></pre></div>
-<p>Check if Prometheus is scraping Node Exporter:<br />
-👉 <strong>http://localhost:9090/targets</strong></p>
-<hr />
-<h1 id="step-4-deploy-grafana"><strong>Step 4: Deploy Grafana</strong></h1>
-<p>Run the Grafana container:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>grafana<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span>grafana/grafana
-</code></pre></div>
-<p>Get the IP address of Prometheus:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">&#39;{{ .NetworkSettings.IPAddress }}&#39;</span><span class="w"> </span>prometheus
-</code></pre></div>
-<p>Access Grafana at:<br />
-👉 <strong>http://localhost:3000</strong></p>
-<p>📌 <strong>Default Login:</strong></p>
-<ul>
-<li><strong>Username:</strong> <code>admin</code></li>
-<li><strong>Password:</strong> <code>admin</code> (change it on first login)</li>
+<li><a href="overview/">Monitoring overview</a></li>
+<li><a href="prometheus/">Prometheus deep dive</a></li>
+<li><a href="grafana/">Grafana walkthrough</a></li>
+<li><a href="alertmanager/">Alertmanager routing</a></li>
+<li><a href="logging/">Loki and Promtail logging</a></li>
+<li><a href="blackbox/">Blackbox Exporter guide</a></li>
+<li><a href="troubleshooting/">Troubleshooting</a></li>
 </ul>
 <hr />
-<h1 id="step-5-add-prometheus-as-a-data-source-in-grafana"><strong>Step 5: Add Prometheus as a Data Source in Grafana</strong></h1>
-<ol>
-<li>Open <strong>Grafana</strong> (<code>http://localhost:3000</code>).</li>
-<li>Go to <strong>Configuration &gt; Data Sources</strong>.</li>
-<li>Click <strong>"Add Data Source"</strong>, select <strong>Prometheus</strong>.</li>
-<li>Set the URL as <strong><code>http://prometheus:9090</code></strong>.</li>
-<li>Click <strong>"Save &amp; Test"</strong>.</li>
-</ol>
+<h2 id="why-this-repo-is-useful">Why This Repo Is Useful</h2>
+<p>Many monitoring tutorials stop at Prometheus plus Grafana. This repo goes further by covering the main observability layers together:</p>
+<ul>
+<li>Metrics from Prometheus, Node Exporter, and cAdvisor</li>
+<li>Logs with Loki and Promtail</li>
+<li>Alerts with Alertmanager</li>
+<li>Synthetic checks with Blackbox Exporter</li>
+<li>Dashboards pre-provisioned in Grafana</li>
+</ul>
+<p>That makes it a strong hands-on project for DevOps and SRE learning because it shows how the pieces fit together instead of teaching each tool in isolation.</p>
 <hr />
-<h1 id="step-6-import-node-exporter-dashboard"><strong>Step 6: Import Node Exporter Dashboard</strong></h1>
-<ol>
-<li>In Grafana, go to <strong>"Create" &gt; "Import"</strong>.</li>
-<li>Enter the <strong>Dashboard ID</strong>: <code>1860</code> (or search for "Node Exporter Full").</li>
-<li>Select <strong>Prometheus</strong> as the data source.</li>
-<li>Click <strong>"Import"</strong>.</li>
-</ol>
-<p>You should now see a <strong>full system monitoring dashboard</strong>! 🎉</p>
+<h2 id="repository-structure">Repository Structure</h2>
+<p>The repository includes these top-level components:</p>
+<ul>
+<li><code>prometheus/</code> for scrape configuration and alert rules</li>
+<li><code>grafana/</code> for provisioning and dashboards</li>
+<li><code>alertmanager/</code> for alert routing configuration</li>
+<li><code>blackbox/</code> for synthetic probe definitions</li>
+<li><code>loki/</code> for log storage configuration</li>
+<li><code>promtail/</code> for log collection configuration</li>
+<li><code>docker-compose.yml</code> for orchestrating the full stack</li>
+<li><code>Dockerfile</code> for the Linux container image used in the demo</li>
+<li><code>grafana-dashboard.json</code> for dashboard export</li>
+</ul>
 <hr />
-<h1 id="step-7-managing-containers"><strong>Step 7: Managing Containers</strong></h1>
-<p>To stop and remove containers:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>stop<span class="w"> </span>centos_container
-podman<span class="w"> </span>rm<span class="w"> </span>centos_container
+<h2 id="services-and-ports">Services and Ports</h2>
+<p>Once the stack is running, the repo exposes these services locally:</p>
+<ul>
+<li>Grafana on <code>http://localhost:3000</code></li>
+<li>Prometheus on <code>http://localhost:9090</code></li>
+<li>Alertmanager on <code>http://localhost:9093</code></li>
+<li>cAdvisor on <code>http://localhost:8080</code></li>
+<li>Blackbox Exporter on <code>http://localhost:9115</code></li>
+<li>Loki ready endpoint on <code>http://localhost:3100/ready</code></li>
+</ul>
+<p>Node Exporter containers are exposed on ports <code>9101</code> through <code>9110</code>.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before starting the stack, make sure you have:</p>
+<ul>
+<li>Docker installed</li>
+<li>Docker Compose available through <code>docker compose</code></li>
+<li>Internet access during the first build</li>
+</ul>
+<p>Verify your environment:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>--version
+docker<span class="w"> </span>compose<span class="w"> </span>version
 </code></pre></div>
-<p>Restart Prometheus and Grafana:</p>
-<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>restart<span class="w"> </span>prometheus
-podman<span class="w"> </span>restart<span class="w"> </span>grafana
+<hr />
+<h2 id="setup">Setup</h2>
+<h3 id="1-clone-the-repository">1. Clone the repository</h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sameeralam3127/Monitoring.git
+<span class="nb">cd</span><span class="w"> </span>Monitoring
+</code></pre></div>
+<h3 id="2-start-the-full-stack">2. Start the full stack</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</code></pre></div>
+<p>This does a few things in one command:</p>
+<ul>
+<li>Builds the demo Linux container image</li>
+<li>Starts multiple Node Exporter-backed Linux containers</li>
+<li>Starts Prometheus, Grafana, Alertmanager, cAdvisor, Blackbox Exporter, Loki, and Promtail</li>
+<li>Creates persistent Docker volumes for core services</li>
+</ul>
+<h3 id="3-verify-the-stack">3. Verify the stack</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
+</code></pre></div>
+<h3 id="4-open-the-services">4. Open the services</h3>
+<ul>
+<li>Grafana: <a href="http://localhost:3000">http://localhost:3000</a></li>
+<li>Prometheus: <a href="http://localhost:9090">http://localhost:9090</a></li>
+<li>Alertmanager: <a href="http://localhost:9093">http://localhost:9093</a></li>
+<li>cAdvisor: <a href="http://localhost:8080">http://localhost:8080</a></li>
+<li>Blackbox Exporter: <a href="http://localhost:9115">http://localhost:9115</a></li>
+</ul>
+<p>Grafana default login:</p>
+<ul>
+<li>Username: <code>admin</code></li>
+<li>Password: <code>admin</code></li>
+</ul>
+<hr />
+<h2 id="grafana-setup">Grafana Setup</h2>
+<p>Grafana is already provisioned in the repository, so you do not need to add data sources manually after startup.</p>
+<p>The repo provisions:</p>
+<ul>
+<li><code>grafana/provisioning/datasources/datasources.yml</code></li>
+<li><code>grafana/provisioning/dashboards/dashboards.yml</code></li>
+<li><code>grafana/dashboards/advanced-monitoring-dashboard.json</code></li>
+</ul>
+<p>After login, you should already have:</p>
+<ul>
+<li>Prometheus as a data source</li>
+<li>Loki as a log data source</li>
+<li>An advanced monitoring dashboard ready to use</li>
+</ul>
+<hr />
+<h2 id="prometheus-configuration">Prometheus Configuration</h2>
+<p>Prometheus configuration is stored in:</p>
+<ul>
+<li><code>prometheus/prometheus.yml</code></li>
+<li><code>prometheus/rules/alerts.yml</code></li>
+</ul>
+<p>Configured scrape jobs include:</p>
+<ul>
+<li><code>prometheus</code></li>
+<li><code>alertmanager</code></li>
+<li><code>node_exporter</code></li>
+<li><code>cadvisor</code></li>
+<li><code>blackbox-exporter</code></li>
+<li><code>blackbox-http</code></li>
+</ul>
+<p>Example alerts in the repo include:</p>
+<ul>
+<li><code>TargetDown</code></li>
+<li><code>HostHighCPU</code></li>
+<li><code>HostHighMemory</code></li>
+<li><code>ContainerHighCPU</code></li>
+<li><code>ContainerHighMemory</code></li>
+<li><code>SyntheticProbeFailed</code></li>
+</ul>
+<hr />
+<h2 id="logging-with-loki-and-promtail">Logging with Loki and Promtail</h2>
+<p>The repository also includes a log pipeline.</p>
+<p>Configuration files:</p>
+<ul>
+<li><code>loki/loki-config.yml</code></li>
+<li><code>promtail/promtail-config.yml</code></li>
+</ul>
+<p>Promtail is configured to collect:</p>
+<ul>
+<li>Host log files from <code>/var/log</code></li>
+<li>Docker container logs from <code>/var/lib/docker/containers</code></li>
+</ul>
+<p>This is useful because it lets you view both metrics and logs from the same Grafana interface.</p>
+<hr />
+<h2 id="blackbox-monitoring">Blackbox Monitoring</h2>
+<p>Blackbox Exporter is configured through:</p>
+<ul>
+<li><code>blackbox/blackbox.yml</code></li>
+</ul>
+<p>It is used to probe internal HTTP endpoints such as:</p>
+<ul>
+<li>Grafana</li>
+<li>Prometheus</li>
+<li>cAdvisor</li>
+<li>Alertmanager</li>
+<li>Loki</li>
+</ul>
+<p>This gives you synthetic monitoring on top of regular metrics scraping.</p>
+<hr />
+<h2 id="useful-commands">Useful Commands</h2>
+<p>Start the stack:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</code></pre></div>
+<p>Stop the stack:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+<p>Stop the stack and remove volumes:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</code></pre></div>
+<p>Check running services:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
+</code></pre></div>
+<p>View logs for a specific service:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>prometheus
+docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>grafana
+docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>promtail
+</code></pre></div>
+<p>Restart a service:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>grafana
 </code></pre></div>
 <hr />
+<h2 id="what-makes-this-repo-better-than-a-basic-monitoring-demo">What Makes This Repo Better Than a Basic Monitoring Demo</h2>
+<ul>
+<li>It covers metrics, logs, alerts, and probes in one project</li>
+<li>It uses Docker Compose for repeatable startup</li>
+<li>It includes ready-made Grafana provisioning</li>
+<li>It includes alert rules instead of stopping at dashboards</li>
+<li>It demonstrates both host-style and container-level monitoring</li>
+</ul>
+<p>For someone building DevOps documentation, this repo is worth highlighting because it feels much closer to a practical observability lab than a minimal single-tool setup.</p>
 
 
 
@@ -2524,7 +2798,7 @@ podman<span class="w"> </span>restart<span class="w"> </span>grafana
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../kubernetes/reference/quick-reference/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick Reference &amp;amp; Cheat Sheets">
+          <a href="../kubernetes/reference/quick-reference/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick Reference &amp;amp; Cheat Sheets">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -2541,13 +2815,13 @@ podman<span class="w"> </span>restart<span class="w"> </span>grafana
         
         
           
-          <a href="../../shell-scripts/scripts/" class="md-footer__link md-footer__link--next" aria-label="Next: Shell Scripts for SRE and DevOps">
+          <a href="./alertmanager/" class="md-footer__link md-footer__link--next" aria-label="Next: Alertmanager Routing Examples">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Shell Scripts for SRE and DevOps
+                Alertmanager Routing Examples
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2589,10 +2863,10 @@ podman<span class="w"> </span>restart<span class="w"> </span>grafana
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.tabs","navigation.top","navigation.tracking","search.highlight","toc.integrate"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.tabs","navigation.top","navigation.tracking","search.highlight","toc.integrate"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.66be65ca.min.js"></script>
+      <script src="../assets/javascripts/bundle.66be65ca.min.js"></script>
       
     
   </body>

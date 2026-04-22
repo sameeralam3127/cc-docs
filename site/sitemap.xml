@@ -82,7 +82,28 @@
         <loc>https://computecentral.in/kubernetes/reference/quick-reference/</loc>
       </url>
       <url>
-        <loc>https://computecentral.in/monitoring-tools/log/</loc>
+        <loc>https://computecentral.in/monitoring-tools/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/monitoring-tools/alertmanager/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/monitoring-tools/blackbox/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/monitoring-tools/grafana/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/monitoring-tools/logging/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/monitoring-tools/overview/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/monitoring-tools/prometheus/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/monitoring-tools/troubleshooting/</loc>
       </url>
       <url>
         <loc>https://computecentral.in/shell-scripts/scripts/</loc>

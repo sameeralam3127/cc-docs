@@ -12,13 +12,13 @@
         <meta name="author" content="Sameer Alam">
       
       
-        <link rel="canonical" href="https://computecentral.in/kubernetes/interview/">
+        <link rel="canonical" href="https://computecentral.in/monitoring-tools/blackbox/">
       
       
-        <link rel="prev" href="../fundamentals/">
+        <link rel="prev" href="../alertmanager/">
       
       
-        <link rel="next" href="./questions/">
+        <link rel="next" href="../grafana/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Interview Prep - Compute Central</title>
+        <title>Blackbox Exporter Synthetic Monitoring Guide - Compute Central</title>
       
     
     
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#interview-prep" class="md-skip">
+        <a href="#blackbox-exporter-synthetic-monitoring-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Interview Prep
+              Blackbox Exporter Synthetic Monitoring Guide
             
           </span>
         </div>
@@ -284,13 +284,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../kubernetes/" class="md-tabs__link">
           
   
   Kubernetes
@@ -305,11 +303,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../monitoring-tools/log/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   Monitoring tools
@@ -1105,8 +1105,6 @@
       
   
   
-    
-  
   
   
     
@@ -1132,21 +1130,18 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../kubernetes/" class="md-nav__link ">
               
   
   
@@ -1164,13 +1159,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1190,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fundamentals/" class="md-nav__link">
+      <a href="../../kubernetes/fundamentals/" class="md-nav__link">
         
   
   
@@ -1215,36 +1210,29 @@
                 
   
   
-    
-  
   
   
     
     
       
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
         
           
-        
-      
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="././" class="md-nav__link md-nav__link--active">
-              
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1258,16 +1246,10 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link md-nav__link--active" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1279,22 +1261,20 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-            
-              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="./questions/" class="md-nav__link">
+      <a href="../../kubernetes/interview/questions/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kubernetes/OpenShift Interview Questions &amp; Answers
+    Kubernetes and OpenShift Interview Handbook
   
 
     
@@ -1326,10 +1306,6 @@
     
       
         
-          
-        
-      
-        
       
         
       
@@ -1351,9 +1327,8 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../labs/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1367,14 +1342,8 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_4">
@@ -1388,15 +1357,13 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-            
-              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../labs/docker-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/docker-lab/" class="md-nav__link">
         
   
   
@@ -1424,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/hands-on-scenarios/" class="md-nav__link">
+      <a href="../../kubernetes/labs/hands-on-scenarios/" class="md-nav__link">
         
   
   
@@ -1452,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/minikube-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/minikube-lab/" class="md-nav__link">
         
   
   
@@ -1480,7 +1447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/podman-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/podman-lab/" class="md-nav__link">
         
   
   
@@ -1519,10 +1486,6 @@
     
       
         
-          
-        
-      
-        
       
     
     
@@ -1538,9 +1501,8 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../openshift/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1554,14 +1516,8 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_5">
@@ -1575,15 +1531,13 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-            
-              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../openshift/guide/" class="md-nav__link">
+      <a href="../../kubernetes/openshift/guide/" class="md-nav__link">
         
   
   
@@ -1622,10 +1576,6 @@
     
       
         
-          
-        
-      
-        
       
         
       
@@ -1645,9 +1595,8 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../operations/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1661,14 +1610,8 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6">
@@ -1682,15 +1625,13 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-            
-              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../operations/cicd-pipelines/" class="md-nav__link">
+      <a href="../../kubernetes/operations/cicd-pipelines/" class="md-nav__link">
         
   
   
@@ -1718,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../operations/scripting-automation/" class="md-nav__link">
+      <a href="../../kubernetes/operations/scripting-automation/" class="md-nav__link">
         
   
   
@@ -1746,7 +1687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../operations/troubleshooting/" class="md-nav__link">
+      <a href="../../kubernetes/operations/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1785,10 +1726,6 @@
     
       
         
-          
-        
-      
-        
       
     
     
@@ -1804,9 +1741,8 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../reference/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1820,14 +1756,8 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_7">
@@ -1841,15 +1771,13 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-            
-              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../reference/quick-reference/" class="md-nav__link">
+      <a href="../../kubernetes/reference/quick-reference/" class="md-nav__link">
         
   
   
@@ -1889,29 +1817,51 @@
       
   
   
+    
   
   
+  
     
     
       
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1925,10 +1875,16 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1940,20 +1896,194 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring-tools/log/" class="md-nav__link">
+      <a href="../alertmanager/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Step 1: Install and Run Containers
+    Alertmanager Routing Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blackbox Exporter Synthetic Monitoring Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafana Dashboard Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loki and Promtail Logging Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Configuration Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Common Docker Compose Monitoring Issues
   
 
     
@@ -2400,25 +2530,7 @@
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Kubernetes
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="././" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Interview
+    Monitoring tools
   </span>
 
         </a>
@@ -2435,11 +2547,55 @@
                 
                   
 
-<h1 id="interview-prep">Interview Prep</h1>
-<p>This section collects Kubernetes and OpenShift interview preparation material.</p>
+<h1 id="blackbox-exporter-synthetic-monitoring-guide">Blackbox Exporter Synthetic Monitoring Guide</h1>
+<p>This page explains how Blackbox Exporter is used in the monitoring repository for endpoint probing.</p>
+<h2 id="key-file">Key File</h2>
 <ul>
-<li><a href="questions/">Interview Questions</a></li>
+<li><code>blackbox/blackbox.yml</code></li>
 </ul>
+<h2 id="what-blackbox-exporter-does">What Blackbox Exporter Does</h2>
+<p>Unlike Node Exporter or cAdvisor, Blackbox Exporter does not collect host or container resource metrics directly.</p>
+<p>Instead, it performs probe-style checks such as:</p>
+<ul>
+<li>HTTP reachability</li>
+<li>Response success or failure</li>
+<li>Basic latency visibility</li>
+</ul>
+<h2 id="how-it-is-used-in-this-stack">How It Is Used in This Stack</h2>
+<p>The repository uses Blackbox Exporter to probe internal HTTP targets such as:</p>
+<ul>
+<li>Grafana</li>
+<li>Prometheus</li>
+<li>cAdvisor</li>
+<li>Alertmanager</li>
+<li>Loki</li>
+</ul>
+<p>This complements normal metrics scraping because a service can look healthy internally while still being unreachable to a client or probe.</p>
+<h2 id="why-synthetic-checks-matter">Why Synthetic Checks Matter</h2>
+<p>Synthetic monitoring answers a different question:</p>
+<ul>
+<li>Exporter metrics answer: "Is the service reporting metrics?"</li>
+<li>Blackbox answers: "Can something actually reach and use the endpoint?"</li>
+</ul>
+<p>Both are valuable.</p>
+<h2 id="good-metrics-to-watch">Good Metrics to Watch</h2>
+<ul>
+<li>Probe success</li>
+<li>Probe duration</li>
+<li>HTTP status result</li>
+<li>Failure frequency over time</li>
+</ul>
+<h2 id="good-follow-up-improvements">Good Follow-Up Improvements</h2>
+<ul>
+<li>Add external URL checks</li>
+<li>Add HTTPS validation</li>
+<li>Add DNS and TCP probe modules</li>
+<li>Label probe targets by service and environment</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>blackbox
+curl<span class="w"> </span>http://localhost:9115
+</code></pre></div>
 
 
 
@@ -2479,7 +2635,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../fundamentals/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Kubernetes Fundamentals">
+          <a href="../alertmanager/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Alertmanager Routing Examples">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -2489,20 +2645,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Kubernetes Fundamentals
+                Alertmanager Routing Examples
               </div>
             </div>
           </a>
         
         
           
-          <a href="./questions/" class="md-footer__link md-footer__link--next" aria-label="Next: Kubernetes&#x2f;OpenShift Interview Questions &amp;amp; Answers">
+          <a href="../grafana/" class="md-footer__link md-footer__link--next" aria-label="Next: Grafana Dashboard Walkthrough">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Kubernetes/OpenShift Interview Questions &amp; Answers
+                Grafana Dashboard Walkthrough
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -12,13 +12,13 @@
         <meta name="author" content="Sameer Alam">
       
       
-        <link rel="canonical" href="https://computecentral.in/kubernetes/reference/">
+        <link rel="canonical" href="https://computecentral.in/monitoring-tools/overview/">
       
       
-        <link rel="prev" href="../operations/troubleshooting/">
+        <link rel="prev" href="../logging/">
       
       
-        <link rel="next" href="./quick-reference/">
+        <link rel="next" href="../prometheus/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Reference - Compute Central</title>
+        <title>Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters - Compute Central</title>
       
     
     
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reference" class="md-skip">
+        <a href="#monitoring-stack-with-prometheus-grafana-alertmanager-loki-and-exporters" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reference
+              Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters
             
           </span>
         </div>
@@ -284,13 +284,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../kubernetes/" class="md-tabs__link">
           
   
   Kubernetes
@@ -305,11 +303,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../monitoring-tools/log/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   Monitoring tools
@@ -1105,8 +1105,6 @@
       
   
   
-    
-  
   
   
     
@@ -1132,21 +1130,18 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../kubernetes/" class="md-nav__link ">
               
   
   
@@ -1164,13 +1159,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1190,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fundamentals/" class="md-nav__link">
+      <a href="../../kubernetes/fundamentals/" class="md-nav__link">
         
   
   
@@ -1272,14 +1267,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/questions/" class="md-nav__link">
+      <a href="../../kubernetes/interview/questions/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Kubernetes/OpenShift Interview Questions &amp; Answers
+    Kubernetes and OpenShift Interview Handbook
   
 
     
@@ -1368,7 +1363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/docker-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/docker-lab/" class="md-nav__link">
         
   
   
@@ -1396,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/hands-on-scenarios/" class="md-nav__link">
+      <a href="../../kubernetes/labs/hands-on-scenarios/" class="md-nav__link">
         
   
   
@@ -1424,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/minikube-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/minikube-lab/" class="md-nav__link">
         
   
   
@@ -1452,7 +1447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/podman-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/podman-lab/" class="md-nav__link">
         
   
   
@@ -1542,7 +1537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../openshift/guide/" class="md-nav__link">
+      <a href="../../kubernetes/openshift/guide/" class="md-nav__link">
         
   
   
@@ -1636,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../operations/cicd-pipelines/" class="md-nav__link">
+      <a href="../../kubernetes/operations/cicd-pipelines/" class="md-nav__link">
         
   
   
@@ -1664,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../operations/scripting-automation/" class="md-nav__link">
+      <a href="../../kubernetes/operations/scripting-automation/" class="md-nav__link">
         
   
   
@@ -1692,7 +1687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../operations/troubleshooting/" class="md-nav__link">
+      <a href="../../kubernetes/operations/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1725,36 +1720,29 @@
                 
   
   
-    
-  
   
   
     
     
       
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" >
         
           
-        
-      
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" checked>
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="././" class="md-nav__link md-nav__link--active">
-              
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1768,16 +1756,10 @@
   
   
 
-            </a>
-            
-              
-              <label class="md-nav__link md-nav__link--active" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1789,15 +1771,13 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-            
-              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="./quick-reference/" class="md-nav__link">
+      <a href="../../kubernetes/reference/quick-reference/" class="md-nav__link">
         
   
   
@@ -1837,29 +1817,51 @@
       
   
   
+    
   
   
+  
     
     
       
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1873,10 +1875,16 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1888,20 +1896,194 @@
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring-tools/log/" class="md-nav__link">
+      <a href="../alertmanager/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Step 1: Install and Run Containers
+    Alertmanager Routing Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blackbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blackbox Exporter Synthetic Monitoring Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafana Dashboard Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loki and Promtail Logging Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Configuration Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Common Docker Compose Monitoring Issues
   
 
     
@@ -2348,25 +2530,7 @@
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Kubernetes
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="././" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Reference
+    Monitoring tools
   </span>
 
         </a>
@@ -2383,11 +2547,222 @@
                 
                   
 
-<h1 id="reference">Reference</h1>
-<p>This section is for fast lookups and command-oriented material.</p>
+<h1 id="monitoring-stack-with-prometheus-grafana-alertmanager-loki-and-exporters">Monitoring Stack with Prometheus, Grafana, Alertmanager, Loki, and Exporters</h1>
+<p>This page documents the monitoring stack from the GitHub repository <a href="https://github.com/sameeralam3127/Monitoring">sameeralam3127/Monitoring</a>.</p>
+<p>The repository is a Docker-based observability lab that combines metrics, logs, alerting, and synthetic health checks in one stack. It is a much better foundation than the older single-host Podman walkthrough because it reflects a fuller real-world monitoring setup.</p>
+<div class="admonition info">
+<p class="admonition-title">What this stack includes</p>
 <ul>
-<li><a href="quick-reference/">Quick Reference</a></li>
+<li>Prometheus for metrics scraping and alert evaluation</li>
+<li>Grafana for dashboards and visualization</li>
+<li>Alertmanager for routing alerts</li>
+<li>Node Exporter across multiple Linux containers for host-style metrics</li>
+<li>cAdvisor for container metrics</li>
+<li>Blackbox Exporter for HTTP probing</li>
+<li>Loki for log storage</li>
+<li>Promtail for log collection</li>
 </ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Repository</p>
+<p>Source: <a href="https://github.com/sameeralam3127/Monitoring">https://github.com/sameeralam3127/Monitoring</a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Lab vs production</p>
+<p>This repository is excellent for learning and demos. For production, you would usually add stronger secret handling, persistent storage design, authentication hardening, backup strategy, and external notification integrations.</p>
+</div>
+<h2 id="monitoring-section-map">Monitoring Section Map</h2>
+<ul>
+<li><a href="../prometheus/">Prometheus deep dive</a></li>
+<li><a href="../grafana/">Grafana walkthrough</a></li>
+<li><a href="../alertmanager/">Alertmanager routing</a></li>
+<li><a href="../logging/">Loki and Promtail logging</a></li>
+<li><a href="../blackbox/">Blackbox Exporter guide</a></li>
+<li><a href="../troubleshooting/">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2 id="why-this-repo-is-useful">Why This Repo Is Useful</h2>
+<p>Many monitoring tutorials stop at Prometheus plus Grafana. This repo goes further by covering the main observability layers together:</p>
+<ul>
+<li>Metrics from Prometheus, Node Exporter, and cAdvisor</li>
+<li>Logs with Loki and Promtail</li>
+<li>Alerts with Alertmanager</li>
+<li>Synthetic checks with Blackbox Exporter</li>
+<li>Dashboards pre-provisioned in Grafana</li>
+</ul>
+<p>That makes it a strong hands-on project for DevOps and SRE learning because it shows how the pieces fit together instead of teaching each tool in isolation.</p>
+<hr />
+<h2 id="repository-structure">Repository Structure</h2>
+<p>The repository includes these top-level components:</p>
+<ul>
+<li><code>prometheus/</code> for scrape configuration and alert rules</li>
+<li><code>grafana/</code> for provisioning and dashboards</li>
+<li><code>alertmanager/</code> for alert routing configuration</li>
+<li><code>blackbox/</code> for synthetic probe definitions</li>
+<li><code>loki/</code> for log storage configuration</li>
+<li><code>promtail/</code> for log collection configuration</li>
+<li><code>docker-compose.yml</code> for orchestrating the full stack</li>
+<li><code>Dockerfile</code> for the Linux container image used in the demo</li>
+<li><code>grafana-dashboard.json</code> for dashboard export</li>
+</ul>
+<hr />
+<h2 id="services-and-ports">Services and Ports</h2>
+<p>Once the stack is running, the repo exposes these services locally:</p>
+<ul>
+<li>Grafana on <code>http://localhost:3000</code></li>
+<li>Prometheus on <code>http://localhost:9090</code></li>
+<li>Alertmanager on <code>http://localhost:9093</code></li>
+<li>cAdvisor on <code>http://localhost:8080</code></li>
+<li>Blackbox Exporter on <code>http://localhost:9115</code></li>
+<li>Loki ready endpoint on <code>http://localhost:3100/ready</code></li>
+</ul>
+<p>Node Exporter containers are exposed on ports <code>9101</code> through <code>9110</code>.</p>
+<hr />
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before starting the stack, make sure you have:</p>
+<ul>
+<li>Docker installed</li>
+<li>Docker Compose available through <code>docker compose</code></li>
+<li>Internet access during the first build</li>
+</ul>
+<p>Verify your environment:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>--version
+docker<span class="w"> </span>compose<span class="w"> </span>version
+</code></pre></div>
+<hr />
+<h2 id="setup">Setup</h2>
+<h3 id="1-clone-the-repository">1. Clone the repository</h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sameeralam3127/Monitoring.git
+<span class="nb">cd</span><span class="w"> </span>Monitoring
+</code></pre></div>
+<h3 id="2-start-the-full-stack">2. Start the full stack</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</code></pre></div>
+<p>This does a few things in one command:</p>
+<ul>
+<li>Builds the demo Linux container image</li>
+<li>Starts multiple Node Exporter-backed Linux containers</li>
+<li>Starts Prometheus, Grafana, Alertmanager, cAdvisor, Blackbox Exporter, Loki, and Promtail</li>
+<li>Creates persistent Docker volumes for core services</li>
+</ul>
+<h3 id="3-verify-the-stack">3. Verify the stack</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
+</code></pre></div>
+<h3 id="4-open-the-services">4. Open the services</h3>
+<ul>
+<li>Grafana: <a href="http://localhost:3000">http://localhost:3000</a></li>
+<li>Prometheus: <a href="http://localhost:9090">http://localhost:9090</a></li>
+<li>Alertmanager: <a href="http://localhost:9093">http://localhost:9093</a></li>
+<li>cAdvisor: <a href="http://localhost:8080">http://localhost:8080</a></li>
+<li>Blackbox Exporter: <a href="http://localhost:9115">http://localhost:9115</a></li>
+</ul>
+<p>Grafana default login:</p>
+<ul>
+<li>Username: <code>admin</code></li>
+<li>Password: <code>admin</code></li>
+</ul>
+<hr />
+<h2 id="grafana-setup">Grafana Setup</h2>
+<p>Grafana is already provisioned in the repository, so you do not need to add data sources manually after startup.</p>
+<p>The repo provisions:</p>
+<ul>
+<li><code>grafana/provisioning/datasources/datasources.yml</code></li>
+<li><code>grafana/provisioning/dashboards/dashboards.yml</code></li>
+<li><code>grafana/dashboards/advanced-monitoring-dashboard.json</code></li>
+</ul>
+<p>After login, you should already have:</p>
+<ul>
+<li>Prometheus as a data source</li>
+<li>Loki as a log data source</li>
+<li>An advanced monitoring dashboard ready to use</li>
+</ul>
+<hr />
+<h2 id="prometheus-configuration">Prometheus Configuration</h2>
+<p>Prometheus configuration is stored in:</p>
+<ul>
+<li><code>prometheus/prometheus.yml</code></li>
+<li><code>prometheus/rules/alerts.yml</code></li>
+</ul>
+<p>Configured scrape jobs include:</p>
+<ul>
+<li><code>prometheus</code></li>
+<li><code>alertmanager</code></li>
+<li><code>node_exporter</code></li>
+<li><code>cadvisor</code></li>
+<li><code>blackbox-exporter</code></li>
+<li><code>blackbox-http</code></li>
+</ul>
+<p>Example alerts in the repo include:</p>
+<ul>
+<li><code>TargetDown</code></li>
+<li><code>HostHighCPU</code></li>
+<li><code>HostHighMemory</code></li>
+<li><code>ContainerHighCPU</code></li>
+<li><code>ContainerHighMemory</code></li>
+<li><code>SyntheticProbeFailed</code></li>
+</ul>
+<hr />
+<h2 id="logging-with-loki-and-promtail">Logging with Loki and Promtail</h2>
+<p>The repository also includes a log pipeline.</p>
+<p>Configuration files:</p>
+<ul>
+<li><code>loki/loki-config.yml</code></li>
+<li><code>promtail/promtail-config.yml</code></li>
+</ul>
+<p>Promtail is configured to collect:</p>
+<ul>
+<li>Host log files from <code>/var/log</code></li>
+<li>Docker container logs from <code>/var/lib/docker/containers</code></li>
+</ul>
+<p>This is useful because it lets you view both metrics and logs from the same Grafana interface.</p>
+<hr />
+<h2 id="blackbox-monitoring">Blackbox Monitoring</h2>
+<p>Blackbox Exporter is configured through:</p>
+<ul>
+<li><code>blackbox/blackbox.yml</code></li>
+</ul>
+<p>It is used to probe internal HTTP endpoints such as:</p>
+<ul>
+<li>Grafana</li>
+<li>Prometheus</li>
+<li>cAdvisor</li>
+<li>Alertmanager</li>
+<li>Loki</li>
+</ul>
+<p>This gives you synthetic monitoring on top of regular metrics scraping.</p>
+<hr />
+<h2 id="useful-commands">Useful Commands</h2>
+<p>Start the stack:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</code></pre></div>
+<p>Stop the stack:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+<p>Stop the stack and remove volumes:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</code></pre></div>
+<p>Check running services:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
+</code></pre></div>
+<p>View logs for a specific service:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>prometheus
+docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>grafana
+docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>promtail
+</code></pre></div>
+<p>Restart a service:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>grafana
+</code></pre></div>
+<hr />
+<h2 id="what-makes-this-repo-better-than-a-basic-monitoring-demo">What Makes This Repo Better Than a Basic Monitoring Demo</h2>
+<ul>
+<li>It covers metrics, logs, alerts, and probes in one project</li>
+<li>It uses Docker Compose for repeatable startup</li>
+<li>It includes ready-made Grafana provisioning</li>
+<li>It includes alert rules instead of stopping at dashboards</li>
+<li>It demonstrates both host-style and container-level monitoring</li>
+</ul>
+<p>For someone building DevOps documentation, this repo is worth highlighting because it feels much closer to a practical observability lab than a minimal single-tool setup.</p>
+<hr />
 
 
 
@@ -2427,7 +2802,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../operations/troubleshooting/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Kubernetes&#x2f;OpenShift Troubleshooting Guide">
+          <a href="../logging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Loki and Promtail Logging Flow">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -2437,20 +2812,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Kubernetes/OpenShift Troubleshooting Guide
+                Loki and Promtail Logging Flow
               </div>
             </div>
           </a>
         
         
           
-          <a href="./quick-reference/" class="md-footer__link md-footer__link--next" aria-label="Next: Quick Reference &amp;amp; Cheat Sheets">
+          <a href="../prometheus/" class="md-footer__link md-footer__link--next" aria-label="Next: Prometheus Configuration Deep Dive">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Quick Reference &amp; Cheat Sheets
+                Prometheus Configuration Deep Dive
               </div>
             </div>
             <div class="md-footer__button md-icon">
