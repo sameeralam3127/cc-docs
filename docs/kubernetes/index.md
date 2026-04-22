@@ -17,6 +17,20 @@ This guide is written for DevOps engineers, SREs, and learners who want a practi
 !!! warning "Copy-safe guidance"
     Examples on this page avoid patterns that age badly in production, such as `:latest` image tags or long-lived credentials. Pin versions and adapt manifests to your own environment before deploying them.
 
+## Kubernetes Section Map
+
+- [Fundamentals](fundamentals.md)
+- [CI/CD Pipelines](operations/cicd-pipelines.md)
+- [Scripting and Automation](operations/scripting-automation.md)
+- [Troubleshooting](operations/troubleshooting.md)
+- [OpenShift Guide](openshift/guide.md)
+- [Hands-On Scenarios](labs/hands-on-scenarios.md)
+- [Docker Lab](labs/docker-lab.md)
+- [Minikube Lab](labs/minikube-lab.md)
+- [Podman Lab](labs/podman-lab.md)
+- [Quick Reference](reference/quick-reference.md)
+- [Interview Handbook](interview/questions.md)
+
 ---
 
 ## Why Kubernetes Exists

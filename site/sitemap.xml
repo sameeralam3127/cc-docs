@@ -46,7 +46,40 @@
         <loc>https://computecentral.in/jenkins/jenkins/</loc>
       </url>
       <url>
-        <loc>https://computecentral.in/kubernetes/kubernetes/</loc>
+        <loc>https://computecentral.in/kubernetes/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/fundamentals/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/interview/questions/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/labs/docker-lab/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/labs/hands-on-scenarios/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/labs/minikube-lab/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/labs/podman-lab/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/openshift/guide/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/operations/cicd-pipelines/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/operations/scripting-automation/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/operations/troubleshooting/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/kubernetes/reference/quick-reference/</loc>
       </url>
       <url>
         <loc>https://computecentral.in/monitoring-tools/log/</loc>
