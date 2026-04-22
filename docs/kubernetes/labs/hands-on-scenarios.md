@@ -3,9 +3,11 @@
 ## Scenario 1: Deploy a Multi-Tier Application
 
 ### Objective
+
 Deploy a complete web application with frontend, backend API, and database.
 
 ### Requirements
+
 - Frontend: React app (3 replicas)
 - Backend: Node.js API (3 replicas)
 - Database: PostgreSQL (StatefulSet)
@@ -18,12 +20,14 @@ Deploy a complete web application with frontend, backend API, and database.
 ### Solution
 
 **1. Create Namespace:**
+
 ```bash
 kubectl create namespace webapp
 kubectl config set-context --current --namespace=webapp
 ```
 
 **2. Database (PostgreSQL):**
+
 ```yaml
 # postgres-configmap.yaml
 apiVersion: v1
@@ -75,33 +79,33 @@ spec:
         app: postgres
     spec:
       containers:
-      - name: postgres
-        image: postgres:14
-        ports:
-        - containerPort: 5432
-        envFrom:
-        - configMapRef:
-            name: postgres-config
-        - secretRef:
-            name: postgres-secret
-        volumeMounts:
-        - name: postgres-storage
-          mountPath: /var/lib/postgresql/data
+        - name: postgres
+          image: postgres:14
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+            - secretRef:
+                name: postgres-secret
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-  volumeClaimTemplates:
-  - metadata:
-      name: postgres-storage
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 10Gi
+            storage: 10Gi
 
 ---
 # postgres-service.yaml
@@ -113,12 +117,13 @@ spec:
   selector:
     app: postgres
   ports:
-  - port: 5432
-    targetPort: 5432
-  clusterIP: None  # Headless service for StatefulSet
+    - port: 5432
+      targetPort: 5432
+  clusterIP: None # Headless service for StatefulSet
 ```
 
 **3. Backend API:**
+
 ```yaml
 # backend-configmap.yaml
 apiVersion: v1
@@ -149,43 +154,43 @@ spec:
         app: backend
     spec:
       containers:
-      - name: backend
-        image: myorg/backend-api:1.0
-        ports:
-        - containerPort: 8080
-        env:
-        - name: DATABASE_USER
-          valueFrom:
-            configMapKeyRef:
-              name: postgres-config
-              key: POSTGRES_USER
-        - name: DATABASE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: POSTGRES_PASSWORD
-        envFrom:
-        - configMapRef:
-            name: backend-config
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        - name: backend
+          image: myorg/backend-api:1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATABASE_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: backend-config
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
 
 ---
 # backend-service.yaml
@@ -197,12 +202,13 @@ spec:
   selector:
     app: backend
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080
   type: ClusterIP
 ```
 
 **4. Frontend:**
+
 ```yaml
 # frontend-configmap.yaml
 apiVersion: v1
@@ -229,32 +235,32 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: myorg/frontend:1.0
-        ports:
-        - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: frontend-config
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "100m"
-          limits:
-            memory: "256Mi"
-            cpu: "200m"
+        - name: frontend
+          image: myorg/frontend:1.0
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: frontend-config
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
 
 ---
 # frontend-service.yaml
@@ -266,12 +272,13 @@ spec:
   selector:
     app: frontend
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   type: LoadBalancer
 ```
 
 **5. Deploy Everything:**
+
 ```bash
 # Apply all resources
 kubectl apply -f postgres-configmap.yaml
@@ -296,6 +303,7 @@ kubectl get secret
 ```
 
 **6. Test the Application:**
+
 ```bash
 # Get frontend service external IP
 kubectl get svc frontend
@@ -316,9 +324,11 @@ kubectl exec -it postgres-0 -- psql -U appuser -d myapp -c "\dt"
 ## Scenario 2: Implement CI/CD Pipeline with Jenkins
 
 ### Objective
+
 Set up a complete CI/CD pipeline using Jenkins on Kubernetes.
 
 ### Requirements
+
 - Jenkins running in Kubernetes
 - Pipeline triggered by Git webhook
 - Build Docker image
@@ -329,6 +339,7 @@ Set up a complete CI/CD pipeline using Jenkins on Kubernetes.
 ### Solution
 
 **1. Install Jenkins:**
+
 ```bash
 # Create namespace
 kubectl create namespace jenkins
@@ -410,6 +421,7 @@ EOF
 ```
 
 **2. Jenkinsfile:**
+
 ```groovy
 pipeline {
     agent {
@@ -439,21 +451,21 @@ spec:
 """
         }
     }
-    
+
     environment {
         DOCKER_REGISTRY = 'docker.io'
         IMAGE_NAME = 'myorg/myapp'
         GIT_COMMIT_SHORT = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
         IMAGE_TAG = "${BUILD_NUMBER}-${GIT_COMMIT_SHORT}"
     }
-    
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        
+
         stage('Build') {
             steps {
                 container('docker') {
@@ -464,7 +476,7 @@ spec:
                 }
             }
         }
-        
+
         stage('Test') {
             parallel {
                 stage('Unit Tests') {
@@ -486,7 +498,7 @@ spec:
                 }
             }
         }
-        
+
         stage('Push Image') {
             steps {
                 container('docker') {
@@ -504,7 +516,7 @@ spec:
                 }
             }
         }
-        
+
         stage('Deploy to Dev') {
             steps {
                 container('kubectl') {
@@ -517,7 +529,7 @@ spec:
                 }
             }
         }
-        
+
         stage('Integration Tests') {
             steps {
                 container('kubectl') {
@@ -530,7 +542,7 @@ spec:
                 }
             }
         }
-        
+
         stage('Deploy to Staging') {
             when {
                 branch 'main'
@@ -546,7 +558,7 @@ spec:
                 }
             }
         }
-        
+
         stage('Approval for Production') {
             when {
                 branch 'main'
@@ -555,7 +567,7 @@ spec:
                 input message: 'Deploy to Production?', ok: 'Deploy'
             }
         }
-        
+
         stage('Deploy to Production') {
             when {
                 branch 'main'
@@ -572,7 +584,7 @@ spec:
             }
         }
     }
-    
+
     post {
         success {
             echo "Pipeline succeeded!"
@@ -585,6 +597,7 @@ spec:
 ```
 
 **3. Configure Webhook:**
+
 ```bash
 # In GitHub repository settings:
 # Webhooks → Add webhook
@@ -598,9 +611,11 @@ spec:
 ## Scenario 3: Implement Monitoring and Alerting
 
 ### Objective
+
 Set up comprehensive monitoring using Prometheus and Grafana.
 
 ### Requirements
+
 - Prometheus for metrics collection
 - Grafana for visualization
 - AlertManager for alerts
@@ -610,6 +625,7 @@ Set up comprehensive monitoring using Prometheus and Grafana.
 ### Solution
 
 **1. Install Prometheus Stack:**
+
 ```bash
 # Add Helm repo
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -625,6 +641,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 ```
 
 **2. Custom ServiceMonitor:**
+
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -636,16 +653,17 @@ spec:
     matchLabels:
       app: myapp
   endpoints:
-  - port: metrics
-    interval: 30s
-    path: /metrics
+    - port: metrics
+      interval: 30s
+      path: /metrics
 ```
 
 **3. Application with Metrics:**
+
 ```javascript
 // Node.js example with Prometheus client
-const express = require('express');
-const promClient = require('prom-client');
+const express = require("express");
+const promClient = require("prom-client");
 
 const app = express();
 const register = new promClient.Registry();
@@ -655,33 +673,37 @@ promClient.collectDefaultMetrics({ register });
 
 // Custom metrics
 const httpRequestDuration = new promClient.Histogram({
-  name: 'http_request_duration_seconds',
-  help: 'Duration of HTTP requests in seconds',
-  labelNames: ['method', 'route', 'status_code'],
-  registers: [register]
+  name: "http_request_duration_seconds",
+  help: "Duration of HTTP requests in seconds",
+  labelNames: ["method", "route", "status_code"],
+  registers: [register],
 });
 
 const httpRequestTotal = new promClient.Counter({
-  name: 'http_requests_total',
-  help: 'Total number of HTTP requests',
-  labelNames: ['method', 'route', 'status_code'],
-  registers: [register]
+  name: "http_requests_total",
+  help: "Total number of HTTP requests",
+  labelNames: ["method", "route", "status_code"],
+  registers: [register],
 });
 
 // Middleware to track metrics
 app.use((req, res, next) => {
   const start = Date.now();
-  res.on('finish', () => {
+  res.on("finish", () => {
     const duration = (Date.now() - start) / 1000;
-    httpRequestDuration.labels(req.method, req.route?.path || req.path, res.statusCode).observe(duration);
-    httpRequestTotal.labels(req.method, req.route?.path || req.path, res.statusCode).inc();
+    httpRequestDuration
+      .labels(req.method, req.route?.path || req.path, res.statusCode)
+      .observe(duration);
+    httpRequestTotal
+      .labels(req.method, req.route?.path || req.path, res.statusCode)
+      .inc();
   });
   next();
 });
 
 // Metrics endpoint
-app.get('/metrics', async (req, res) => {
-  res.set('Content-Type', register.contentType);
+app.get("/metrics", async (req, res) => {
+  res.set("Content-Type", register.contentType);
   res.end(await register.metrics());
 });
 
@@ -689,6 +711,7 @@ app.listen(8080);
 ```
 
 **4. PrometheusRule for Alerts:**
+
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -697,42 +720,43 @@ metadata:
   namespace: monitoring
 spec:
   groups:
-  - name: myapp
-    interval: 30s
-    rules:
-    - alert: HighErrorRate
-      expr: |
-        rate(http_requests_total{status_code=~"5.."}[5m]) > 0.05
-      for: 5m
-      labels:
-        severity: critical
-      annotations:
-        summary: "High error rate detected"
-        description: "Error rate is {{ $value }} for {{ $labels.instance }}"
-    
-    - alert: HighMemoryUsage
-      expr: |
-        container_memory_usage_bytes{pod=~"myapp-.*"} / 
-        container_spec_memory_limit_bytes{pod=~"myapp-.*"} > 0.9
-      for: 5m
-      labels:
-        severity: warning
-      annotations:
-        summary: "High memory usage"
-        description: "Memory usage is {{ $value | humanizePercentage }} for {{ $labels.pod }}"
-    
-    - alert: PodCrashLooping
-      expr: |
-        rate(kube_pod_container_status_restarts_total[15m]) > 0
-      for: 5m
-      labels:
-        severity: critical
-      annotations:
-        summary: "Pod is crash looping"
-        description: "Pod {{ $labels.pod }} is restarting frequently"
+    - name: myapp
+      interval: 30s
+      rules:
+        - alert: HighErrorRate
+          expr: |
+            rate(http_requests_total{status_code=~"5.."}[5m]) > 0.05
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High error rate detected"
+            description: "Error rate is {{ $value }} for {{ $labels.instance }}"
+
+        - alert: HighMemoryUsage
+          expr: |
+            container_memory_usage_bytes{pod=~"myapp-.*"} / 
+            container_spec_memory_limit_bytes{pod=~"myapp-.*"} > 0.9
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High memory usage"
+            description: "Memory usage is {{ $value | humanizePercentage }} for {{ $labels.pod }}"
+
+        - alert: PodCrashLooping
+          expr: |
+            rate(kube_pod_container_status_restarts_total[15m]) > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pod is crash looping"
+            description: "Pod {{ $labels.pod }} is restarting frequently"
 ```
 
 **5. Grafana Dashboard:**
+
 ```json
 {
   "dashboard": {
@@ -776,6 +800,7 @@ spec:
 ```
 
 **6. Access Grafana:**
+
 ```bash
 # Port forward to Grafana
 kubectl port-forward -n monitoring svc/prometheus-grafana 3000:80
@@ -790,11 +815,13 @@ kubectl port-forward -n monitoring svc/prometheus-grafana 3000:80
 ## Scenario 4: Implement Blue-Green Deployment
 
 ### Objective
+
 Implement blue-green deployment strategy for zero-downtime releases.
 
 ### Solution
 
 **1. Blue Deployment (Current):**
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -816,20 +843,21 @@ spec:
         version: blue
     spec:
       containers:
-      - name: myapp
-        image: myapp:v1.0
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        - name: myapp
+          image: myapp:v1.0
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
 ```
 
 **2. Service (Initially pointing to blue):**
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -838,14 +866,15 @@ metadata:
 spec:
   selector:
     app: myapp
-    version: blue  # Points to blue deployment
+    version: blue # Points to blue deployment
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080
   type: LoadBalancer
 ```
 
 **3. Deploy Green Version:**
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -867,20 +896,21 @@ spec:
         version: green
     spec:
       containers:
-      - name: myapp
-        image: myapp:v2.0  # New version
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        - name: myapp
+          image: myapp:v2.0 # New version
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
 ```
 
 **4. Deployment Script:**
+
 ```bash
 #!/bin/bash
 set -euo pipefail
@@ -920,20 +950,24 @@ echo "To rollback: kubectl patch service myapp-service -p '{\"spec\":{\"selector
 ## Scenario 5: Troubleshoot Production Issue
 
 ### Objective
+
 Debug and resolve a production issue where pods are crashing.
 
 ### Problem
+
 Pods are in CrashLoopBackOff state after deployment.
 
 ### Investigation Steps
 
 **1. Check Pod Status:**
+
 ```bash
 kubectl get pods
 # Output: myapp-5d4b8c7f9-abc12   0/1     CrashLoopBackOff   5          10m
 ```
 
 **2. Describe Pod:**
+
 ```bash
 kubectl describe pod myapp-5d4b8c7f9-abc12
 
@@ -944,6 +978,7 @@ kubectl describe pod myapp-5d4b8c7f9-abc12
 ```
 
 **3. Check Logs:**
+
 ```bash
 # Current logs
 kubectl logs myapp-5d4b8c7f9-abc12
@@ -957,6 +992,7 @@ kubectl logs myapp-5d4b8c7f9-abc12 --previous
 ```
 
 **4. Verify Configuration:**
+
 ```bash
 # Check ConfigMap
 kubectl get configmap myapp-config -o yaml
@@ -969,6 +1005,7 @@ kubectl exec myapp-5d4b8c7f9-abc12 -- env
 ```
 
 **5. Test Database Connectivity:**
+
 ```bash
 # Run debug pod
 kubectl run debug --rm -it --image=postgres:14 -- bash
@@ -979,6 +1016,7 @@ psql -h postgres -U appuser -d myapp
 ```
 
 **6. Check Service and Endpoints:**
+
 ```bash
 kubectl get svc postgres
 kubectl get endpoints postgres
@@ -991,6 +1029,7 @@ kubectl get pods -l app=postgres --show-labels
 Database service selector doesn't match pod labels.
 
 **8. Fix:**
+
 ```bash
 # Update service selector
 kubectl patch svc postgres -p '{"spec":{"selector":{"app":"postgres"}}}'
@@ -1015,6 +1054,7 @@ kubectl get pods
 ## Practice Commands Cheat Sheet
 
 ### Quick Diagnostics
+
 ```bash
 # Get all resources
 kubectl get all -A
@@ -1048,6 +1088,7 @@ kubectl debug <pod-name> -it --image=busybox
 ```
 
 ### Deployment Operations
+
 ```bash
 # Create deployment
 kubectl create deployment myapp --image=myapp:1.0
@@ -1072,6 +1113,7 @@ kubectl rollout restart deployment/myapp
 ```
 
 ### Resource Management
+
 ```bash
 # Set resources
 kubectl set resources deployment myapp --limits=cpu=500m,memory=512Mi
@@ -1088,26 +1130,3 @@ kubectl delete -f deployment.yaml
 ```
 
 ---
-
-## Daily Practice Routine
-
-### Morning (30 minutes)
-1. Review one guide section
-2. Practice 5-10 kubectl commands
-3. Read Kubernetes documentation
-
-### Afternoon (30 minutes)
-1. Complete one hands-on scenario
-2. Troubleshoot a practice problem
-3. Review interview questions
-
-### Evening (30 minutes)
-1. Watch Kubernetes tutorial/talk
-2. Practice explaining concepts
-3. Prepare STAR method examples
-
-### Before Interview
-1. Review all guides
-2. Practice common commands
-3. Prepare questions for interviewer
-4. Get good sleep!
