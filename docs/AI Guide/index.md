@@ -8,90 +8,336 @@ tags:
 
 # AI Engineering Guide
 
-This guide explains modern AI systems in the simplest way possible — from basic ideas to real-world applications.
+AI engineering is the practice of building systems that use models, data, retrieval, tools, and application logic to solve real problems. Modern AI is no longer just about prompting a model. In production systems, it usually involves multiple layers working together:
 
-Artificial Intelligence has evolved quickly. Terms like **Generative AI**, **RAG**, **AI Agents**, and **MCP** are used everywhere, but many people find them confusing. This guide clears the confusion and shows how these pieces fit together.
+- A model to generate or classify output
+- Retrieval to bring in relevant knowledge
+- Tools to take actions
+- Guardrails to reduce mistakes
+- Evaluation to measure quality over time
+
+This guide gives a practical overview of the major concepts behind modern AI systems so the rest of the section makes more sense.
+
+---
+
+## Why AI Feels Different Now
+
+Earlier software systems followed explicit instructions written by developers. Modern AI systems can generate outputs, reason across context, summarize large documents, search knowledge bases, and interact with external tools.
+
+That shift matters because:
+
+- The output is often probabilistic, not fully deterministic
+- Quality depends on prompts, context, retrieval, and evaluation
+- Freshness often depends on external data, not only model training
+- Safety and correctness become engineering concerns, not just model concerns
+
+!!! info "A useful mental model"
+    Think of AI engineering as a stack:
+    model + context + retrieval + tools + evaluation + application logic
 
 ---
 
 ## The Evolution of AI Systems
 
-### 1. Rule-Based Systems (Traditional AI)
+### 1. Rule-Based Systems
 
-Early AI worked only with fixed, hardcoded rules.
+Early AI-style systems were mostly hardcoded logic and expert rules.
 
-- No real intelligence
-- Very limited and brittle
-- Couldn't handle new situations
-
-**Simple Example:**
+Example:
 
 ```python
-if "hello" in user_input:
-    print("Hi there!")
+if "refund" in user_input.lower():
+    print("Show refund policy")
 ```
 
-**Limitation:** Breaks easily if the user says something slightly different.
+Strengths:
+
+- Easy to understand
+- Predictable behavior
+- Good for narrow workflows
+
+Limitations:
+
+- Brittle when wording changes
+- Hard to scale across many cases
+- No real generalization
+
+Rule-based systems still matter today for validation, safety checks, and business constraints around AI outputs.
 
 ---
 
-### 2. Generative AI
+### 2. Machine Learning and Generative AI
 
-Generative AI learns patterns from massive amounts of data and creates new content (text, images, code, etc.).
+Modern AI systems learn patterns from data rather than relying only on hardcoded rules.
 
-- Powered by Large Language Models (LLMs) based on transformers
-- Predicts the next word/token intelligently
-- Feels "smart" because it understands context
+In the current wave of AI, the most visible category is **Generative AI**, especially large language models (LLMs). These models generate text, code, summaries, translations, and structured outputs by predicting the next token based on prior context.
 
-**Popular Use Cases:**
+Common use cases:
 
-- Chatbots (like ChatGPT)
-- Writing assistants
-- Code generation tools
+- Chatbots
+- Content drafting
+- Code generation
+- Summarization
+- Classification and extraction
+
+Strengths:
+
+- Flexible across many tasks
+- Handles natural language well
+- Works well with unstructured text
+
+Limitations:
+
+- Can hallucinate facts
+- Can be inconsistent across runs
+- May not know recent or private information
+- Often needs strong prompting and evaluation
+
+!!! tip "Generative AI is powerful but incomplete by itself"
+    A model can sound confident without being correct. In production, teams usually combine models with retrieval, tools, and evaluation rather than relying on the model alone.
 
 ---
 
 ### 3. Retrieval-Augmented Generation (RAG)
 
-RAG solves a big problem of plain Generative AI: **it can hallucinate** (make up facts).
+RAG improves AI responses by retrieving relevant external information and providing it to the model at runtime.
 
-**How RAG works:**
+Instead of asking the model to answer from training data alone, a RAG system:
 
-1. User asks a question
-2. System searches relevant documents/knowledge base
-3. Retrieved information is added as context
-4. LLM generates answer using this fresh knowledge
+1. Receives a user question
+2. Searches a knowledge source
+3. Selects relevant documents or chunks
+4. Sends them as context to the model
+5. Generates an answer grounded in those materials
 
-**Best For:**
+This is useful when the answer depends on:
 
-- Company knowledge bases
-- Customer support bots
-- Research assistants
+- Company documentation
+- Product manuals
+- Internal policies
+- Support articles
+- Frequently updated information
+
+Benefits:
+
+- Better factual grounding
+- Better access to private knowledge
+- More recent information than model training alone
+
+Risks:
+
+- Poor retrieval can lead to poor answers
+- Bad chunking can hide important context
+- Irrelevant context can confuse the model
+
+Example flow:
+
+```text
+User question -> Retriever -> Relevant documents -> Model -> Grounded response
+```
+
+RAG is often the first serious step from demo AI toward production AI.
 
 ---
 
-### 4. Model Context Protocol (MCP)
+### 4. Tool Use and Model Context Protocol (MCP)
 
-MCP is a standard way for AI models to safely connect with external tools and systems.
+Many tasks require more than text generation. They need the AI system to take actions or read live data.
 
-Think of it as a **universal plug**:
-**AI Model ↔ MCP ↔ Tools** (APIs, databases, files, email, etc.)
+Examples:
 
-It allows the AI to interact with the real world in a structured and secure manner.
+- Query a database
+- Read a file
+- Call an API
+- Send an email
+- Check a calendar
+- Run code
+
+That is where **tool use** becomes important. The model decides when a tool is needed, the system executes it safely, and the result is returned to the model for the next step.
+
+**Model Context Protocol (MCP)** is a standard way to connect models to external tools and context providers in a structured manner.
+
+You can think of it as:
+
+```text
+Model <-> MCP <-> Tools / Data Sources / Apps
+```
+
+Why this matters:
+
+- It makes integrations more standardized
+- It separates model logic from tool wiring
+- It supports safer and more controlled external actions
+
+Without tools, a model can only talk. With tools, it can actually help complete tasks.
 
 ---
 
-### 5. Agentic AI (AI Agents)
+### 5. Agentic AI
 
-This is the most powerful stage. AI Agents don't just answer questions — they **take actions** to complete goals.
+AI agents go beyond a single prompt-response interaction. They work toward a goal through repeated decision-making.
 
-**How an Agent works:**
+A typical agent loop looks like this:
 
 1. Understand the goal
-2. Make a plan
-3. Use tools (RAG + MCP)
-4. Execute steps
-5. Check results
-6. Repeat until goal is achieved
+2. Decide the next step
+3. Use a tool or retrieve information
+4. Observe the result
+5. Adjust the plan
+6. Continue until the task is completed
+
+Examples:
+
+- Research and summarize competitors
+- Triage support tickets
+- Investigate incidents from logs and dashboards
+- Generate a report from multiple sources
+- Perform multi-step coding or operational tasks
+
+Strengths:
+
+- Can handle multi-step tasks
+- Can combine reasoning, retrieval, and tools
+- Can adapt when intermediate results change
+
+Risks:
+
+- More moving parts means more failure modes
+- Tool misuse can create bad side effects
+- Longer loops may drift or waste tokens
+- Evaluation becomes harder than simple prompt testing
+
+!!! warning "Agents increase capability and complexity together"
+    Agents are not just bigger chatbots. They require careful design around permissions, monitoring, validation, and failure handling.
 
 ---
+
+## How the Pieces Fit Together
+
+A useful way to think about the progression is:
+
+- **Rule-based systems** decide with explicit logic
+- **Generative AI** produces flexible natural-language outputs
+- **RAG** adds relevant knowledge at runtime
+- **Tool use and MCP** let systems interact with the outside world
+- **Agents** coordinate all of the above across multiple steps
+
+In practice, many real systems combine several of these patterns at once.
+
+Example:
+
+- A support assistant uses an LLM
+- RAG retrieves policy documents
+- Tools fetch ticket details from a helpdesk system
+- An agent decides whether to summarize, escalate, or draft a reply
+
+That is much closer to modern AI engineering than a single prompt in a chat box.
+
+---
+
+## Common AI System Patterns
+
+### Prompt-only assistant
+
+Best for:
+
+- Brainstorming
+- Drafting
+- General Q&A
+
+Weakness:
+
+- Limited freshness and grounding
+
+### RAG assistant
+
+Best for:
+
+- Internal knowledge search
+- Documentation Q&A
+- Support systems
+
+Weakness:
+
+- Quality depends heavily on retrieval design
+
+### Tool-using assistant
+
+Best for:
+
+- Operational workflows
+- Productivity automation
+- Business system integrations
+
+Weakness:
+
+- Requires stronger safety controls
+
+### Agentic workflow
+
+Best for:
+
+- Multi-step goals
+- Research tasks
+- Long-running business processes
+
+Weakness:
+
+- Harder to test, debug, and control
+
+---
+
+## What Makes AI Systems Hard in Production
+
+A demo can look impressive quickly. Production systems are harder because they need:
+
+- Reliability
+- Permission boundaries
+- Monitoring and logging
+- Cost control
+- Response quality evaluation
+- Defenses against hallucination and unsafe actions
+- Better UX when the model is uncertain or fails
+
+Teams often underestimate that the hard part is not only the model. It is the full system around the model.
+
+---
+
+## Practical Risks to Watch
+
+- **Hallucination**: The model invents facts or sources
+- **Stale knowledge**: The model lacks current or internal data
+- **Prompt injection**: Untrusted content tries to manipulate instructions
+- **Tool misuse**: The model triggers the wrong action or unsafe sequence
+- **Cost creep**: Large prompts, long contexts, and repeated calls increase spend
+- **Evaluation gaps**: Systems seem good in demos but fail on real edge cases
+
+---
+
+## Good Engineering Habits for AI Teams
+
+- Start with a narrow, well-defined use case
+- Measure quality with real evaluation datasets
+- Log prompts, retrieval results, tool calls, and outcomes
+- Use retrieval when freshness or private knowledge matters
+- Add approval steps for sensitive actions
+- Prefer least-privilege tool access
+- Design graceful fallback behavior when the model is uncertain
+- Re-evaluate regularly as prompts, models, and data change
+
+---
+
+## Where to Go Next
+
+This overview connects to the deeper topics in this section:
+
+- [AI Agents](ai-agents.md)
+- [AI Model Evaluation](ai-evaluation.md)
+
+If you are new to this space, a helpful learning sequence is:
+
+1. Understand the difference between prompts, retrieval, tools, and agents
+2. Learn how agent systems make decisions across multiple steps
+3. Learn how evaluation works so quality can be measured instead of guessed
+
+That combination gives you a much stronger foundation for building AI systems that are useful, reliable, and maintainable.
