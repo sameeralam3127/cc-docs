@@ -1,372 +1,549 @@
-# [Docker: From Basics to Advanced]()
+# Docker: From Basics to Advanced
 
-??? info "What is Docker?"
-Docker is an open-source platform designed to simplify application deployment. It ensures that applications run reliably regardless of the environment.  
-It allows developers to build, ship, and run applications in isolated environments called **containers**. Containers package applications with their libraries, dependencies, and configurations, ensuring consistency across development, testing, and production.
+Docker helps you package applications and their dependencies into portable units called containers. Those containers run the same way across laptops, test servers, and production systems, which reduces "it works on my machine" problems and makes delivery more predictable.
 
----
-
-??? tip "Why Use Docker?"
-
-- **Consistency**: Applications behave the same in development, testing, and production.
-- **Lightweight**: Containers share the host OS kernel, making them more efficient than virtual machines.
-- **Portable**: Run applications anywhere, from local machines to cloud platforms.
+!!! info "What Docker gives you"
+    - Consistent runtime environments across development, testing, and production
+    - Faster startup and lower overhead than traditional virtual machines
+    - Repeatable builds through `Dockerfile`
+    - Easy multi-service orchestration with `docker compose`
+    - Better isolation for apps, tools, and dependencies
 
 ---
 
-??? tip "Getting Started with Docker Installation"
+## Core Concepts
 
-**1. Install Docker on Linux**
+Before jumping into commands, it helps to separate a few Docker terms:
+
+- **Image**: A read-only packaged blueprint for an application
+- **Container**: A running instance of an image
+- **Dockerfile**: A text file that defines how an image is built
+- **Volume**: Persistent storage managed by Docker
+- **Network**: A communication layer for containers
+- **Registry**: A place to store and distribute images, such as Docker Hub
+
+!!! tip "Container vs virtual machine"
+    A container shares the host operating system kernel, while a virtual machine includes a full guest OS. That is why containers are usually lighter and faster to start.
+
+---
+
+## Installation
+
+### Linux
+
+On Ubuntu or Debian-based systems, install Docker Engine with:
 
 ```bash
-# Update the package index
 sudo apt update
+sudo apt install ca-certificates curl gnupg -y
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-# Install required packages
-sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Add Docker's official GPG key
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-# Add the Docker repository
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# Install Docker Engine
 sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io -y
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+```
 
-# Verify the installation
+Verify the installation:
+
+```bash
 docker --version
+docker compose version
 ```
 
-**2. Install Docker on macOS**
+### macOS
 
-??? note "Prerequisites for macOS"
+Install Docker Desktop from [Docker's official website](https://www.docker.com/products/docker-desktop/), move it to `Applications`, and complete the first-run setup.
 
-- Requires macOS 10.14 or newer
-- Ensure adequate resources are available for Docker Desktop
+### Windows
 
-```bash
-# Download Docker Desktop for Mac from:
-https://www.docker.com/products/docker-desktop/
+Install Docker Desktop from [Docker's official website](https://www.docker.com/products/docker-desktop/). On Windows, Docker Desktop typically uses WSL 2 for Linux containers, so make sure WSL is enabled if prompted during setup.
 
-# Install Docker by dragging it to the Applications folder
-# Open Docker Desktop and follow setup instructions
-```
+!!! note "Docker Desktop vs Docker Engine"
+    - **Docker Desktop** is commonly used on macOS and Windows and includes a GUI, Compose, and local Kubernetes support.
+    - **Docker Engine** is the lightweight server-side runtime commonly used on Linux.
 
-**3. Install Docker on Windows**
+### Enable non-root Docker access on Linux
 
-??? info "Supported Windows Versions"
-Docker Desktop supports Windows 10 64-bit (Professional, Enterprise, Education) and Windows 11
-
-Steps:
-
-1. Download Docker Desktop from [Docker's official website](https://www.docker.com/products/docker-desktop).
-2. Run the installer and follow on-screen instructions.
-3. After installation, verify with:
-
-   ```powershell
-   docker --version
-   ```
-
----
-
-**Useful Tips**
-
-!!! tip "Enable Non-Root Docker Access on Linux"
-Add your user to the Docker group to run Docker without `sudo`:
+If you want to run Docker without `sudo`:
 
 ```bash
 sudo usermod -aG docker $USER
+newgrp docker
 ```
 
-Log out and log back in for changes to take effect.
-
-!!! warning "Docker Resource Limits"
-Containers share host resources. Ensure sufficient CPU and memory allocation for performance.
-
-!!! note "Docker Desktop vs Docker Engine"
-
-- **Docker Desktop**: Includes GUI tools, ideal for macOS and Windows.
-- **Docker Engine**: Lightweight CLI-based version for Linux servers.
-
----
-
-**Verify Your Docker Installation**
-
-Run a test container:
+Test with:
 
 ```bash
 docker run hello-world
 ```
 
-Expected output:
-
-```plaintext
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-```
-
 ---
 
-## Docker Command Reference
+## Common Docker Commands
 
-## Basic Commands
+These are the commands you will use most often:
 
-- **Check Docker Version**
+### Inspect Docker
 
 ```bash
 docker --version
+docker info
+docker help
 ```
 
-- **List Docker Images**
+### Work with images
 
 ```bash
 docker images
+docker pull nginx:latest
+docker build -t myapp:1.0 .
+docker rmi myapp:1.0
 ```
 
-- **List Running Containers**
+### Work with containers
 
 ```bash
 docker ps
+docker ps -a
+docker run nginx
+docker run -d -p 8080:80 --name web nginx
+docker stop web
+docker start web
+docker restart web
+docker rm web
 ```
 
-- **List All Containers**
+### Inspect logs and processes
 
 ```bash
-docker ps -a
+docker logs web
+docker logs -f web
+docker exec -it web /bin/sh
+docker top web
+docker inspect web
 ```
 
-- **Run a Container**
+!!! tip "Interactive debugging"
+    Use `docker exec -it <container> /bin/sh` or `/bin/bash` to inspect a running container. Minimal images often include `/bin/sh` but not `/bin/bash`.
+
+---
+
+## Understanding `docker run`
+
+The `docker run` command creates and starts a container.
 
 ```bash
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
-- **Stop a Running Container**
+Example:
 
 ```bash
-docker stop CONTAINER_ID
+docker run -d --name mynginx -p 8080:80 nginx:latest
 ```
 
-- **Remove a Container**
+What this does:
 
-```bash
-docker rm CONTAINER_ID
-```
+- `-d` runs the container in detached mode
+- `--name mynginx` assigns a friendly container name
+- `-p 8080:80` maps host port `8080` to container port `80`
+- `nginx:latest` is the image to start
 
-- **Remove an Image**
+Other useful flags:
 
-```bash
-docker rmi IMAGE_ID
-```
+- `-e KEY=value` to pass environment variables
+- `-v host_path:container_path` to mount storage
+- `--rm` to remove the container automatically after it exits
+- `--network` to attach the container to a custom network
 
 ---
 
-## Building Docker Images
+## Building Images with a Dockerfile
 
-- **Build an Image from a Dockerfile**
+A `Dockerfile` defines how Docker should build your image.
 
-```bash
-docker build -t IMAGE_NAME:TAG PATH
-```
-
-- **Build Without Cache**
-
-```bash
-docker build --no-cache -t IMAGE_NAME:TAG PATH
-```
-
-- **View Build History**
-
-```bash
-docker history IMAGE_NAME:TAG
-```
-
----
-
-## Dockerfile Basics
-
-**Example:**
+Example:
 
 ```dockerfile
-# Use a base image
-FROM ubuntu:latest
+FROM python:3.12-slim
 
-# Set environment variables
-ENV MY_ENV_VAR=value
+WORKDIR /app
 
-# Install dependencies
-RUN apt-get update && apt-get install -y curl
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy files
-COPY ./local_file /container_file
+COPY . .
 
-# Define default command
-CMD ["echo", "Hello, Docker!"]
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+```
+
+Build the image:
+
+```bash
+docker build -t flask-demo:1.0 .
+```
+
+Run it:
+
+```bash
+docker run -d -p 5000:5000 --name flask-demo flask-demo:1.0
+```
+
+### Important Dockerfile instructions
+
+- `FROM` sets the base image
+- `WORKDIR` sets the working directory inside the container
+- `COPY` copies files into the image
+- `RUN` executes commands during build
+- `ENV` defines environment variables
+- `EXPOSE` documents the port the app listens on
+- `CMD` sets the default runtime command
+
+!!! warning "Keep images small"
+    Use slim base images when practical, combine related steps, and avoid copying unnecessary files into the image.
+
+### Add a `.dockerignore`
+
+Just like `.gitignore`, a `.dockerignore` file prevents unwanted files from being sent into the build context.
+
+Example:
+
+```text
+.git
+node_modules
+venv
+__pycache__
+*.log
+```
+
+This keeps builds faster and images cleaner.
+
+---
+
+## Volumes and Persistent Data
+
+Containers are ephemeral by design. If a container is removed, its internal writable layer is lost unless data is stored externally.
+
+Create a managed volume:
+
+```bash
+docker volume create postgres_data
+```
+
+Use it with a container:
+
+```bash
+docker run -d \
+  --name postgres \
+  -e POSTGRES_PASSWORD=secret \
+  -v postgres_data:/var/lib/postgresql/data \
+  postgres:16
+```
+
+List volumes:
+
+```bash
+docker volume ls
+```
+
+Inspect a volume:
+
+```bash
+docker volume inspect postgres_data
 ```
 
 ---
 
-## Networking and Volumes
+## Docker Networking
 
-- **Create a Network**
+Docker can attach containers to networks so they can communicate securely and predictably.
+
+Create a custom network:
 
 ```bash
-docker network create my_network
+docker network create app-network
 ```
 
-- **Run a Container on a Network**
+Run containers on that network:
 
 ```bash
-docker run --network my_network IMAGE_NAME
+docker run -d --name db --network app-network postgres:16
+docker run -d --name api --network app-network myapi:1.0
 ```
 
-- **Create a Volume**
+Now the `api` container can usually reach the database by the container name `db`.
+
+List networks:
 
 ```bash
-docker volume create my_volume
+docker network ls
 ```
 
-- **Run with a Volume**
+Inspect a network:
 
 ```bash
-docker run -v my_volume:/container_path IMAGE_NAME
+docker network inspect app-network
 ```
 
 ---
 
 ## Docker Compose
 
-- **Start Services**
+When an application needs multiple services, `docker compose` is much easier than running many `docker run` commands manually.
 
-```bash
-docker-compose up
+Example `compose.yaml`:
+
+```yaml
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7
 ```
 
-- **Detached Mode**
+Start the stack:
 
 ```bash
-docker-compose up -d
+docker compose up
 ```
 
-- **Stop Services**
+Start in detached mode:
 
 ```bash
-docker-compose down
+docker compose up -d
 ```
 
-- **View Logs**
+Stop and remove services:
 
 ```bash
-docker-compose logs
+docker compose down
 ```
+
+View status and logs:
+
+```bash
+docker compose ps
+docker compose logs
+docker compose logs -f web
+```
+
+Rebuild after code changes:
+
+```bash
+docker compose up -d --build
+```
+
+!!! note "Prefer `docker compose`"
+    Modern Docker installations use `docker compose` with a space. The older `docker-compose` command may still work on some systems, but the plugin-based `docker compose` form is now the standard.
 
 ---
 
-## Registry Operations
+## Registries and Image Sharing
 
-- **Push to Docker Hub**
+After building an image locally, you can push it to a registry so others or your deployment pipeline can pull it.
 
-```bash
-docker push IMAGE_NAME:TAG
-```
-
-- **Pull from Docker Hub**
-
-```bash
-docker pull IMAGE_NAME:TAG
-```
-
-- **Tag an Image**
-
-```bash
-docker tag SOURCE_IMAGE:TAG TARGET_IMAGE:TAG
-```
-
-- **Login**
+Log in:
 
 ```bash
 docker login
 ```
 
----
-
-## Troubleshooting and Scenarios
-
-## Scenario 1: Container Not Starting
-
-- **Symptom**: Container exits immediately
-- **Solution**: Check logs
+Tag an image for Docker Hub:
 
 ```bash
-docker logs CONTAINER_ID
+docker tag myapp:1.0 your-dockerhub-user/myapp:1.0
 ```
 
-Ensure command is valid and not terminating.
+Push it:
 
-??? info "Debug Tip"
-Use `-it` to keep the container interactive during debugging.
+```bash
+docker push your-dockerhub-user/myapp:1.0
+```
 
----
+Pull it on another machine:
 
-## Scenario 2: Image Build Fails
-
-- **Symptom**: `docker build` fails
-- **Solution**:
-
-  - Review error messages
-  - Ensure `Dockerfile` syntax is correct
-  - Use no-cache build:
-
-    ```bash
-    docker build --no-cache -t IMAGE_NAME:TAG .
-    ```
-
-??? warning "Cache Considerations"
-Cached layers may cause outdated dependencies. Use `--no-cache` to ensure fresh builds.
+```bash
+docker pull your-dockerhub-user/myapp:1.0
+```
 
 ---
 
-## Scenario 3: Port Already in Use
+## Practical Workflow
 
-- **Symptom**: Port conflict error
-- **Solution**:
+A common day-to-day Docker workflow looks like this:
 
-  - Identify process:
-
-    ```bash
-    lsof -i :PORT
-    ```
-
-  - Stop conflicting process or map a new port:
-
-    ```bash
-    docker run -p NEW_PORT:CONTAINER_PORT IMAGE_NAME
-    ```
-
-??? note "Port Conflict Resolution"
-Use `docker ps` to review port mappings of running containers.
+1. Write or update the application
+2. Define the image in a `Dockerfile`
+3. Build the image with `docker build`
+4. Run and test it locally with `docker run` or `docker compose`
+5. Inspect logs and fix issues
+6. Tag the final image
+7. Push it to a registry
+8. Deploy it in staging or production
 
 ---
 
-## Scenario 4: Cannot Remove Container/Image
+## Best Practices
 
-- **Symptom**: Removal fails with "in use" error
-- **Solution**:
+- Use specific image tags instead of relying only on `latest`
+- Keep images small and focused on a single responsibility
+- Prefer official or trusted base images
+- Store secrets outside images whenever possible
+- Use `.dockerignore` to reduce build context size
+- Avoid running as root inside containers when the image can be hardened
+- Persist important state with volumes, not container filesystems
+- Use `docker compose` for multi-container development environments
 
-  - Stop all containers:
+!!! warning "Containers are not full security boundaries"
+    Docker improves isolation, but containers still share the host kernel. For sensitive workloads, combine Docker with OS hardening, image scanning, least privilege, and good secret management.
 
-    ```bash
-    docker stop $(docker ps -q)
-    ```
+---
 
-  - Force remove:
+## Troubleshooting
 
-    ```bash
-    docker rm -f CONTAINER_ID
-    docker rmi -f IMAGE_ID
-    ```
+### Container exits immediately
 
-??? info "Forced Removal"
-The `-f` flag forces removal even when containers or images are in use.
+Symptom:
+
+- The container starts and stops right away
+
+Checks:
+
+```bash
+docker ps -a
+docker logs <container>
+```
+
+Typical causes:
+
+- The main process finished successfully and exited
+- The startup command is incorrect
+- A required file or environment variable is missing
+
+### Port already in use
+
+Symptom:
+
+- Docker reports that a host port is already allocated
+
+Checks:
+
+```bash
+lsof -i :8080
+docker ps
+```
+
+Fixes:
+
+- Stop the conflicting process
+- Change the host-side port mapping
+
+Example:
+
+```bash
+docker run -p 8081:80 nginx
+```
+
+### Build fails
+
+Symptom:
+
+- `docker build` returns an error during image creation
+
+Checks:
+
+```bash
+docker build -t myapp:1.0 .
+docker build --no-cache -t myapp:1.0 .
+```
+
+Typical causes:
+
+- Syntax issues in the `Dockerfile`
+- Missing files in the build context
+- Dependency installation failures
+- Cached layers hiding recent changes
+
+### Cannot remove image or container
+
+Symptom:
+
+- Docker says the object is still in use
+
+Checks:
+
+```bash
+docker ps -a
+docker images
+```
+
+Fixes:
+
+```bash
+docker stop <container>
+docker rm <container>
+docker rmi <image>
+```
+
+If needed, force removal:
+
+```bash
+docker rm -f <container>
+docker rmi -f <image>
+```
+
+### Docker daemon is not running
+
+Symptom:
+
+- Commands fail with a message that Docker cannot connect to the daemon
+
+Checks:
+
+```bash
+docker info
+```
+
+Fixes:
+
+- Start Docker Desktop on macOS or Windows
+- Start the Docker service on Linux:
+
+```bash
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+---
+
+## Quick Reference
+
+```bash
+docker pull nginx:latest
+docker build -t myapp:1.0 .
+docker run -d -p 8080:80 --name web nginx
+docker exec -it web /bin/sh
+docker logs -f web
+docker compose up -d --build
+docker compose ps
+docker compose down
+docker volume ls
+docker network ls
+docker system prune
+```
+
+!!! tip "Use cleanup carefully"
+    `docker system prune` removes unused objects such as stopped containers and dangling images. Review what it will delete before running it on a machine you care about.
