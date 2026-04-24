@@ -1,275 +1,569 @@
-# [Shell Scripts for SRE and DevOps]()
+# Shell Scripts for SRE and DevOps
 
-Shell scripts are programs written for command-line interpreters (shells) that automate system tasks and operations. They combine sequences of commands into reusable scripts that can be executed as single units.
+Shell scripts are one of the most practical tools in infrastructure work. They let you combine operating system commands, glue together tools, automate repetitive tasks, and turn manual runbooks into repeatable workflows.
 
-They are widely used by **SRE (Site Reliability Engineers)** and **DevOps engineers** to automate operations, reduce manual effort, and standardize workflows.
+For SRE and DevOps work, shell scripting is often the fastest way to automate:
 
----
-
-## Historical Context and Evolution
-
-Shell scripting originated in the early Unix systems (1970s) with the Bourne shell (`sh`). Over time, more feature-rich shells emerged:
-
-- **Bash** (Bourne Again Shell): Default on most Linux distributions
-- **Zsh**: Extended features with better user interaction
-- **Ksh**: AIX default shell with advanced scripting capabilities
+- Health checks
+- Service operations
+- Backup tasks
+- Deployment helpers
+- Log analysis
+- CI/CD build steps
+- Cron-based maintenance
 
 ---
 
-## Why Shell Scripts Are Important for SRE and DevOps
+## Why Shell Scripting Still Matters
 
-!!! tip
-Shell scripts remain a **core tool for SRE and DevOps**.
-\- They are **simple**: use plain Linux commands.
-\- They are **powerful**: integrate system utilities, APIs, and services.
-\- They are **universal**: available by default on nearly every Unix/Linux system.
-\- They allow **conditions, loops, functions, and modularity** to make tasks reusable.
+Even with tools like Python, Go, Ansible, and Terraform, shell scripts remain important because they are:
 
-Examples of usage:
+- Available by default on most Linux and Unix systems
+- Excellent for orchestration and system-level automation
+- Easy to integrate with commands like `systemctl`, `docker`, `kubectl`, `curl`, and `rsync`
+- Fast to write for operational tasks and prototypes
 
-- Daily health checks
-- Disk and memory monitoring
-- Service management
-- Deployment pipelines
-- Cron-based automation
+!!! tip "Use shell where it fits"
+    Shell is great for command orchestration and glue logic. If the logic becomes very complex, data-heavy, or hard to read, it is often better to switch to Python or Go.
 
 ---
 
-## Shell Interpreter and Location
+## Common Shells
 
-- The interpreter is the program that executes shell scripts.
-- Common locations:
+Popular Unix shells include:
 
-```bash
-/bin/sh
-/bin/bash
-/usr/bin/zsh
-```
+- **`sh`**: Basic POSIX shell
+- **`bash`**: Most common shell for Linux scripting
+- **`zsh`**: Powerful interactive shell, often used on macOS
+- **`ksh`**: Korn shell, common in some enterprise Unix systems
 
-- **Default interpreter**: `/bin/bash` in most Linux systems.
-- **Speed**: Shell scripts are slower than compiled languages (C, Go), but fast enough for automation.
-
-!!! note
-Always define interpreter at the top of scripts with **shebang**:
-`bash     #!/bin/bash
-    `
+For most Linux automation work, `bash` is the most common choice.
 
 ---
 
-## Core Components of Shell Scripts
+## Start Every Script Correctly
 
-## Shebang Directive
+### Shebang
 
-```bash
-#!/bin/bash
-#!/bin/sh     # POSIX-compliant
-#!/usr/bin/zsh
-#!/usr/bin/env bash  # Portable
-```
-
-## Comments and Documentation
+The first line tells the OS which interpreter should run the script.
 
 ```bash
-# Single-line comment
-
-: '
-Multi-line comment
-'
-
-<<EOF
-Here-document style comment
-EOF
+#!/usr/bin/env bash
 ```
 
-## Variables and Data Types
+This is a portable way to locate `bash`.
 
-```bash
-NAME="value"          # String
-COUNT=42              # Integer
-FILES=(*.txt)         # Array
-readonly CONST=100    # Constant
-export GLOBAL_VAR     # Env variable
-```
+### Safe mode
 
-## Special Variables
-
-```bash
-$0    # Script name
-$1    # First argument
-$#    # Number of args
-$@    # All arguments
-$?    # Exit status
-$$    # PID
-$!    # Background PID
-```
-
----
-
-## How to Write Shell Scripts
-
-## 1. Conditions
-
-```bash
-if [ -f /etc/passwd ]; then
-  echo "File exists"
-else
-  echo "File missing"
-fi
-```
-
-## 2. Loops
-
-```bash
-for i in {1..5}; do
-  echo "Iteration $i"
-done
-```
-
-## 3. Functions
-
-```bash
-greet() { echo "Hello $1"; }
-greet "Admin"
-```
-
-## 4. Case (Switch)
-
-```bash
-case $1 in
-  start) echo "Starting service" ;;
-  stop)  echo "Stopping service" ;;
-  *)     echo "Usage: $0 {start|stop}" ;;
-esac
-```
-
-## 5. Modular Scripts
-
-```bash
-source ./utils.sh
-say_hello "DevOps"
-```
-
----
-
-## Advanced Scripting Techniques
-
-## Parameter Expansion
-
-```bash
-${VAR:-default}    # Use default if unset
-${VAR:=default}    # Set default if unset
-${#VAR}            # Length
-${VAR#pattern}     # Remove prefix
-${VAR%pattern}     # Remove suffix
-```
-
-## Arrays and Associative Arrays
-
-```bash
-FILES=("f1" "f2")
-declare -A CONFIG
-CONFIG["host"]="example.com"
-```
-
-## Input/Output Handling
-
-```bash
-read -p "Enter: " INPUT
-cat <<END > file.txt
-multi-line
-END
-```
-
-## Error Handling and Debugging
+A strong default for production scripts is:
 
 ```bash
 set -euo pipefail
-trap 'echo "Error at line $LINENO"' ERR
-set -x   # debug on
-set +x   # debug off
+```
+
+What it does:
+
+- `-e`: Exit when a command fails
+- `-u`: Fail on unset variables
+- `-o pipefail`: Fail a pipeline if any command inside it fails
+
+You can also add:
+
+```bash
+set -x
+```
+
+to print commands during debugging.
+
+---
+
+## Core Building Blocks
+
+### Variables
+
+```bash
+ENVIRONMENT="production"
+PORT=8080
+readonly APP_NAME="payments-api"
+```
+
+### Arguments
+
+```bash
+echo "Script name: $0"
+echo "First argument: $1"
+echo "Argument count: $#"
+echo "All arguments: $@"
+echo "Previous command exit code: $?"
+```
+
+### Conditionals
+
+```bash
+if [[ -f /etc/hosts ]]; then
+  echo "hosts file exists"
+else
+  echo "hosts file missing"
+fi
+```
+
+### Loops
+
+```bash
+for service in nginx sshd docker; do
+  echo "Checking $service"
+done
+```
+
+### Functions
+
+```bash
+log_info() {
+  echo "[INFO] $1"
+}
+
+log_info "Deployment started"
+```
+
+### Case statements
+
+```bash
+case "${1:-}" in
+  start) echo "Starting service" ;;
+  stop) echo "Stopping service" ;;
+  status) echo "Checking status" ;;
+  *) echo "Usage: $0 {start|stop|status}" ;;
+esac
 ```
 
 ---
 
-## Benefits of Shell Scripting
+## Useful Bash Patterns
 
-- **Fast prototyping** of automation.
-- **Integration** with system tools (`systemctl`, `docker`, `kubectl`, `rsync`).
-- **Portability** across Linux distributions.
-- **Low dependency**: no need for extra runtimes.
+### Default values
 
----
+```bash
+REGION="${AWS_REGION:-us-east-1}"
+```
 
-## Advanced Examples for Production Environments
+### Command substitution
 
-## 1. Comprehensive System Health Check
+```bash
+HOSTNAME="$(hostname)"
+DATE_NOW="$(date +%F)"
+```
 
-(Full script with disk and memory checks, logging, colors.)
+### Arrays
 
-## 2. Advanced Log Analyzer
+```bash
+SERVICES=("nginx" "docker" "ssh")
 
-(Grep-based log analysis with report generation.)
+for svc in "${SERVICES[@]}"; do
+  echo "$svc"
+done
+```
 
-## 3. Kubernetes Deployment Helper
+### Reading a file line by line
 
-(Validates YAML, applies deployment, waits for rollout.)
+```bash
+while IFS= read -r line; do
+  echo "Processing: $line"
+done < servers.txt
+```
 
-## 4. Secure Configuration Manager
+### Trap for cleanup
 
-(Encrypt/decrypt configs with OpenSSL.)
+```bash
+cleanup() {
+  rm -f /tmp/example.tmp
+}
 
-## 5. Advanced Backup System
-
-(Database backups, retention, verification.)
-
----
-
-## Best Practices for Production Scripts
-
-## Security
-
-- Avoid command injection.
-- Use `mktemp` for temp files.
-
-## Performance
-
-- Prefer shell built-ins over external commands.
-- Process large files with `while read`.
-
-## Portability
-
-- Prefer POSIX-compliant syntax when possible.
-
-## Documentation
-
-- Include script headers (purpose, author, usage).
-- Document functions with parameters and return codes.
+trap cleanup EXIT
+```
 
 ---
 
-## Integration with Modern DevOps Tools
+## Script Structure Template
 
-## CI/CD Pipelines
+This is a clean starting point for operational scripts:
 
-(Shell stages for Jenkins, rollback, Slack alerts.)
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-## Cloud Integration
+log() {
+  printf '[%s] %s\n' "$(date '+%F %T')" "$1"
+}
 
-- AWS: `aws s3 cp`
-- GCP: `gsutil cp`
-- Azure: `az storage blob upload`
+usage() {
+  echo "Usage: $0 <environment>"
+  exit 1
+}
+
+main() {
+  local environment="${1:-}"
+
+  [[ -n "$environment" ]] || usage
+
+  log "Running in environment: $environment"
+}
+
+main "$@"
+```
 
 ---
 
-## Monitoring and Logging
+## Example Script 1: System Health Check
 
-## Performance Monitoring
+This script is useful for daily operations checks or cron jobs.
 
-- Track script execution time with `$SECONDS`.
-- Send metrics to monitoring systems.
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-## Structured Logging
+WARNING_DISK_THRESHOLD=80
 
-- JSON logging with `jq` for easy integration.
+log() {
+  printf '[%s] %s\n' "$(date '+%F %T')" "$1"
+}
+
+check_disk() {
+  local usage
+  usage="$(df -h / | awk 'NR==2 {gsub("%","",$5); print $5}')"
+
+  if (( usage >= WARNING_DISK_THRESHOLD )); then
+    log "WARNING: Root disk usage is ${usage}%"
+  else
+    log "OK: Root disk usage is ${usage}%"
+  fi
+}
+
+check_memory() {
+  free -h
+}
+
+check_load() {
+  uptime
+}
+
+main() {
+  log "Starting health check"
+  hostnamectl || true
+  check_disk
+  check_memory
+  check_load
+  log "Health check completed"
+}
+
+main "$@"
+```
+
+Use cases:
+
+- Cron-based health reports
+- Basic server validation after provisioning
+- Quick support triage
 
 ---
+
+## Example Script 2: Log Error Scanner
+
+This script scans a log file for common error patterns and prints a short summary.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+LOG_FILE="${1:-/var/log/syslog}"
+
+if [[ ! -f "$LOG_FILE" ]]; then
+  echo "Log file not found: $LOG_FILE"
+  exit 1
+fi
+
+echo "Scanning: $LOG_FILE"
+echo
+
+echo "Top error counts:"
+grep -Ei 'error|failed|fatal|panic|critical' "$LOG_FILE" | \
+  sed 's/[[:space:]]\+/ /g' | \
+  sort | uniq -c | sort -nr | head -10
+```
+
+Use cases:
+
+- Rapid incident triage
+- Scheduled log reviews
+- Pre-check before escalating to application teams
+
+---
+
+## Example Script 3: Backup Script with Retention
+
+This script creates a compressed backup and deletes old backups based on retention days.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE_DIR="${1:-/etc}"
+BACKUP_DIR="${2:-/var/backups/custom}"
+RETENTION_DAYS="${RETENTION_DAYS:-7}"
+TIMESTAMP="$(date +%F-%H%M%S)"
+ARCHIVE_NAME="backup-${TIMESTAMP}.tar.gz"
+
+mkdir -p "$BACKUP_DIR"
+
+tar -czf "${BACKUP_DIR}/${ARCHIVE_NAME}" "$SOURCE_DIR"
+echo "Created backup: ${BACKUP_DIR}/${ARCHIVE_NAME}"
+
+find "$BACKUP_DIR" -type f -name 'backup-*.tar.gz' -mtime +"$RETENTION_DAYS" -delete
+echo "Old backups older than ${RETENTION_DAYS} days removed"
+```
+
+Use cases:
+
+- Configuration backups
+- Pre-change safety snapshots
+- Simple server maintenance automation
+
+!!! warning "Production backup note"
+    For critical systems, backups should also include verification, secure storage, encryption, restore testing, and off-host copies.
+
+---
+
+## Example Script 4: Deployment Helper
+
+This pattern is useful when restarting a service after pulling the latest release artifacts or configuration.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_DIR="/opt/myapp"
+SERVICE_NAME="myapp"
+
+log() {
+  printf '[%s] %s\n' "$(date '+%F %T')" "$1"
+}
+
+deploy() {
+  log "Switching to application directory"
+  cd "$APP_DIR"
+
+  log "Pulling latest code"
+  git pull origin main
+
+  log "Restarting service"
+  sudo systemctl restart "$SERVICE_NAME"
+
+  log "Checking service status"
+  sudo systemctl status "$SERVICE_NAME" --no-pager
+}
+
+deploy
+```
+
+Use cases:
+
+- Simple service deployments
+- Jenkins or GitLab CI shell stages
+- Small internal tools on virtual machines
+
+---
+
+## Example Script 5: Kubernetes Rollout Checker
+
+This script validates that a Kubernetes deployment rollout finishes successfully.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+NAMESPACE="${1:-default}"
+DEPLOYMENT_NAME="${2:-}"
+
+if [[ -z "$DEPLOYMENT_NAME" ]]; then
+  echo "Usage: $0 <namespace> <deployment-name>"
+  exit 1
+fi
+
+echo "Checking rollout for deployment/${DEPLOYMENT_NAME} in namespace ${NAMESPACE}"
+kubectl rollout status "deployment/${DEPLOYMENT_NAME}" -n "$NAMESPACE" --timeout=120s
+kubectl get pods -n "$NAMESPACE"
+```
+
+Use cases:
+
+- Post-deployment checks
+- CD validation steps
+- Quick operational validation during incidents
+
+---
+
+## Example Script 6: Service Monitor with Exit Codes
+
+This is useful when a script needs to integrate with monitoring systems or CI jobs.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+SERVICE_NAME="${1:-nginx}"
+
+if systemctl is-active --quiet "$SERVICE_NAME"; then
+  echo "OK: ${SERVICE_NAME} is running"
+  exit 0
+else
+  echo "CRITICAL: ${SERVICE_NAME} is not running"
+  exit 2
+fi
+```
+
+Use cases:
+
+- Nagios-style checks
+- Cron alerts
+- Jenkins or monitoring integrations
+
+---
+
+## Running a Script
+
+Save the file, then make it executable:
+
+```bash
+chmod +x script.sh
+```
+
+Run it:
+
+```bash
+./script.sh
+```
+
+Or pass arguments:
+
+```bash
+./script.sh production
+```
+
+You can also run it directly with an interpreter:
+
+```bash
+bash script.sh
+```
+
+---
+
+## Debugging Shell Scripts
+
+Useful debugging techniques:
+
+### Enable command tracing
+
+```bash
+bash -x script.sh
+```
+
+### Print line numbers on errors
+
+```bash
+trap 'echo "Error on line $LINENO"' ERR
+```
+
+### Check syntax without running
+
+```bash
+bash -n script.sh
+```
+
+### Lint with ShellCheck
+
+```bash
+shellcheck script.sh
+```
+
+!!! tip "ShellCheck is worth using"
+    ShellCheck catches quoting mistakes, unsafe expansions, and common Bash pitfalls that are easy to miss in review.
+
+---
+
+## Best Practices
+
+- Use `#!/usr/bin/env bash` when you are writing Bash-specific scripts
+- Start with `set -euo pipefail` for safer behavior
+- Quote variables like `"$VAR"` unless you intentionally want word splitting
+- Prefer functions for readability and reuse
+- Validate input arguments early
+- Return meaningful exit codes
+- Log clearly so operators can understand what happened
+- Avoid hardcoding secrets in scripts
+- Use `mktemp` for temporary files
+- Test scripts in a safe environment before production use
+
+---
+
+## Common Mistakes to Avoid
+
+- Unquoted variables:
+
+```bash
+rm -rf $DIR
+```
+
+Safer:
+
+```bash
+rm -rf "$DIR"
+```
+
+- Ignoring command failures
+- Using shell for overly complex business logic
+- Assuming tools like `jq`, `kubectl`, or `aws` are installed without checking
+- Deleting files without validating paths
+- Mixing POSIX `sh` syntax and Bash-specific syntax accidentally
+
+---
+
+## Integration with DevOps Workflows
+
+Shell scripts are often used inside:
+
+- **Jenkins** stages with `sh`
+- **GitHub Actions** `run` steps
+- **Cron** jobs for recurring tasks
+- **Systemd** services and timers
+- **Docker** entrypoint scripts
+- **Kubernetes** init containers and operational jobs
+
+Example Jenkins stage:
+
+```groovy
+stage('Backup Config') {
+    steps {
+        sh 'bash scripts/backup.sh /etc /var/backups/config'
+    }
+}
+```
+
+Example GitHub Actions step:
+
+```yaml
+- name: Run health check
+  run: bash scripts/health-check.sh
+```
+
+---
+
+## When to Use Another Language
+
+Shell is not always the right tool. Consider Python or Go when you need:
+
+- Complex parsing and data structures
+- Heavy JSON or YAML processing
+- Strong error modeling
+- Cross-platform application logic
+- Larger testable codebases
+
+Use shell scripts for what they do best: command orchestration, operational automation, and fast system-level workflows.
