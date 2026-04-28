@@ -12,34 +12,36 @@
         <meta name="author" content="Sameer Alam">
       
       
-        <link rel="canonical" href="https://computecentral.in/">
+        <link rel="canonical" href="https://computecentral.in/system-design/kubernetes-platform/">
       
       
+        <link rel="prev" href="../cicd-platform/">
       
-        <link rel="next" href="./AI%20Guide/">
+      
+        <link rel="next" href="../multi-environment/">
       
       
         
       
       
-      <link rel="icon" href="./assets/logo.png">
+      <link rel="icon" href="../../assets/logo.png">
       <meta name="generator" content="zensical-0.0.30">
     
     
       
-        <title>Home - Compute Central</title>
+        <title>Kubernetes Platform Design - Compute Central</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="./assets/stylesheets/modern/main.3b031116.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.3b031116.min.css">
       
         
           
         
-        <link rel="stylesheet" href="./assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -58,9 +60,9 @@
       
     
     
-      <link rel="stylesheet" href="./stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -85,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#home" class="md-skip">
+        <a href="#kubernetes-platform-design" class="md-skip">
           Skip to content
         </a>
       
@@ -99,9 +101,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="" title="Compute Central" class="md-header__button md-logo" aria-label="Compute Central" data-md-component="logo">
+    <a href="../.." title="Compute Central" class="md-header__button md-logo" aria-label="Compute Central" data-md-component="logo">
       
-  <img src="./assets/logo.png" alt="Compute Central">
+  <img src="../../assets/logo.png" alt="Compute Central">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -118,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Kubernetes Platform Design
             
           </span>
         </div>
@@ -190,11 +192,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   Home
@@ -212,7 +212,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./AI%20Guide/" class="md-tabs__link">
+        <a href="../../AI%20Guide/" class="md-tabs__link">
           
   
   AI Guide
@@ -231,7 +231,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./ansible/ansible/" class="md-tabs__link">
+        <a href="../../ansible/ansible/" class="md-tabs__link">
           
   
   Ansible
@@ -250,7 +250,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./docker/docker/" class="md-tabs__link">
+        <a href="../../docker/docker/" class="md-tabs__link">
           
   
   Docker
@@ -269,7 +269,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./interview/" class="md-tabs__link">
+        <a href="../../interview/" class="md-tabs__link">
           
   
   Interview
@@ -288,7 +288,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./jenkins/jenkins/" class="md-tabs__link">
+        <a href="../../jenkins/jenkins/" class="md-tabs__link">
           
   
   Jenkins
@@ -307,7 +307,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./kubernetes/" class="md-tabs__link">
+        <a href="../../kubernetes/" class="md-tabs__link">
           
   
   Kubernetes
@@ -326,7 +326,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./monitoring-tools/" class="md-tabs__link">
+        <a href="../../monitoring-tools/" class="md-tabs__link">
           
   
   Monitoring tools
@@ -345,7 +345,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./shell-scripts/scripts/" class="md-tabs__link">
+        <a href="../../shell-scripts/scripts/" class="md-tabs__link">
           
   
   Shell scripts
@@ -364,7 +364,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./sonarqube/" class="md-tabs__link">
+        <a href="../../sonarqube/" class="md-tabs__link">
           
   
   Sonarqube
@@ -379,11 +379,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="./system-design/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   System design
@@ -402,7 +404,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="./terraform/interview-questions/" class="md-tabs__link">
+        <a href="../../terraform/interview-questions/" class="md-tabs__link">
           
   
   Terraform
@@ -437,9 +439,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="" title="Compute Central" class="md-nav__button md-logo" aria-label="Compute Central" data-md-component="logo">
+    <a href="../.." title="Compute Central" class="md-nav__button md-logo" aria-label="Compute Central" data-md-component="logo">
       
-  <img src="./assets/logo.png" alt="Compute Central">
+  <img src="../../assets/logo.png" alt="Compute Central">
 
     </a>
     Compute Central
@@ -451,13 +453,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <a href="" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -473,7 +472,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -510,7 +508,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./AI%20Guide/" class="md-nav__link ">
+            <a href="../../AI%20Guide/" class="md-nav__link ">
               
   
   
@@ -556,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./AI%20Guide/ai-agents/" class="md-nav__link">
+      <a href="../../AI%20Guide/ai-agents/" class="md-nav__link">
         
   
   
@@ -586,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./AI%20Guide/ai-evaluation/" class="md-nav__link">
+      <a href="../../AI%20Guide/ai-evaluation/" class="md-nav__link">
         
   
   
@@ -695,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/ansible/" class="md-nav__link">
+      <a href="../../ansible/ansible/" class="md-nav__link">
         
   
   
@@ -725,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/basics/" class="md-nav__link">
+      <a href="../../ansible/basics/" class="md-nav__link">
         
   
   
@@ -755,7 +753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/configuration/" class="md-nav__link">
+      <a href="../../ansible/configuration/" class="md-nav__link">
         
   
   
@@ -785,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/facts-verbosity/" class="md-nav__link">
+      <a href="../../ansible/facts-verbosity/" class="md-nav__link">
         
   
   
@@ -815,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/installation/" class="md-nav__link">
+      <a href="../../ansible/installation/" class="md-nav__link">
         
   
   
@@ -845,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/interview-questions/" class="md-nav__link">
+      <a href="../../ansible/interview-questions/" class="md-nav__link">
         
   
   
@@ -873,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/inventory/" class="md-nav__link">
+      <a href="../../ansible/inventory/" class="md-nav__link">
         
   
   
@@ -903,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/playbooks/" class="md-nav__link">
+      <a href="../../ansible/playbooks/" class="md-nav__link">
         
   
   
@@ -933,7 +931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/roles/" class="md-nav__link">
+      <a href="../../ansible/roles/" class="md-nav__link">
         
   
   
@@ -963,7 +961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./ansible/variables/" class="md-nav__link">
+      <a href="../../ansible/variables/" class="md-nav__link">
         
   
   
@@ -1054,7 +1052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./docker/docker/" class="md-nav__link">
+      <a href="../../docker/docker/" class="md-nav__link">
         
   
   
@@ -1110,7 +1108,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./interview/" class="md-nav__link ">
+            <a href="../../interview/" class="md-nav__link ">
               
   
   
@@ -1210,7 +1208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./jenkins/jenkins/" class="md-nav__link">
+      <a href="../../jenkins/jenkins/" class="md-nav__link">
         
   
   
@@ -1278,7 +1276,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./kubernetes/" class="md-nav__link ">
+            <a href="../../kubernetes/" class="md-nav__link ">
               
   
   
@@ -1322,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/fundamentals/" class="md-nav__link">
+      <a href="../../kubernetes/fundamentals/" class="md-nav__link">
         
   
   
@@ -1404,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/interview/questions/" class="md-nav__link">
+      <a href="../../kubernetes/interview/questions/" class="md-nav__link">
         
   
   
@@ -1500,7 +1498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/labs/docker-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/docker-lab/" class="md-nav__link">
         
   
   
@@ -1528,7 +1526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/labs/hands-on-scenarios/" class="md-nav__link">
+      <a href="../../kubernetes/labs/hands-on-scenarios/" class="md-nav__link">
         
   
   
@@ -1556,7 +1554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/labs/minikube-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/minikube-lab/" class="md-nav__link">
         
   
   
@@ -1584,7 +1582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/labs/podman-lab/" class="md-nav__link">
+      <a href="../../kubernetes/labs/podman-lab/" class="md-nav__link">
         
   
   
@@ -1674,7 +1672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/openshift/guide/" class="md-nav__link">
+      <a href="../../kubernetes/openshift/guide/" class="md-nav__link">
         
   
   
@@ -1768,7 +1766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/operations/cicd-pipelines/" class="md-nav__link">
+      <a href="../../kubernetes/operations/cicd-pipelines/" class="md-nav__link">
         
   
   
@@ -1796,7 +1794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/operations/scripting-automation/" class="md-nav__link">
+      <a href="../../kubernetes/operations/scripting-automation/" class="md-nav__link">
         
   
   
@@ -1824,7 +1822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/operations/troubleshooting/" class="md-nav__link">
+      <a href="../../kubernetes/operations/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1914,7 +1912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./kubernetes/reference/quick-reference/" class="md-nav__link">
+      <a href="../../kubernetes/reference/quick-reference/" class="md-nav__link">
         
   
   
@@ -1992,7 +1990,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./monitoring-tools/" class="md-nav__link ">
+            <a href="../../monitoring-tools/" class="md-nav__link ">
               
   
   
@@ -2036,7 +2034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./monitoring-tools/alertmanager/" class="md-nav__link">
+      <a href="../../monitoring-tools/alertmanager/" class="md-nav__link">
         
   
   
@@ -2064,7 +2062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./monitoring-tools/blackbox/" class="md-nav__link">
+      <a href="../../monitoring-tools/blackbox/" class="md-nav__link">
         
   
   
@@ -2092,7 +2090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./monitoring-tools/grafana/" class="md-nav__link">
+      <a href="../../monitoring-tools/grafana/" class="md-nav__link">
         
   
   
@@ -2120,7 +2118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./monitoring-tools/logging/" class="md-nav__link">
+      <a href="../../monitoring-tools/logging/" class="md-nav__link">
         
   
   
@@ -2148,7 +2146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./monitoring-tools/overview/" class="md-nav__link">
+      <a href="../../monitoring-tools/overview/" class="md-nav__link">
         
   
   
@@ -2176,7 +2174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./monitoring-tools/prometheus/" class="md-nav__link">
+      <a href="../../monitoring-tools/prometheus/" class="md-nav__link">
         
   
   
@@ -2204,7 +2202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./monitoring-tools/troubleshooting/" class="md-nav__link">
+      <a href="../../monitoring-tools/troubleshooting/" class="md-nav__link">
         
   
   
@@ -2293,7 +2291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./shell-scripts/scripts/" class="md-nav__link">
+      <a href="../../shell-scripts/scripts/" class="md-nav__link">
         
   
   
@@ -2357,7 +2355,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./sonarqube/" class="md-nav__link ">
+            <a href="../../sonarqube/" class="md-nav__link ">
               
   
   
@@ -2403,7 +2401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./sonarqube/configuration/" class="md-nav__link">
+      <a href="../../sonarqube/configuration/" class="md-nav__link">
         
   
   
@@ -2433,7 +2431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./sonarqube/installation/" class="md-nav__link">
+      <a href="../../sonarqube/installation/" class="md-nav__link">
         
   
   
@@ -2463,7 +2461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./sonarqube/jenkins-integration/" class="md-nav__link">
+      <a href="../../sonarqube/jenkins-integration/" class="md-nav__link">
         
   
   
@@ -2493,7 +2491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./sonarqube/pipeline-example/" class="md-nav__link">
+      <a href="../../sonarqube/pipeline-example/" class="md-nav__link">
         
   
   
@@ -2527,6 +2525,8 @@
       
   
   
+    
+  
   
   
     
@@ -2552,18 +2552,21 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./system-design/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -2581,13 +2584,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2607,7 +2610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./system-design/backup-disaster-recovery/" class="md-nav__link">
+      <a href="../backup-disaster-recovery/" class="md-nav__link">
         
   
   
@@ -2635,7 +2638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./system-design/cicd-platform/" class="md-nav__link">
+      <a href="../cicd-platform/" class="md-nav__link">
         
   
   
@@ -2660,10 +2663,13 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="./system-design/kubernetes-platform/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2679,6 +2685,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -2691,7 +2698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./system-design/multi-environment/" class="md-nav__link">
+      <a href="../multi-environment/" class="md-nav__link">
         
   
   
@@ -2719,7 +2726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./system-design/observability/" class="md-nav__link">
+      <a href="../observability/" class="md-nav__link">
         
   
   
@@ -2747,7 +2754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./system-design/security-access/" class="md-nav__link">
+      <a href="../security-access/" class="md-nav__link">
         
   
   
@@ -2838,7 +2845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./terraform/interview-questions/" class="md-nav__link">
+      <a href="../../terraform/interview-questions/" class="md-nav__link">
         
   
   
@@ -2866,7 +2873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./terraform/overview/" class="md-nav__link">
+      <a href="../../terraform/overview/" class="md-nav__link">
         
   
   
@@ -2912,50 +2919,93 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    System design
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
                   
 
-<h1 id="home">Home</h1>
-<p><strong>Compute Central</strong> is a practical knowledge hub focused on <strong>DevOps</strong>, <strong>Cloud Engineering</strong>, and <strong>Site Reliability Engineering (SRE)</strong>.</p>
-<p>This site documents <strong>real-world infrastructure work</strong>, not theory. You will find hands-on guides, automation patterns, architectural decisions, and operational lessons drawn from building and running systems in production.</p>
-<p>Whether you are <strong>starting your DevOps journey</strong> or <strong>operating at scale</strong>, the goal is simple:</p>
-<blockquote>
-<p><strong>Make infrastructure reliable, automated, observable, and secure.</strong></p>
-</blockquote>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-</div>
-<p>Hands-on, production-oriented content: scripts, pipelines, architectures, and troubleshooting workflows you can apply immediately.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-</div>
-<p>Coverage across Linux, Cloud (AWS/GCP/Azure), Containers, Kubernetes, CI/CD, Monitoring, and Security.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-</div>
-<p>Clear, step-by-step guides designed for learning by doing, not copy-paste without understanding.</p>
-<h2 id="about-me">About Me</h2>
-<p>I’m <strong>Sameer Alam</strong>, a <strong>DevOps Engineer</strong> and <strong>SRE practitioner</strong> with a strong focus on building and operating <strong>reliable, scalable systems</strong>.</p>
-<p>My work centers on:</p>
+<h1 id="kubernetes-platform-design">Kubernetes Platform Design</h1>
+<p>This page covers the basics of designing a Kubernetes platform for teams and applications.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>Running Kubernetes well requires more than creating a cluster. Teams also need networking, access control, observability, deployment standards, and failure handling.</p>
+<h2 id="core-platform-areas">Core Platform Areas</h2>
 <ul>
-<li>Designing resilient infrastructure</li>
-<li>Automating deployments and operations</li>
-<li>Improving performance, observability, and security</li>
-<li>Reducing operational complexity through clear architecture</li>
+<li>Cluster architecture</li>
+<li>Node design and scaling</li>
+<li>Ingress and service exposure</li>
+<li>Storage choices</li>
+<li>Security controls</li>
+<li>Monitoring and logging</li>
 </ul>
-<p>I’ve been documenting my learning and experiments since <strong>2016</strong>. Compute Central is where those experiences are organized into <strong>clear, reusable, and practical knowledge</strong>.</p>
-<h2 id="projects-open-source">Projects &amp; Open Source</h2>
+<h2 id="basic-design-approach">Basic Design Approach</h2>
+<ol>
+<li>Define the workload types you need to support.</li>
+<li>Choose cluster size and node pools based on those workloads.</li>
+<li>Design networking for internal and external traffic.</li>
+<li>Add logging, metrics, and alerting early.</li>
+<li>Standardize deployment patterns for teams.</li>
+</ol>
+<h2 id="important-decisions">Important Decisions</h2>
 <ul>
-<li><strong>GitHub:</strong> <a href="https://github.com/sameeralam3127">https://github.com/sameeralam3127</a>
-  Infrastructure code, automation experiments, and learning projects.</li>
+<li>Single cluster vs multiple clusters</li>
+<li>Managed Kubernetes vs self-managed</li>
+<li>Ingress controller choice</li>
+<li>Storage class and persistence strategy</li>
+<li>Namespace and RBAC model</li>
 </ul>
-<p>More repositories and case studies are referenced throughout the site where relevant.</p>
-<blockquote>
-<p><strong>"Automation is not just a skill - it's a mindset."</strong>
-<em>Sameer Alam</em></p>
-</blockquote>
+<h2 id="common-risks">Common Risks</h2>
+<ul>
+<li>One cluster serving too many unrelated workloads</li>
+<li>Missing resource requests and limits</li>
+<li>Weak RBAC boundaries</li>
+<li>No clear backup or disaster recovery plan</li>
+</ul>
+<h2 id="practical-advice">Practical Advice</h2>
+<ul>
+<li>Start simple and add platform layers gradually</li>
+<li>Standardize ingress, logging, and deployment conventions</li>
+<li>Make troubleshooting workflows part of the platform design</li>
+</ul>
 
 
 
@@ -2994,15 +3044,31 @@
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
+          
+          <a href="../cicd-platform/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CI&#x2f;CD Platform Design">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                CI/CD Platform Design
+              </div>
+            </div>
+          </a>
+        
         
           
-          <a href="./AI%20Guide/" class="md-footer__link md-footer__link--next" aria-label="Next: AI Engineering Guide">
+          <a href="../multi-environment/" class="md-footer__link md-footer__link--next" aria-label="Next: Multi-Environment Deployment Design">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                AI Engineering Guide
+                Multi-Environment Deployment Design
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -3044,10 +3110,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.tabs","navigation.top","navigation.tracking","search.highlight","toc.integrate"],"search":"./assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.tabs","navigation.top","navigation.tracking","search.highlight","toc.integrate"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="./assets/javascripts/bundle.66be65ca.min.js"></script>
+      <script src="../../assets/javascripts/bundle.66be65ca.min.js"></script>
       
     
   </body>
