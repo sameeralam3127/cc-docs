@@ -1,50 +1,44 @@
-# Alertmanager Routing Examples
+# Alertmanager in This Stack
 
-This page explains how Alertmanager fits into the monitoring stack and how alert routing is usually structured.
+Alertmanager receives alerts from Prometheus and decides how they should be grouped, routed, silenced, and repeated.
 
-## What Alertmanager Does
+## What It Handles
 
-Alertmanager receives alerts from Prometheus and decides:
+- Grouping related alerts
+- Routing alerts to the right destination
+- Silencing planned maintenance noise
+- Preventing duplicate or unnecessary notifications
 
-- How alerts are grouped
-- Where alerts are sent
-- Which alerts should be silenced or inhibited
-
-In the repository, Alertmanager is part of the stack and is exposed on `http://localhost:9093`.
-
-## Typical Routing Model
-
-A practical routing model usually looks like this:
+## A Practical Routing Model
 
 - Group alerts by service, team, or severity
 - Send critical alerts immediately
-- Group warning alerts to reduce noise
+- Batch warning alerts to reduce noise
 - Silence known maintenance windows
 
-## Example Ideas for Routing
+## Good Routing Ideas
 
-- Route infrastructure alerts to the platform team
-- Route synthetic probe failures to the service owner
-- Route low-severity alerts to email or chat digests
-- Route high-severity alerts to paging tools
+- Infrastructure alerts to the platform team
+- Probe failures to the owning service team
+- Low-severity alerts to email or chat summaries
+- High-severity alerts to paging tools
 
-## Example Concepts to Add Later
+## Useful Concepts to Add Over Time
 
 - `group_by`
 - `group_wait`
 - `group_interval`
 - `repeat_interval`
+- Inhibition rules
 - Receiver-specific routes
-- Inhibition rules to suppress child alerts during larger outages
 
-## Operational Advice
+## Practical Advice
 
-- Avoid sending every alert directly to paging
-- Separate warning and critical severities
-- Add labels in Prometheus rules that make routing easier
-- Test routes before depending on them during incidents
+- Avoid paging for every single alert
+- Keep severity labels consistent in Prometheus rules
+- Test routes before relying on them in incidents
 
-## Verification
+## Quick Check
 
 ```bash
 docker compose logs -f alertmanager

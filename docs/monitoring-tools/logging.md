@@ -1,53 +1,45 @@
-# Loki and Promtail Logging Flow
+# Logging with Loki and Promtail
 
-This page explains the logging path in the monitoring repository.
+This page explains the logging flow in the monitoring lab.
 
-## Key Files
+## Important Files
 
 - `loki/loki-config.yml`
 - `promtail/promtail-config.yml`
 
-## Flow Overview
-
-The log flow is:
+## How the Flow Works
 
 1. Promtail reads logs from configured sources.
-2. Promtail attaches labels and forwards logs to Loki.
-3. Loki stores and indexes the logs.
-4. Grafana queries Loki and displays logs in dashboards or Explore view.
+2. Promtail adds labels and forwards the logs.
+3. Loki stores and indexes the log streams.
+4. Grafana queries Loki for dashboards and exploration.
 
-## Log Sources in This Repository
-
-Promtail is configured to collect:
+## Log Sources in This Setup
 
 - Host log files from `/var/log`
 - Docker container logs from `/var/lib/docker/containers`
 
-This is useful because it gives both system-level and container-level visibility.
+## Why Loki Fits Well
 
-## Why Loki Fits Well Here
+- Works cleanly with Grafana
+- Uses labels effectively
+- Is lighter than some larger log platforms for small labs
 
-Loki is a good match for this lab because:
+## What to Validate
 
-- It integrates cleanly with Grafana
-- It focuses on labels rather than full-text indexing everywhere
-- It is lighter than some large log-stack alternatives for small labs
-
-## What to Check
-
-- Promtail can access the configured log paths
-- Loki is healthy and accepting writes
+- Promtail can read the configured paths
+- Loki is healthy
 - Grafana can query the Loki data source
-- Labels are meaningful enough to filter logs well
+- Labels are useful enough to filter logs clearly
 
-## Common Improvements
+## Practical Improvements
 
-- Add cleaner labels for service, host, and environment
-- Add retention settings for predictable storage growth
-- Limit noisy or low-value logs
+- Add better labels for service, host, and environment
+- Set retention rules
+- Reduce noisy low-value logs
 - Parse structured logs where possible
 
-## Verification
+## Quick Check
 
 ```bash
 docker compose logs -f promtail

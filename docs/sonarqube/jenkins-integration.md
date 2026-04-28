@@ -5,29 +5,38 @@ tags:
   - Integration
 ---
 
-# SonarQube Integration with Jenkins
+# Connect SonarQube to Jenkins
 
----
+This setup lets Jenkins run code analysis during pipeline execution instead of treating quality checks as a separate manual task.
 
-## Step 1: Install SonarQube Scanner Plugin
+## Step 1: Install the Plugin
 
-1. Go to Jenkins → **Manage Jenkins** → **Manage Plugins**
-2. Search for **"SonarQube Scanner"** in the Available tab
-3. Install and restart Jenkins
+1. Open Jenkins.
+2. Go to **Manage Jenkins** > **Manage Plugins**.
+3. Search for **SonarQube Scanner**.
+4. Install it and restart Jenkins if required.
 
----
+## Step 2: Add the SonarQube Server
 
-## Step 2: Configure SonarQube Server in Jenkins
+1. Go to **Manage Jenkins** > **Configure System**.
+2. Find the **SonarQube servers** section.
+3. Click **Add SonarQube**.
+4. Fill in:
 
-1. **Manage Jenkins** → **Configure System**
-2. Scroll to **SonarQube servers** section
-3. Click **Add SonarQube**
-   - **Name**: `SonarQube`
-   - **Server URL**: `http://your-sonarqube-server:9000`
-   - **Server Authentication Token**: (Generate from SonarQube → My Account → Security)
+- Name: `SonarQube`
+- Server URL: `http://your-sonarqube-server:9000`
+- Server authentication token: generate this in SonarQube under account security settings
 
----
+## Why This Matters
 
-**Next**: [Pipeline Example →](./pipeline-example.md)
+Once Jenkins knows the SonarQube server, pipelines can:
 
-**Official Jenkins Integration**: [SonarQube Jenkins Docs](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/ci-integration/jenkins-integration/)
+- Send analysis results automatically
+- Wait for quality gate status
+- Fail a build when code quality does not meet the standard
+
+## Next Step
+
+Use the example in [pipeline-example.md](pipeline-example.md) to add scanning to a real pipeline.
+
+Official reference: [SonarQube Jenkins integration](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/ci-integration/jenkins-integration/)

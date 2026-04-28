@@ -1,16 +1,16 @@
 # Kubernetes Lab with Podman
 
-Use this page for Podman-based local Kubernetes experiments where your environment supports it.
+This page gives a simple Podman-based workflow for local Kubernetes experiments where the environment supports it.
 
 ## Suggested Flow
 
 1. Confirm Podman and `kubectl` are installed.
 2. Start the local cluster or lab environment.
-3. Deploy a small test workload with a pinned image tag.
+3. Deploy a small workload with a pinned image tag.
 4. Validate networking, logs, and rollout behavior.
-5. Tear down the environment when finished.
+5. Tear down the environment after testing.
 
-## Verification Commands
+## Quick Validation
 
 ```bash
 kubectl get nodes

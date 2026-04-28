@@ -5,27 +5,25 @@ tags:
   - Database
 ---
 
-# SonarQube Configuration
+# Configure SonarQube
 
----
+After installation, the next job is to point SonarQube at PostgreSQL and start the service cleanly.
 
-## Configure Database Connection
+## Update the Database Settings
 
-Edit the configuration file:
+Edit the main configuration file:
 
 ```bash
 sudo nano /opt/sonarqube/conf/sonar.properties
 ```
 
-Add/replace these lines:
+Add or update these values:
 
 ```properties
 sonar.jdbc.username=sonar
 sonar.jdbc.password=sonar
 sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonar
 ```
-
----
 
 ## Start SonarQube
 
@@ -34,21 +32,35 @@ cd /opt/sonarqube/bin/linux-x86-64
 sudo -u sonar ./sonar.sh start
 ```
 
-Check status:
+Check the status:
 
 ```bash
 sudo -u sonar ./sonar.sh status
 ```
 
-Access SonarQube at: **http://your-server-ip:9000**
+## Access the UI
+
+Open:
+
+```text
+http://your-server-ip:9000
+```
 
 Default credentials:
 
-- **Username**: `admin`
-- **Password**: `admin`
+- Username: `admin`
+- Password: `admin`
 
----
+## Practical Advice
 
-**Tip**: For production, set up as a systemd service.
+- Change the default password immediately
+- Run SonarQube as a service for long-term use
+- Keep database credentials out of screenshots and shared notes
 
-**Official Guide**: [Install the Server](https://docs.sonarsource.com/sonarqube/latest/setup-and-upgrade/install-the-server/)
+## Quick Check
+
+```bash
+curl http://localhost:9000
+```
+
+Official guide: [Install the Server](https://docs.sonarsource.com/sonarqube/latest/setup-and-upgrade/install-the-server/)

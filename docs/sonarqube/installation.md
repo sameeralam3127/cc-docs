@@ -5,17 +5,17 @@ tags:
   - Ubuntu
 ---
 
-# SonarQube Installation on Ubuntu
+# Install SonarQube on Ubuntu
 
-This guide walks you through installing SonarQube on Ubuntu using PostgreSQL.
+This page walks through a practical SonarQube installation using PostgreSQL on Ubuntu.
 
----
+## Before You Start
 
-## Prerequisites
-
-- Ubuntu 20.04 / 22.04 / 24.04
-- At least 4 GB RAM (8 GB recommended)
+- Ubuntu 20.04, 22.04, or 24.04
+- At least 4 GB RAM, with 8 GB preferred
 - Java 17
+
+Install Java:
 
 ```bash
 sudo apt update
@@ -23,15 +23,13 @@ sudo apt install openjdk-17-jdk -y
 java -version
 ```
 
----
-
 ## Step 1: Install PostgreSQL
 
 ```bash
 sudo apt install postgresql postgresql-contrib -y
 ```
 
-Create database and user:
+Create the database and user:
 
 ```bash
 sudo -u postgres psql
@@ -44,26 +42,24 @@ GRANT ALL PRIVILEGES ON DATABASE sonar TO sonar;
 \q
 ```
 
----
-
 ## Step 2: Download and Install SonarQube
 
-Download the latest version from the [official downloads page](https://www.sonarsource.com/products/sonarqube/downloads/).
+Download the current package from the [official downloads page](https://www.sonarsource.com/products/sonarqube/downloads/).
 
 ```bash
-# Example for latest version (replace with current link)
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-2026.1.2.zip
-
 sudo apt install unzip -y
 unzip sonarqube-*.zip
 sudo mv sonarqube-* /opt/sonarqube
 ```
 
----
-
-## Step 3: Create Dedicated User (Recommended)
+## Step 3: Create a Dedicated User
 
 ```bash
 sudo useradd -r -m -U -d /opt/sonarqube -s /bin/false sonar
 sudo chown -R sonar:sonar /opt/sonarqube
 ```
+
+## Next Step
+
+Continue with database and runtime configuration in [configuration.md](configuration.md).

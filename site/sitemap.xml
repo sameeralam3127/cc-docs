@@ -28,6 +28,9 @@
         <loc>https://computecentral.in/ansible/installation/</loc>
       </url>
       <url>
+        <loc>https://computecentral.in/ansible/interview-questions/</loc>
+      </url>
+      <url>
         <loc>https://computecentral.in/ansible/inventory/</loc>
       </url>
       <url>
@@ -41,6 +44,9 @@
       </url>
       <url>
         <loc>https://computecentral.in/docker/docker/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/interview/</loc>
       </url>
       <url>
         <loc>https://computecentral.in/jenkins/jenkins/</loc>
@@ -122,6 +128,12 @@
       </url>
       <url>
         <loc>https://computecentral.in/sonarqube/pipeline-example/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/system-design/</loc>
+      </url>
+      <url>
+        <loc>https://computecentral.in/terraform/interview-questions/</loc>
       </url>
       <url>
         <loc>https://computecentral.in/terraform/overview/</loc>

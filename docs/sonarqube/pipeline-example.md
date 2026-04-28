@@ -5,18 +5,18 @@ tags:
   - Groovy
 ---
 
-# Jenkins Pipeline with SonarQube Analysis
+# Jenkins Pipeline Example for SonarQube
 
----
+This example shows the basic flow for checking out code, running a SonarQube scan, waiting for the quality gate, and then continuing the build.
 
-## Example Pipeline (Declarative)
+## Example Pipeline
 
 ```groovy
 pipeline {
     agent any
 
     environment {
-        SONAR_TOKEN = credentials('sonar-token')  // Add your token in Jenkins Credentials
+        SONAR_TOKEN = credentials('sonar-token')
     }
 
     stages {
@@ -28,7 +28,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {  // Name must match Jenkins config
+                withSonarQubeEnv('SonarQube') {
                     sh '''
                         sonar-scanner \
                           -Dsonar.projectKey=your-project-key \
@@ -50,19 +50,20 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean package'   // or your build command
+                sh 'mvn clean package'
             }
         }
     }
 }
 ```
 
----
+## How to Use It
 
-## How to Use
+1. Create a Jenkins Pipeline job.
+2. Paste this script or store it in a `Jenkinsfile`.
+3. Add `sonar-token` as a secret text credential in Jenkins.
+4. Replace the sample repository, project key, and SonarQube URL.
 
-1. Create a new **Pipeline** job in Jenkins
-2. Paste the script or use `Jenkinsfile` from repository
-3. Add `sonar-token` as Secret Text credential in Jenkins
+## Practical Tip
 
-**Tip**: Use `waitForQualityGate` to fail the build if quality standards are not met.
+Keep `waitForQualityGate` in the pipeline so code quality becomes part of delivery, not a separate report nobody checks.

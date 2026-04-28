@@ -1,8 +1,8 @@
-# Troubleshooting Common Docker Compose Monitoring Issues
+# Monitoring Stack Troubleshooting
 
-This page collects common issues you may hit while running the monitoring stack locally with Docker Compose.
+This page collects the most common issues you may hit while running the monitoring lab locally.
 
-## 1. Containers Start but Grafana Has No Data
+## Grafana Starts but Shows No Data
 
 Check:
 
@@ -10,38 +10,32 @@ Check:
 - Targets are up in Prometheus
 - Grafana data sources loaded correctly
 
-Useful commands:
-
 ```bash
 docker compose ps
 docker compose logs -f prometheus
 docker compose logs -f grafana
 ```
 
-## 2. Prometheus Targets Show Down
+## Prometheus Targets Show Down
 
 Check:
 
 - Exporter container names and ports
-- Docker networking between services
-- Scrape target definitions in `prometheus/prometheus.yml`
-
-Useful checks:
+- Docker network connectivity
+- Scrape job definitions in `prometheus/prometheus.yml`
 
 ```bash
 curl http://localhost:9090/api/v1/targets
 docker compose logs -f prometheus
 ```
 
-## 3. Loki Is Running but Logs Do Not Appear
+## Loki Runs but Logs Do Not Appear
 
 Check:
 
-- Promtail can read configured paths
+- Promtail can read the configured paths
 - Loki is healthy
-- Grafana Loki data source is configured
-
-Useful checks:
+- Grafana has the Loki data source
 
 ```bash
 docker compose logs -f promtail
@@ -49,27 +43,25 @@ docker compose logs -f loki
 curl http://localhost:3100/ready
 ```
 
-## 4. Blackbox Probes Fail
+## Blackbox Probes Fail
 
 Check:
 
 - The target endpoint is reachable
 - Probe target names are correct
 - Docker service networking resolves correctly
-- `blackbox/blackbox.yml` matches the expected module and protocol
+- `blackbox/blackbox.yml` uses the expected module
 
-## 5. Port Conflicts on the Host
+## Host Port Conflicts
 
-This is common if local services already use ports like `3000`, `8080`, or `9090`.
+This usually happens when something else already uses `3000`, `8080`, or `9090`.
 
 Check:
 
-- Whether another local app is already bound to the same port
-- Whether you need to change host port mappings in `docker-compose.yml`
+- Which local process already owns the port
+- Whether the `docker-compose.yml` host mapping needs to change
 
-## 6. Rebuild Issues After Config Changes
-
-Sometimes config changes do not appear to take effect immediately.
+## Config Changes Do Not Take Effect
 
 Try:
 
@@ -85,13 +77,10 @@ docker compose down -v
 docker compose up -d --build
 ```
 
-## 7. General Debug Flow
+## Practical Debug Order
 
-When the stack behaves unexpectedly, use this order:
-
-1. Check container status with `docker compose ps`.
-2. Check service logs.
-3. Check health endpoints.
-4. Check Prometheus targets.
+1. Check container status.
+2. Review service logs.
+3. Test health endpoints.
+4. Review Prometheus targets.
 5. Check Grafana data sources and dashboards.
-6. Rebuild only after configuration has been reviewed.

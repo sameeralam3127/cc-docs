@@ -1,16 +1,16 @@
 # Kubernetes Lab with Minikube
 
-Use this page for Minikube-focused hands-on exercises and quick experiments.
+This page gives a simple Minikube workflow for local Kubernetes practice.
 
 ## Suggested Flow
 
 1. Start Minikube with your preferred driver.
-2. Verify the cluster and namespace context.
+2. Confirm the cluster and current namespace context.
 3. Apply a sample Deployment and Service.
-4. Inspect rollout status and logs.
-5. Stop or delete the cluster after the exercise.
+4. Check rollout status and logs.
+5. Stop or delete the cluster when the exercise is finished.
 
-## Verification Commands
+## Quick Validation
 
 ```bash
 minikube start --driver=docker

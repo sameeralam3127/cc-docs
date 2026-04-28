@@ -1,46 +1,33 @@
-# Prometheus Configuration Deep Dive
+# Prometheus in This Stack
 
-This page explains how Prometheus is used in the [sameeralam3127/Monitoring](https://github.com/sameeralam3127/Monitoring) repository and what each part of the configuration is responsible for.
+Prometheus is the core metrics and alerting engine in this monitoring lab.
 
-## Key Files
+## What It Does
+
+- Scrapes metrics from configured targets
+- Stores time-series data
+- Evaluates alert rules
+- Supplies metrics to Grafana
+
+## Important Files
 
 - `prometheus/prometheus.yml`
 - `prometheus/rules/alerts.yml`
 
-## What Prometheus Does in This Stack
+## Main Scrape Targets
 
-Prometheus acts as the central metrics engine for the lab.
-
-It is responsible for:
-
-- Scraping infrastructure and application-style targets
-- Storing time-series metrics
-- Evaluating alert rules
-- Exposing query results to Grafana
-
-## Scrape Jobs
-
-The repository config includes scrape jobs for:
-
-- Prometheus itself
+- Prometheus
 - Alertmanager
-- Node Exporter containers
+- Node Exporter
 - cAdvisor
 - Blackbox Exporter
-- Blackbox HTTP probe targets
-
-This is a good design because it mixes direct infrastructure scraping with synthetic monitoring.
+- Blackbox HTTP probe jobs
 
 ## Why This Layout Works
 
-- `node_exporter` gives host-style resource data
-- `cadvisor` gives container-level visibility
-- `blackbox-http` verifies endpoint reachability from a user-style perspective
-- Self-scraping Prometheus helps verify the monitoring system itself
+It combines host metrics, container metrics, and endpoint checks in one place. That gives a more complete view than using only one exporter type.
 
-## Alerts
-
-The alert rules file includes examples such as:
+## Example Alerts
 
 - `TargetDown`
 - `HostHighCPU`
@@ -49,24 +36,14 @@ The alert rules file includes examples such as:
 - `ContainerHighMemory`
 - `SyntheticProbeFailed`
 
-These cover a strong starter set of failure conditions:
+## Practical Improvements
 
-- Exporters becoming unavailable
-- Host saturation
-- Container saturation
-- Endpoint probe failures
+- Add severity labels such as `warning` and `critical`
+- Add `for:` windows to reduce alert noise
+- Add ownership labels for teams or services
+- Add recording rules for repeated expensive queries
 
-## Good Follow-Up Improvements
-
-- Add severity labels like `warning` and `critical`
-- Add `for:` windows to avoid noisy flapping
-- Add team or service ownership labels
-- Add recording rules for expensive queries
-- Add environment labels if the stack grows beyond one lab
-
-## Verification
-
-Useful checks:
+## Quick Check
 
 ```bash
 docker compose logs -f prometheus

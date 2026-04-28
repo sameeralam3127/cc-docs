@@ -1,8 +1,8 @@
-# Grafana Dashboard Walkthrough
+# Grafana in This Stack
 
-This page explains how Grafana is provisioned in the monitoring repository and what to validate after the stack starts.
+Grafana provides the dashboards and log views for the monitoring lab.
 
-## Key Files
+## Important Files
 
 - `grafana/provisioning/datasources/datasources.yml`
 - `grafana/provisioning/dashboards/dashboards.yml`
@@ -10,49 +10,37 @@ This page explains how Grafana is provisioned in the monitoring repository and w
 
 ## What Happens Automatically
 
-Grafana is pre-provisioned, which means the repo loads core configuration on startup instead of relying on manual UI steps.
+Grafana is provisioned on startup, so you do not need to create data sources and dashboards by hand every time.
 
-That gives you:
+That usually gives you:
 
-- Prometheus as a metrics data source
-- Loki as a logs data source
+- A Prometheus data source
+- A Loki data source
 - A ready-made dashboard for the stack
 
 ## Why Provisioning Matters
 
-Provisioning is important in DevOps because it makes dashboards reproducible.
+- Keeps dashboards reproducible
+- Prevents manual drift
+- Makes reviews easier because changes live in Git
 
-Without provisioning:
-
-- Environments drift
-- Manual steps are forgotten
-- Rebuilding monitoring becomes slower
-
-With provisioning:
-
-- Dashboards are version controlled
-- Data source setup is repeatable
-- Teams can review dashboard changes in Git
-
-## What to Validate in Grafana
-
-After login, confirm:
+## What to Validate
 
 - Prometheus data source is healthy
 - Loki data source is healthy
-- The dashboard loads without broken panels
-- Panels show host, container, and probe metrics
+- Dashboards load without broken panels
+- Panels show useful host, container, and probe metrics
 
-## Good Dashboard Areas to Include
+## Good Dashboard Areas
 
-- Host CPU, memory, disk, and network
-- Container CPU and memory trends
+- CPU, memory, disk, and network
+- Container resource trends
 - Prometheus target health
-- Blackbox probe success rate
+- Probe success rate
 - Recent logs from Loki
-- Alert state summary
+- Alert summary
 
-## Verification
+## Quick Check
 
 ```bash
 docker compose logs -f grafana

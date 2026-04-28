@@ -1,35 +1,40 @@
 ---
-icon: lucide/bot
+icon: lucide/shield-check
 tags:
-  - AI
-  - DevOps
+  - SonarQube
   - Code Quality
   - CI/CD
 ---
 
-# SonarQube: Code Quality & Security Analysis
+# SonarQube Overview
 
-SonarQube is an open-source platform for continuous inspection of code quality. It automatically detects **bugs**, **vulnerabilities**, **code smells**, and measures technical debt, duplication, and test coverage.
+SonarQube helps teams check code quality and security issues as part of normal development and CI/CD work. It is useful when you want automated feedback on bugs, vulnerabilities, code smells, duplication, and quality gates.
 
-This guide covers:
+## What This Section Covers
 
 - Installing SonarQube on Ubuntu
-- Basic configuration with PostgreSQL
-- Integrating with Jenkins for CI/CD
+- Connecting SonarQube to PostgreSQL
+- Integrating scans into Jenkins pipelines
 
----
+## Why Teams Use SonarQube
 
-## Key Benefits
+- Finds quality and security issues early
+- Supports many programming languages
+- Adds quality gates to pull request and pipeline workflows
+- Makes technical debt easier to track over time
 
-- Early detection of issues in the development lifecycle
-- Supports 30+ programming languages
-- Seamless integration with Jenkins, GitHub, GitLab, etc.
-- Quality Gates to enforce code standards
+## Recommended Flow
 
-**Official Documentation**: [SonarQube Docs](https://docs.sonarsource.com/sonarqube/latest/)
+1. Install SonarQube
+2. Configure the database and service
+3. Connect Jenkins
+4. Add analysis to a pipeline
+5. Enforce a quality gate
 
-**Download Latest Version**: [SonarQube Downloads](https://www.sonarsource.com/products/sonarqube/downloads/)
+## Useful Links
 
----
+- [SonarQube documentation](https://docs.sonarsource.com/sonarqube/latest/)
+- [SonarQube downloads](https://www.sonarsource.com/products/sonarqube/downloads/)
 
-??? tip "Recommended Hardware" - Minimum: 4 GB RAM (8 GB+ recommended for production) - Java 17 (required for SonarQube Server) - PostgreSQL 12+
+!!! tip
+For production use, plan for enough memory, persistent storage, backups, and proper access control from the start.

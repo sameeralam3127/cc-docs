@@ -6,7 +6,7 @@ site_url = "https://computecentral.in/"
 nav = []
 
 copyright = """
-Copyright © 2016–2025 Sameer Alam
+Copyright © 2016–2026 Sameer Alam
 """
 
 extra_css = ["stylesheets/extra.css"]

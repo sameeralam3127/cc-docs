@@ -1,24 +1,20 @@
-# Blackbox Exporter Synthetic Monitoring Guide
+# Blackbox Exporter in This Stack
 
-This page explains how Blackbox Exporter is used in the monitoring repository for endpoint probing.
+Blackbox Exporter adds synthetic checks to the monitoring lab. Instead of reading host metrics, it probes endpoints to see whether they are actually reachable.
 
-## Key File
+## Important File
 
 - `blackbox/blackbox.yml`
 
-## What Blackbox Exporter Does
-
-Unlike Node Exporter or cAdvisor, Blackbox Exporter does not collect host or container resource metrics directly.
-
-Instead, it performs probe-style checks such as:
+## What It Checks
 
 - HTTP reachability
 - Response success or failure
 - Basic latency visibility
 
-## How It Is Used in This Stack
+## How It Is Used Here
 
-The repository uses Blackbox Exporter to probe internal HTTP targets such as:
+The stack uses blackbox probes for internal targets such as:
 
 - Grafana
 - Prometheus
@@ -26,32 +22,25 @@ The repository uses Blackbox Exporter to probe internal HTTP targets such as:
 - Alertmanager
 - Loki
 
-This complements normal metrics scraping because a service can look healthy internally while still being unreachable to a client or probe.
+## Why It Matters
 
-## Why Synthetic Checks Matter
-
-Synthetic monitoring answers a different question:
-
-- Exporter metrics answer: "Is the service reporting metrics?"
-- Blackbox answers: "Can something actually reach and use the endpoint?"
-
-Both are valuable.
+Metrics tell you whether a service is running. Synthetic checks tell you whether something can really reach and use that service. Both views are useful.
 
 ## Good Metrics to Watch
 
 - Probe success
 - Probe duration
 - HTTP status result
-- Failure frequency over time
+- Failure trends over time
 
-## Good Follow-Up Improvements
+## Practical Improvements
 
-- Add external URL checks
+- Add external URL probes
 - Add HTTPS validation
-- Add DNS and TCP probe modules
+- Add DNS and TCP modules
 - Label probe targets by service and environment
 
-## Verification
+## Quick Check
 
 ```bash
 docker compose logs -f blackbox
