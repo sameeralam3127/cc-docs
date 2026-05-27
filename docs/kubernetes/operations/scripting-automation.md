@@ -1023,3 +1023,4 @@ apps_v1.patch_namespaced_deployment_scale(
 w = watch.Watch()
 for event in w.stream(core_v1.list_namespaced_pod, namespace='default'):
     print(f"Event: {event['type']} {event['object'].metadata.name}")
+```

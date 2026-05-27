@@ -60,14 +60,14 @@ toggle.name = "Switch to light mode"
 
 [project.theme.icon]
 logo = "lucide/smile"
-repo = "lucide/github"
+repo = "fontawesome/brands/github"
 
 [[project.extra.social]]
-icon = "lucide/github"
+icon = "fontawesome/brands/github"
 link = "https://github.com/sameeralam3127/cc-docs"
 name = "Compute Central on GitHub"
 
 [[project.extra.social]]
-icon = "lucide/globe"
+icon = "fontawesome/solid/globe"
 link = "https://computecentral.in/"
 name = "Compute Central website"
