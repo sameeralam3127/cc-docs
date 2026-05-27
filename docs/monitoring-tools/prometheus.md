@@ -1,4 +1,4 @@
-# Prometheus in This Stack
+# Prometheus Guide for the Monitoring Stack
 
 Prometheus is the core metrics and alerting engine in this monitoring lab.
 

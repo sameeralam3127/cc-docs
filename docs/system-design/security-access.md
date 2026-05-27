@@ -1,4 +1,4 @@
-# Secrets and Access Design
+# Secrets and Access System Design
 
 This page explains how to think about secrets, identity, and access control as part of system design.
 

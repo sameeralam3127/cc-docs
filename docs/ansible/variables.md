@@ -4,7 +4,7 @@ tags:
   - Variables
 ---
 
-# Ansible Variables
+# Ansible Variables Guide
 
 Variables help you keep playbooks flexible instead of hardcoding values for every host.
 

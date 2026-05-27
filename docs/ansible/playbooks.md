@@ -4,7 +4,7 @@ tags:
   - Playbooks
 ---
 
-# Your First Ansible Playbook
+# Ansible Playbooks: First Automation Workflow
 
 Playbooks are where Ansible becomes useful in practice. They describe what should happen on a group of hosts in a readable YAML format.
 

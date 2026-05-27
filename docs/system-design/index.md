@@ -1,4 +1,4 @@
-# System Design for DevOps and Platform Engineering
+# DevOps and Platform Engineering System Design
 
 This section focuses on practical system design thinking for infrastructure, reliability, deployment, and operations.
 

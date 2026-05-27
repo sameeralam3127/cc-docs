@@ -5,7 +5,7 @@ tags:
   - Overview
 ---
 
-# Ansible Overview
+# Ansible Automation Overview
 
 Ansible is an automation tool for configuring servers, deploying applications, and running repeatable operational tasks. It is a good fit when you want simple, readable automation without installing agents on every Linux host.
 

@@ -4,7 +4,7 @@ tags:
   - Inventory
 ---
 
-# Ansible Inventory
+# Ansible Inventory Guide
 
 Inventory tells Ansible which hosts to manage and how to group them. A clean inventory makes playbooks easier to reuse.
 

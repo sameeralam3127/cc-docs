@@ -6,7 +6,7 @@ tags:
   - Overview
 ---
 
-# AI Engineering Guide
+# AI Engineering Guide for DevOps and Platform Teams
 
 AI engineering is the practice of building systems that use models, data, retrieval, tools, and application logic to solve real problems. Modern AI is no longer just about prompting a model. In production systems, it usually involves multiple layers working together:
 

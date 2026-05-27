@@ -1,4 +1,4 @@
-# Kubernetes: From Basics to Practical Operations
+# Kubernetes and OpenShift: From Basics to Practical Operations
 
 Kubernetes is a container orchestration platform for deploying, scaling, and operating applications across a cluster of machines.
 

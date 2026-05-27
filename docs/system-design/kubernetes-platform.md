@@ -1,4 +1,4 @@
-# Kubernetes Platform Design
+# Kubernetes Platform System Design
 
 This page covers the basics of designing a Kubernetes platform for teams and applications.
 

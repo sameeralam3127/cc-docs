@@ -5,7 +5,7 @@ tags:
   - Debugging
 ---
 
-# Ansible Facts and Verbosity
+# Ansible Facts and Verbosity Guide
 
 Facts help Ansible learn details about a host before running tasks. Verbosity helps you understand what Ansible is doing when something fails.
 

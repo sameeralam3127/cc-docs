@@ -5,7 +5,7 @@ tags:
   - Basics
 ---
 
-# Ansible Core Concepts
+# Ansible Core Concepts Guide
 
 This page covers the few Ansible ideas you should understand before writing playbooks.
 

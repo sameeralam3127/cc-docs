@@ -1,4 +1,4 @@
-# Docker: From Basics to Advanced
+# Docker Container Guide: From Basics to Advanced
 
 Docker helps you package applications and their dependencies into portable units called containers. Those containers run the same way across laptops, test servers, and production systems, which reduces "it works on my machine" problems and makes delivery more predictable.
 

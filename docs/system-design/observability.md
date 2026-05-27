@@ -1,4 +1,4 @@
-# Observability Architecture
+# Observability System Design
 
 This page explains how to think about monitoring, logging, alerting, and troubleshooting as part of system design.
 

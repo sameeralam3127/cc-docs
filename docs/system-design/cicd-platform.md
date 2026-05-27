@@ -1,4 +1,4 @@
-# CI/CD Platform Design
+# CI/CD Platform System Design
 
 This page explains the basic design thinking behind a practical CI/CD platform.
 

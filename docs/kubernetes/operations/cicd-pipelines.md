@@ -1,4 +1,4 @@
-# CI/CD Pipelines for Kubernetes/OpenShift
+# Kubernetes and OpenShift CI/CD Pipelines Guide
 
 ## 1. CI/CD Fundamentals
 

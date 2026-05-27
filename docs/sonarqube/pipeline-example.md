@@ -5,7 +5,7 @@ tags:
   - Groovy
 ---
 
-# Jenkins Pipeline Example for SonarQube
+# SonarQube Jenkins Pipeline Example
 
 This example shows the basic flow for checking out code, running a SonarQube scan, waiting for the quality gate, and then continuing the build.
 

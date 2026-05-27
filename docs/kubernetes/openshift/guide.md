@@ -1,4 +1,4 @@
-# Red Hat OpenShift Platform Guide
+# Red Hat OpenShift Platform Guide for Kubernetes Teams
 
 OpenShift is Red Hat's enterprise Kubernetes platform for building, running, and operating containerized applications across local, datacenter, and cloud environments.
 

@@ -1,4 +1,4 @@
-# Kubernetes Fundamentals
+# Kubernetes Fundamentals Guide
 
 ## 1. Kubernetes Architecture
 

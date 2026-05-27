@@ -4,6 +4,13 @@ Compute Central is a practical documentation site for DevOps, cloud engineering,
 
 The goal is to keep technical notes clear, useful, and close to real infrastructure work. Instead of long theory-heavy pages, the content focuses on workflows, examples, commands, architecture patterns, and operational lessons that engineers can apply in labs, projects, and production-style environments.
 
+## What Changed Recently
+
+- Improved the homepage for easier navigation
+- Added a visual banner for the documentation site
+- Enabled repository edit/view actions in Zensical
+- Standardized page titles so each page clearly names its technology area
+
 ## Main Topics
 
 - Kubernetes, OpenShift, Docker, and containers

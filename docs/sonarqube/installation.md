@@ -5,7 +5,7 @@ tags:
   - Ubuntu
 ---
 
-# Install SonarQube on Ubuntu
+# SonarQube Installation Guide for Ubuntu
 
 This page walks through a practical SonarQube installation using PostgreSQL on Ubuntu.
 

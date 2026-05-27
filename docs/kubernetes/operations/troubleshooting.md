@@ -1,4 +1,4 @@
-# Kubernetes/OpenShift Troubleshooting Guide
+# Kubernetes and OpenShift Troubleshooting Guide
 
 ## 1. Systematic Troubleshooting Approach
 

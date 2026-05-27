@@ -1,4 +1,4 @@
-# Jenkins Installation and First Pipeline Setup on Ubuntu
+# Jenkins CI/CD Installation and First Pipeline on Ubuntu
 
 Jenkins is an open-source automation server used to build, test, and deploy software. It is one of the most widely used CI/CD tools because it supports pipelines as code, integrates with a large plugin ecosystem, and can automate everything from simple shell scripts to full production delivery workflows.
 

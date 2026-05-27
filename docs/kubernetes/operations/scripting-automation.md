@@ -1,4 +1,4 @@
-# Scripting and Automation for Kubernetes/OpenShift
+# Kubernetes and OpenShift Scripting and Automation Guide
 
 ## 1. Shell Scripting Essentials
 

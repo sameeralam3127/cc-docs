@@ -4,7 +4,7 @@ tags:
   - Configuration
 ---
 
-# Ansible Configuration
+# Ansible Configuration Guide
 
 Ansible configuration controls how commands behave, where inventory is loaded from, and how connections are handled. A project-level `ansible.cfg` is usually the cleanest approach.
 

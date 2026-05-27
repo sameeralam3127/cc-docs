@@ -1,4 +1,4 @@
-# Kubernetes Lab with Minikube
+# Kubernetes Lab with Minikube Guide
 
 This page gives a simple Minikube workflow for local Kubernetes practice.
 

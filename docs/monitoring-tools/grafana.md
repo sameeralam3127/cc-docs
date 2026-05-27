@@ -1,4 +1,4 @@
-# Grafana in This Stack
+# Grafana Guide for the Monitoring Stack
 
 Grafana provides the dashboards and log views for the monitoring lab.
 

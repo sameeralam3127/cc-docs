@@ -1,4 +1,4 @@
-# Kubernetes Lab with Docker Desktop
+# Kubernetes Lab with Docker Desktop Guide
 
 This page gives a simple flow for running Kubernetes practice workloads with Docker Desktop.
 

@@ -1,4 +1,4 @@
-# Alertmanager in This Stack
+# Alertmanager Guide for the Monitoring Stack
 
 Alertmanager receives alerts from Prometheus and decides how they should be grouped, routed, silenced, and repeated.
 

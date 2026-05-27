@@ -5,7 +5,7 @@ tags:
   - Database
 ---
 
-# Configure SonarQube
+# SonarQube Configuration Guide
 
 After installation, the next job is to point SonarQube at PostgreSQL and start the service cleanly.
 

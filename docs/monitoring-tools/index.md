@@ -1,4 +1,4 @@
-# Monitoring Stack Overview
+# Monitoring Stack Overview: Prometheus, Grafana, Loki, and Alertmanager
 
 This section explains a practical monitoring stack built with Prometheus, Grafana, Alertmanager, Loki, Promtail, Blackbox Exporter, and supporting exporters.
 

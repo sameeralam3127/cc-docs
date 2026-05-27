@@ -5,7 +5,7 @@ tags:
   - Integration
 ---
 
-# Connect SonarQube to Jenkins
+# SonarQube and Jenkins Integration Guide
 
 This setup lets Jenkins run code analysis during pipeline execution instead of treating quality checks as a separate manual task.
 

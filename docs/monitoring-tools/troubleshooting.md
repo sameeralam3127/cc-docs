@@ -1,4 +1,4 @@
-# Monitoring Stack Troubleshooting
+# Monitoring Stack Troubleshooting Guide
 
 This page collects the most common issues you may hit while running the monitoring lab locally.
 

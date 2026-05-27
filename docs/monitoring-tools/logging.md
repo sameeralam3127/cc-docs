@@ -1,4 +1,4 @@
-# Logging with Loki and Promtail
+# Loki and Promtail Logging Guide
 
 This page explains the logging flow in the monitoring lab.
 

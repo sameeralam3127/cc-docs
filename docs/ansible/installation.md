@@ -5,7 +5,7 @@ tags:
   - Installation
 ---
 
-# Install Ansible
+# Ansible Installation Guide
 
 This page gives the quickest practical ways to install Ansible on common platforms.
 

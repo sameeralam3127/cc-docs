@@ -3,6 +3,9 @@ site_name = "Compute Central"
 site_description = "Practical DevOps, cloud, Kubernetes, automation, and SRE guides for real-world infrastructure work."
 site_author = "Sameer Alam"
 site_url = "https://computecentral.in/"
+repo_url = "https://github.com/sameeralam3127/cc-docs"
+repo_name = "sameeralam3127/cc-docs"
+edit_uri = "edit/main/docs"
 nav = []
 
 copyright = """
@@ -15,24 +18,33 @@ extra_css = ["stylesheets/extra.css"]
 language = "en"
 favicon = "assets/logo.png"
 logo = "assets/logo.png"
+custom_dir = "overrides"
 
 features = [
   "announce.dismiss",
+  "content.action.edit",
+  "content.action.view",
   "content.code.annotate",
   "content.code.copy",
   "content.code.select",
   "content.footnote.tooltips",
   "content.tabs.link",
   "content.tooltips",
+  "header.autohide",
   "navigation.footer",
   "navigation.indexes",
   "navigation.instant",
   "navigation.instant.prefetch",
+  "navigation.instant.progress",
   "navigation.path",
+  "navigation.sections",
   "navigation.tabs",
+  "navigation.tabs.sticky",
   "navigation.top",
   "navigation.tracking",
   "search.highlight",
+  "search.share",
+  "toc.follow",
   "toc.integrate",
 ]
 
@@ -48,7 +60,14 @@ toggle.name = "Switch to light mode"
 
 [project.theme.icon]
 logo = "lucide/smile"
+repo = "lucide/github"
 
-[project.markdown_extensions.admonition]
-[project.markdown_extensions.pymdownx.details]
-[project.markdown_extensions.pymdownx.superfences]
+[[project.extra.social]]
+icon = "lucide/github"
+link = "https://github.com/sameeralam3127/cc-docs"
+name = "Compute Central on GitHub"
+
+[[project.extra.social]]
+icon = "lucide/globe"
+link = "https://computecentral.in/"
+name = "Compute Central website"

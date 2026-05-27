@@ -1,4 +1,4 @@
-# Quick Reference & Cheat Sheets
+# Kubernetes and OpenShift Quick Reference and Cheat Sheets
 
 ## Essential kubectl Commands
 

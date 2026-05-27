@@ -1,4 +1,4 @@
-# Kubernetes Lab with Podman
+# Kubernetes Lab with Podman Guide
 
 This page gives a simple Podman-based workflow for local Kubernetes experiments where the environment supports it.
 

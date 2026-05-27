@@ -6,7 +6,7 @@ tags:
   - LLM
 ---
 
-# AI Agents
+# AI Agents for Automation Workflows
 
 AI Agents are systems that go beyond generating text. Instead of only predicting the next token, they take actions, make decisions, and complete tasks step by step to achieve a goal.
 

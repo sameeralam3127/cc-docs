@@ -1,4 +1,4 @@
-# Monitoring Stack Walkthrough
+# Monitoring Stack Walkthrough: Prometheus, Grafana, Loki, and Alertmanager
 
 This page explains how the monitoring lab is structured and how to bring it up quickly.
 

@@ -1,4 +1,4 @@
-# Hands-On Practice Scenarios
+# Kubernetes Hands-On Practice Scenarios
 
 ## Scenario 1: Deploy a Multi-Tier Application
 

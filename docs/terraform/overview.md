@@ -1,4 +1,4 @@
-# Terraform Overview
+# Terraform Infrastructure as Code Overview
 
 Terraform is an infrastructure as code tool used to define and manage cloud and platform resources with declarative configuration files.
 

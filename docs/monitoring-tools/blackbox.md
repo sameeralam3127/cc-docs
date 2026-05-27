@@ -1,4 +1,4 @@
-# Blackbox Exporter in This Stack
+# Blackbox Exporter Guide for the Monitoring Stack
 
 Blackbox Exporter adds synthetic checks to the monitoring lab. Instead of reading host metrics, it probes endpoints to see whether they are actually reachable.
 

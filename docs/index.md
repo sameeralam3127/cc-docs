@@ -4,6 +4,34 @@
 
 Use it to learn, revise, and apply topics such as Linux, containers, Kubernetes, CI/CD, Terraform, Ansible, monitoring, troubleshooting, and system design. The focus is simple: explain concepts clearly, show how they work in practice, and connect them to day-to-day operations.
 
+![Compute Central DevOps knowledge hub](assets/compute-central-hero.png){ .cc-hero-image }
+
+## Start Here
+
+<div class="cc-card-grid" markdown>
+
+<a class="cc-card" href="kubernetes/">
+  <strong>Kubernetes and OpenShift</strong>
+  <span>Learn core concepts, OpenShift operations, labs, troubleshooting, and quick-reference commands.</span>
+</a>
+
+<a class="cc-card" href="ansible/ansible/">
+  <strong>Automation</strong>
+  <span>Build repeatable workflows with Ansible, shell scripting, Terraform, and practical infrastructure examples.</span>
+</a>
+
+<a class="cc-card" href="jenkins/jenkins/">
+  <strong>CI/CD and Code Quality</strong>
+  <span>Set up Jenkins pipelines, SonarQube checks, and deployment workflows that are easier to review and operate.</span>
+</a>
+
+<a class="cc-card" href="monitoring-tools/">
+  <strong>Monitoring and SRE</strong>
+  <span>Use Prometheus, Grafana, Alertmanager, Loki, and troubleshooting patterns to understand system health.</span>
+</a>
+
+</div>
+
 ## What You Will Find
 
 - Step-by-step guides for common DevOps and SRE tasks
@@ -11,6 +39,16 @@ Use it to learn, revise, and apply topics such as Linux, containers, Kubernetes,
 - Monitoring and troubleshooting workflows for production-style systems
 - Architecture and system design references for platform engineering
 - Scripts, examples, and checklists that are easy to adapt
+
+## Learning Paths
+
+| Goal | Good starting point |
+| --- | --- |
+| Learn containers and orchestration | [Docker guide](docker/docker.md), then [Kubernetes fundamentals](kubernetes/fundamentals.md) |
+| Practice Kubernetes locally | [Minikube lab](kubernetes/labs/minikube-lab.md), [Docker Desktop lab](kubernetes/labs/docker-lab.md), or [Podman lab](kubernetes/labs/podman-lab.md) |
+| Automate server work | [Ansible overview](ansible/ansible.md), [Ansible playbooks](ansible/playbooks.md), and [shell scripts](shell-scripts/scripts.md) |
+| Improve delivery pipelines | [Jenkins setup](jenkins/jenkins.md), [SonarQube integration](sonarqube/jenkins-integration.md), and [Kubernetes CI/CD](kubernetes/operations/cicd-pipelines.md) |
+| Operate production-style systems | [Monitoring stack](monitoring-tools/index.md), [Kubernetes troubleshooting](kubernetes/operations/troubleshooting.md), and [system design](system-design/index.md) |
 
 ## How to Use This Site
 

@@ -6,7 +6,7 @@ tags:
   - CI/CD
 ---
 
-# SonarQube Overview
+# SonarQube Code Quality Overview
 
 SonarQube helps teams check code quality and security issues as part of normal development and CI/CD work. It is useful when you want automated feedback on bugs, vulnerabilities, code smells, duplication, and quality gates.
 
