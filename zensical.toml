@@ -1,6 +1,6 @@
 [project]
 site_name = "Compute Central"
-site_description = "A new project generated from the default template project."
+site_description = "Practical DevOps, cloud, Kubernetes, automation, and SRE guides for real-world infrastructure work."
 site_author = "Sameer Alam"
 site_url = "https://computecentral.in/"
 nav = []

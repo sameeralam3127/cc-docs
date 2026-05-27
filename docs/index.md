@@ -1,41 +1,37 @@
-# Home
+# Compute Central
 
-**Compute Central** is a practical knowledge hub focused on **DevOps**, **Cloud Engineering**, and **Site Reliability Engineering (SRE)**.
+**Compute Central** is a practical DevOps and cloud engineering knowledge base built around real infrastructure work.
 
-This site documents **real-world infrastructure work**, not theory. You will find hands-on guides, automation patterns, architectural decisions, and operational lessons drawn from building and running systems in production.
+Use it to learn, revise, and apply topics such as Linux, containers, Kubernetes, CI/CD, Terraform, Ansible, monitoring, troubleshooting, and system design. The focus is simple: explain concepts clearly, show how they work in practice, and connect them to day-to-day operations.
 
-Whether you are **starting your DevOps journey** or **operating at scale**, the goal is simple:
+## What You Will Find
 
-> **Make infrastructure reliable, automated, observable, and secure.**
+- Step-by-step guides for common DevOps and SRE tasks
+- Kubernetes, OpenShift, Docker, Terraform, Ansible, Jenkins, and SonarQube notes
+- Monitoring and troubleshooting workflows for production-style systems
+- Architecture and system design references for platform engineering
+- Scripts, examples, and checklists that are easy to adapt
 
-!!! tip
-Hands-on, production-oriented content: scripts, pipelines, architectures, and troubleshooting workflows you can apply immediately.
+## How to Use This Site
 
-!!! info
-Coverage across Linux, Cloud (AWS/GCP/Azure), Containers, Kubernetes, CI/CD, Monitoring, and Security.
+Start with the topic you need, then follow the examples in a local or test environment before using them in production. Most pages are written to help you understand the reason behind each step, not just copy a command and move on.
 
-!!! note
-Clear, step-by-step guides designed for learning by doing, not copy-paste without understanding.
+!!! tip "Best way to learn"
+    Read the short explanation first, run the example safely, then write down what changed and why it worked.
 
-## About Me
+!!! note "Production reminder"
+    Always review commands, credentials, namespaces, and environment names before running anything against shared or production systems.
 
-I’m **Sameer Alam**, a **DevOps Engineer** and **SRE practitioner** with a strong focus on building and operating **reliable, scalable systems**.
+## About Sameer Alam
 
-My work centers on:
+I’m **Sameer Alam**, a DevOps Engineer and SRE practitioner focused on reliable, automated, observable, and secure systems.
 
-- Designing resilient infrastructure
-- Automating deployments and operations
-- Improving performance, observability, and security
-- Reducing operational complexity through clear architecture
+My work includes infrastructure design, deployment automation, monitoring, incident response, platform operations, and simplifying complex workflows for teams.
 
-I’ve been documenting my learning and experiments since **2016**. Compute Central is where those experiences are organized into **clear, reusable, and practical knowledge**.
+I started documenting my learning in **2016**. Compute Central brings those notes, experiments, and real-world lessons into one organized place.
 
-## Projects & Open Source
+## Links
 
-- **GitHub:** [https://github.com/sameeralam3127](https://github.com/sameeralam3127)
-  Infrastructure code, automation experiments, and learning projects.
-
-More repositories and case studies are referenced throughout the site where relevant.
-
-> **"Automation is not just a skill - it's a mindset."**
-> _Sameer Alam_
+- **GitHub:** [github.com/sameeralam3127](https://github.com/sameeralam3127)
+- **Medium:** [medium.com/@sameeralam3127](https://medium.com/@sameeralam3127)
+- **Blog archive:** [compute-central.blogspot.com](https://compute-central.blogspot.com/)
